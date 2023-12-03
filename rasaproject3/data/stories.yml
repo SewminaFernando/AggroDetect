@@ -1,0 +1,129 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+
+
+- story: User greets and asks about account balance
+  steps:
+  - intent: greet
+  - action: utter_greeting
+  - intent: inquire_balance
+  - action: utter_query_account_balance
+
+- story: User reports network issues and requests technical support
+  steps:
+  - intent: greet
+  - action: utter_greeting
+  - intent: report_issue
+  - action: utter_acknowledge_issue
+  - intent: technical_support
+  - action: utter_troubleshoot_network_issue
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: User wants to change their data plan
+  steps:
+  - intent: greet
+  - action: utter_greeting
+  - intent: change_plan
+  - action: utter_process_plan_change
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: User asks to activate international roaming
+  steps:
+  - intent: greet
+  - action: utter_greeting
+  - intent: activate_service
+#    entity:
+#    - service_type
+  - action: utter_activate_international_roaming
+  - intent: mood_great
+  - action: utter_mood_great
+
+- story: User requests cancellation of TV subscription
+  steps:
+  - intent: greet
+  - action: utter_greeting
+  - intent: cancel_service
+  - action: utter_initiate_service_cancellation
+#    entity:
+#    - service_type
+  - intent: TV subscription
+  - action: utter_process_tv_subscription_cancellation
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: User inquires about technical support for router and gives feedback
+  steps:
+  - intent: greet
+  - action: utter_greeting
+  - intent: technical_support
+  - action: utter_troubleshoot_router_issue
+  - intent: give_feedback
+  - action: utter_acknowledge_feedback
+#    entity:
+#    - feedback_type
+  - action: utter_ask_for_additional_feedback
+  - intent: mood_great
+  - action: utter_mood_great
+
+- story: User asks about the latest bill and denies
+  steps:
+  - intent: ask_bill_details
+  - action: utter_provide_billing_details
+  - intent: deny
+  - action: utter_deny
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: User provides feedback and denies
+  steps:
+  - intent: give_feedback
+  - action: utter_acknowledge_feedback
+#    entity:
+#    - feedback_type
+#  - action: utter_ask_for_additional_feedback
+  - intent: deny
+  - action: utter_deny
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: User says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+
+
+
+
+
