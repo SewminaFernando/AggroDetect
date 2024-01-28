@@ -1,0 +1,141 @@
+version: "3.1"
+
+intents:
+  - greet
+  - put_complain
+  - describe_router_error
+  - Report_complaints_again
+  - wait_for_respond
+  - describe_issues_in_wifi
+  - describe_issues_in_phone
+  - check_balance
+  - describe_other_issues
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+
+entities:
+  - name
+  - place
+  - device
+  - phone_number
+  - complain
+  - router_status
+  - phone_status
+  - Instrument_status
+
+actions:
+  - utter_ask_name
+  - utter_ask_report
+  - utter_ask_phone_Number
+  - utter_ask_phone_Number2
+  - utter_ask_router_info
+  - utter_ask_phone_info
+  - utter_ask_instrument_info
+  - utter_put_complain
+  - action_save_Report
+
+
+forms:
+  Form_Report_full_Info:
+    required_slots:
+      - name
+      - phone_number
+      - phone_number2
+      - complain
+      - router_status
+      - phone_status
+      - Instrument_status
+  Form_Report_phone_Info:
+    required_slots:
+      - name
+      - phone_number
+      - phone_number2
+      - phone_status
+      - Instrument_status
+  Form_Report_internet_Info:
+    required_slots:
+      - name
+      - phone_number
+      - router_status
+      - phone_status
+      - Instrument_status
+
+
+slots:
+  name:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+  phone_number:
+    type: text
+    mappings:
+      - type: from_text
+  complain:
+    type: text
+    mappings:
+      - type: from_text
+  router_status:
+    type: text
+    mappings:
+      - type: from_text
+  phone_status:
+    type: text
+    mappings:
+      - type: from_text
+  Instrument_status:
+    type: text
+    mappings:
+      - type: from_text
+
+
+responses:
+  utter_take_host_name:
+    - text: "May I know the connection, honest name?"
+
+  utter_take_host_contact_number:
+    - text: "can I get your contact number please ?, Our agent will call with progress."
+
+  utter_greet:
+  - text: "Hello {name}! how can I help you?"
+  - text: "Hello there! how can I guid you today?"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "thank you for calling SLT. have a nice day!"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by SLT."
+
+  utter_ask_name:
+  - text: "Can you confirm the owner's name please?"
+  utter_ask_phone_Number:
+  - text: "May I know the number?"
+  utter_ask_phone_Number2:
+  - text: "Please give me another phone number where I can reach you."
+  utter_ask_report:
+  - text: "Could you please tell me your problem briefly?, then I can make a complaint for you."
+  utter_ask_router_info:
+  - text: "dou you have internet connection?, if you have Please tell me if your router is working properly, I mean, are all the blinking lights on as before?...Are there any blinking red lights?... If so, what are they?"
+  utter_ask_phone_info:
+  - text: "Again, Please tell me if your phone is working properly, is there any noise? When you pick up the phone, does it beep sound like before?"
+  utter_ask_instrument_info:
+  - text: "Can you see any cable damage or any instrument fault on your place sir?"
+  utter_put_complain:
+    - text:  "I recorded your issue. Is there anything else that I can do for you?"
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

@@ -1,0 +1,144 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hello, my name is [justin martin](name)
+    - hello, I'm calling from [Bambalapitiya](place).
+    - hello, I'm [justin martin](name) and I'm calling from [panadura](place)
+    - Yeah, my name is [Zumi](name). This is regarding my phone number [2875 436](phone_number).
+    - good morning 
+    - good morning, my name is [justin martin](name) 
+    - good morning, I am [Manjula](name) calling from [Makale](place)
+    - good evening
+    - good evening, my name is [justin martin](name) 
+    - good afternoon
+    - good afternoon, my name is [justin martin](name)
+    - good afternoon, I am [Manjula](name) calling from [Makale](place)
+
+
+- intent: put_complain
+  examples: |
+    - i want to add a complain about my [router](device)
+
+- intent: describe_router_error
+  examples: |
+    - the Wi-Fi light is not lighting
+    - there's nothing, but the only thing is that the four or five lights are lighting, but about two lights are not lighting
+
+- intent: Report_complaints_again
+  examples: |
+    - yesterday I made the complaint about my [telephone]{"entity":"device", "value":"phone"}
+    - I made a few complaints last few days, but still no one attending to the resolved that issue
+    - Hello, I have made a complaint regarding the [picture not appearing on our TV](issue_type).
+    
+- intent: wait_for_respond
+  examples: |   
+    - Just give me a minute.
+    - hold on a second.
+
+- intent: describe_issues_in_wifi
+  examples: |
+    - I can't get my [Wi-Fi]{"entity":"device", "value":"router"}, my [Wi-Fi]{"entity":"device", "value":"router"} is not working at all
+    - I'm experiencing [network issues](issue_type) in my area.
+    - There is always [no signal](issue_type) at our house
+    - There is a problem with my [internet connection]{"entity":"device", "value":"router"}.
+    - I need [technical support](support_type) because my [router]{"entity":"device", "value":"router"} has [no signal](issue_type)
+    - I have a loss of signal blinking red lights on my [router]{"entity":"device", "value":"router"}
+
+- intent: describe_issues_in_phone
+  examples: |
+    - My [phone]{"entity":"device", "value":"phone"} is not working properly.
+    - This is regarding my phone number [2875 436](phone_number), it's not working.
+    - our [landline]{"entity":"device", "value":"phone"} is not working now, it's empty.
+
+- intent: check_balance
+  examples: |
+    - Can you tell me my balance is there ? 
+   
+- intent: describe_other_issues
+  examples: |
+    - we are not getting physical bills.
+    - We have two numbers for which we are not getting physical bills.
+
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: affirm
+  examples: |
+    - yes
+    - ok
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+    
+
+- synonym: router
+  examples: |
+    - wi-fi device
+    - wi-fi connection

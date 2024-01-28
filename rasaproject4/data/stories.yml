@@ -1,0 +1,56 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+#- story: put complain about phone
+#  steps:
+#  - intent: describe_issues_in_phone
+#      - Form_Report_Info
+#      - Form{"name":"Form_Report_Info"}
+#      - Form{"name":null}
+#  - intent: affirm
+#  - action: utter_put_complain
+#  - action: action_save_Report
+
+
+#- story: put complain about phone
+#  steps:
+#  - intent: describe_issues_in_phone
+#  - action: Form_Report_Info
+#  - active_loop: Form_Report_Info
+#  - slot_was_set:
+#    - name: null
+#  - intent: affirm
+#  - action: action_save_Report
