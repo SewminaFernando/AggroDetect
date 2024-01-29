@@ -63,6 +63,12 @@ nlu:
     - we are not getting physical bills.
     - We have two numbers for which we are not getting physical bills.
 
+- intent: ask_bill_details
+  examples: |
+    - Can you provide details of my [latest bill](billing_info)?
+    - Explain the charges on my [monthly statement](billing_info).
+    - What is the [due date](billing_info) for my bill?
+
 - intent: goodbye
   examples: |
     - cu

@@ -135,6 +135,10 @@ responses:
   - text: "Can you see any cable damage or any instrument fault on your place sir?"
   utter_put_complain:
     - text:  "I recorded your issue. Is there anything else that I can do for you?"
+  utter_ask_for_billing_details:
+    - text: "To provide billing details, I'll need your account information. Could you please provide your account details, including the billing period you're inquiring about?"
+  utter_deny:
+    - text: "No problem! If you change your mind, I'll be here to help."
 
 session_config:
   session_expiration_time: 60
