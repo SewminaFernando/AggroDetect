@@ -1,1 +1,3 @@
 nlpaug
+seaborn
+skit-learn
