@@ -9,12 +9,6 @@ app = Flask(__name__)
 
 rasa_server_url = "http://localhost:5005/webhooks/rest/webhook"  # Adjust the URL as needed
 
-
-
-# answer=input("bot_reply")
-# text_speech.say(answer)
-# text_speech.runAndWait()
-
 old_conv = {
         "user_messagee":[],
         "resp":[]

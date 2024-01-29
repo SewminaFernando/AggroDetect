@@ -13,6 +13,8 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.types import DomainDict
 
+from save_report import Datastore
+
 
 class ActionSaveReport(Action):
 
@@ -22,8 +24,8 @@ class ActionSaveReport(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        Datastore
-        dispatcher.utter_message(text="Hello World!")
+        Datastore(tracker.get_slot("name"),tracker.get_slot("phone_number"),tracker.get_slot("complain"),tracker.get_slot("router_status"),tracker.get_slot("phone_status"),tracker.get_slot("Instrument_status"))
+        dispatcher.utter_message(text="your complain posted successfully!")
 
         return []
 
@@ -72,6 +74,7 @@ class FormDataCollect(FormAction):
             domain: DomainDict,
     ) -> Dict[Text, Any]:
         return {"router_status": slot_value}
+
     def validate_phone_status(
             self,
             slot_value: Any,
@@ -80,6 +83,7 @@ class FormDataCollect(FormAction):
             domain: DomainDict,
     ) -> Dict[Text, Any]:
         return {"phone_status": slot_value}
+
     def validate_Instrument_status(
             self,
             slot_value: Any,
