@@ -2,13 +2,13 @@
 # input:user massage()
 from flask import Flask, render_template, request, jsonify
 import requests
+import pyttsx3
 
 
 app = Flask(__name__)
 
 rasa_server_url = "http://localhost:5005/webhooks/rest/webhook"  # Adjust the URL as needed
 
-import pyttsx3
 
 
 # answer=input("bot_reply")

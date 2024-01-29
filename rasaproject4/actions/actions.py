@@ -62,6 +62,7 @@ class FormDataCollect(FormAction):
             tracker: Tracker,
             domain: DomainDict,
     ) -> Dict[Text, Any]:
+        return {"complain": slot_value}
 
     def validate_router_status(
             self,
@@ -70,7 +71,7 @@ class FormDataCollect(FormAction):
             tracker: Tracker,
             domain: DomainDict,
     ) -> Dict[Text, Any]:
-
+        return {"router_status": slot_value}
     def validate_phone_status(
             self,
             slot_value: Any,
@@ -78,7 +79,7 @@ class FormDataCollect(FormAction):
             tracker: Tracker,
             domain: DomainDict,
     ) -> Dict[Text, Any]:
-
+        return {"phone_status": slot_value}
     def validate_Instrument_status(
             self,
             slot_value: Any,
@@ -86,7 +87,7 @@ class FormDataCollect(FormAction):
             tracker: Tracker,
             domain: DomainDict,
     ) -> Dict[Text, Any]:
-
+        return {"Instrument_status": slot_value}
 
     # @staticmethod
     # def required_slots(tracker: "Tracker") -> List[Text]:
