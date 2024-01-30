@@ -117,7 +117,7 @@ responses:
   - text: "thank you for calling SLT. have a nice day!"
 
   utter_iamabot:
-  - text: "I am a bot, powered by SLT."
+  - text: "I am a bot, powered by SLT, It's all about helping you!."
 
   utter_ask_name:
   - text: "Can you confirm the owner's name please?"
