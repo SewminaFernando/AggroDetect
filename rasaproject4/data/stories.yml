@@ -44,8 +44,6 @@ stories:
   - intent: affirm
   - action: action_save_Report
 
-
-
 - story: interactive_story_1
   steps:
     - intent: describe_issues_in_phone
