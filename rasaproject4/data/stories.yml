@@ -59,11 +59,11 @@ stories:
 steps:
 - intent: greet
 - action: utter_greet
-- intent: buy_pizza
-- action: simple_pizza_form
-- active_loop: simple_pizza_form
+- intent: put_complain
+- action: Form_Report_full_Info
+- active_loop: Form_Report_full_Info
 - slot_was_set:
-  - requested_slot: pizza_size
+  - requested_slot: name
 - intent: bot_challenge
 - action: utter_iamabot
 - action: simple_pizza_form
