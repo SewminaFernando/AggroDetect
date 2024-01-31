@@ -39,6 +39,13 @@ nlu:
     - Just give me a minute.
     - hold on a second.
 
+- intent: stop
+  examples: |   
+    - sorry, I dont want to put a complain.
+    - hold on a second, no now its fine.
+    - stop
+    - no, i want to complain about my [phone]{"entity":"device", "value":"phone"}
+
 - intent: describe_issues_in_wifi
   examples: |
     - I can't get my [Wi-Fi]{"entity":"device", "value":"router"}, my [Wi-Fi]{"entity":"device", "value":"router"} is not working at all

@@ -15,6 +15,7 @@ intents:
   - deny
   - mood_great
   - mood_unhappy
+  - stop
 
 entities:
   - name
@@ -36,6 +37,7 @@ actions:
   - utter_ask_instrument_info
   - utter_put_complain
   - action_save_Report
+  - utter_ask_continue
 
 
 forms:
@@ -139,6 +141,11 @@ responses:
     - text: "To provide billing details, I'll need your account information. Could you please provide your account details, including the billing period you're inquiring about?"
   utter_deny:
     - text: "No problem! If you change your mind, I'll be here to help."
+  utter_affirm:
+    - text: "it's pleasure to help you! If you have any issues with our services, I'll be here to help."
+
+  utter_ask_continue:
+    - text: "No problem! do you want to cancel the complain?"
 
 session_config:
   session_expiration_time: 60
