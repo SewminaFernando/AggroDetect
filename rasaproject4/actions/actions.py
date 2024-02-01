@@ -36,7 +36,6 @@ class FormDataCollect(FormAction):
     #                       domain: DomainDict, ) -> Dict[Text, Any]:
 
     def name(self) -> Text:
-
         return "validate_simple_pizza_form"
 
     def validate_name(

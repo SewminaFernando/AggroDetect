@@ -3,7 +3,6 @@ version: "3.1"
 intents:
   - greet
   - put_complain
-  - describe_router_error
   - Report_complaints_again
   - wait_for_respond
   - describe_issues_in_wifi
@@ -147,6 +146,9 @@ responses:
 
   utter_ask_continue:
     - text: "No problem! do you want to cancel the complain?"
+
+  utter_wait_for_respond:
+    - text: "No problem! Take your time."
 
 session_config:
   session_expiration_time: 60

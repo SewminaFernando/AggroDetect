@@ -23,10 +23,6 @@ nlu:
   examples: |
     - i want to add a complain about my [router](device)
 
-- intent: describe_router_error
-  examples: |
-    - the Wi-Fi light is not lighting
-    - there's nothing, but the only thing is that the four or five lights are lighting, but about two lights are not lighting
 
 - intent: Report_complaints_again
   examples: |
@@ -54,6 +50,8 @@ nlu:
     - There is a problem with my [internet connection]{"entity":"device", "value":"router"}.
     - I need [technical support](support_type) because my [router]{"entity":"device", "value":"router"} has [no signal](issue_type)
     - I have a loss of signal blinking red lights on my [router]{"entity":"device", "value":"router"}
+    - the [Wi-Fi light]{"entity":"device", "value":"router"} is not lighting
+    - there's nothing, but the only thing is that the four or five lights are lighting, but about two lights are not lighting
 
 - intent: describe_issues_in_phone
   examples: |

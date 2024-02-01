@@ -7,6 +7,11 @@ rules:
   - intent: goodbye
   - action: utter_goodbye
 
+- rule: wait for respod
+  steps:
+  - intent: wait_for_respond
+  - action: utter_wait_for_respond
+
 - rule: Say 'I am a bot' anytime the user challenges
   steps:
   - intent: bot_challenge

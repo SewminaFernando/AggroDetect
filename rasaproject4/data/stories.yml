@@ -27,7 +27,9 @@ stories:
   steps:
   - intent: ask_bill_details
   - action: utter_provide_billing_details
-  - intent: affirm
+  - or:
+    - intent: affirm
+    - intent: thanks
   - action: utter_affirm
   - intent: goodbye
   - action: utter_goodbye
