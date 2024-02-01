@@ -99,6 +99,13 @@ nlu:
     - that sounds good
     - correct
 
+- intent: thanks
+  examples: |
+    - thank you.
+    - oh! that's great thank you so much.
+    - thanks
+    
+
 - intent: deny
   examples: |
     - no
