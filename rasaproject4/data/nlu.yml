@@ -96,6 +96,7 @@ nlu:
     - of course
     - that sounds good
     - correct
+    - yes thank you
 
 - intent: thanks
   examples: |

@@ -22,7 +22,6 @@ entities:
   - place
   - device
   - phone_number
-  - complain
   - router_status
   - phone_status
   - Instrument_status
@@ -38,6 +37,7 @@ actions:
   - utter_put_complain
   - action_save_Report
   - utter_ask_continue
+  - utter_ask_for_put_complain
 
 
 forms:
@@ -46,7 +46,6 @@ forms:
       - name
       - phone_number
       - phone_number2
-      - complain
       - router_status
       - phone_status
       - Instrument_status
@@ -73,10 +72,6 @@ slots:
     mappings:
       - type: from_entity
   phone_number:
-    type: text
-    mappings:
-      - type: from_text
-  complain:
     type: text
     mappings:
       - type: from_text
@@ -143,6 +138,8 @@ responses:
     - text: "No problem! If you change your mind, I'll be here to help."
   utter_affirm:
     - text: "it's pleasure to help you! If you have any issues with our services, I'll be here to help."
+  utter_ask_for_put_complain:
+    - text: "We are deeply sorry for the inconvenience. let me make a complaint for you. They will handle your issue as soon as possible, and let you know."
 
   utter_ask_continue:
     - text: "No problem! do you want to cancel the complain?"

@@ -35,6 +35,22 @@ stories:
   - action: utter_goodbye
 
 
+
+
+- story: put complain general
+  steps:
+  - intent: put_complain
+  - checkpoint: ask_for_put_complain
+
+- story: user put complain general
+  steps:
+  - checkpoint: ask_for_put_complain
+  - action: utter_ask_for_put_complain
+  - intent: affirm
+  - slot_was_set:
+      - device: phone
+
+
 - story: put complain about phone
   steps:
   - intent: describe_issues_in_phone

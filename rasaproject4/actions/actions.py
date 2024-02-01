@@ -24,7 +24,7 @@ class ActionSaveReport(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        Datastore(tracker.get_slot("name"),tracker.get_slot("phone_number"),tracker.get_slot("complain"),tracker.get_slot("router_status"),tracker.get_slot("phone_status"),tracker.get_slot("Instrument_status"))
+        Datastore(tracker.get_slot("name"),tracker.get_slot("phone_number"),tracker.get_slot("router_status"),tracker.get_slot("phone_status"), tracker.get_slot("Instrument_status"))
         dispatcher.utter_message(text="your complain posted successfully!")
 
         return []
@@ -56,14 +56,6 @@ class FormDataCollect(FormAction):
     ) -> Dict[Text, Any]:
         return {"phone_number": slot_value}
 
-    def validate_complain(
-            self,
-            slot_value: Any,
-            dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: DomainDict,
-    ) -> Dict[Text, Any]:
-        return {"complain": slot_value}
 
     def validate_router_status(
             self,
