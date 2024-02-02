@@ -24,6 +24,7 @@ nlu:
     - Oh, yeah, [Lynn](name)
     - my name is [Hussain](name).
     - [PYDD silver](name).
+    - yeah its [zukzi sali](name)
 
 
 - intent: put_complain
