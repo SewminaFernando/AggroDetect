@@ -17,6 +17,7 @@ rules:
   - intent: bot_challenge
   - action: utter_iamabot
 
+
 - rule: submit the full complain
   condition:
   - active_loop: Form_Report_full_Info
@@ -36,6 +37,7 @@ rules:
   - action: Form_Report_full_Info
   - active_loop: Form_Report_full_Info
 
+
 - rule: submit the phone_Info complain
   condition:
   - active_loop: Form_Report_phone_Info
@@ -54,6 +56,7 @@ rules:
   - action: utter_iamabot
   - action: Form_Report_phone_Info
   - active_loop: Form_Report_phone_Info
+
 
 - rule: submit the internet_Info complain
   condition:

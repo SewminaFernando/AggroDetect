@@ -49,6 +49,38 @@ stories:
   - intent: affirm
   - slot_was_set:
       - device: phone
+  - action: Form_Report_Info
+  - active_loop: Form_Report_Info
+
+- story: user put complain general-2
+  steps:
+  - checkpoint: ask_for_put_complain
+  - action: utter_ask_for_put_complain
+  - intent: affirm
+  - slot_was_set:
+      - device: router
+  - action: Form_Report_internet_Info
+  - active_loop: Form_Report_internet_Info
+
+- story: user put complain general-3
+  steps:
+  - checkpoint: ask_for_put_complain
+  - action: utter_ask_for_put_complain
+  - intent: affirm
+  - slot_was_set:
+      - device: null
+  - action: Form_Report_full_Info
+  - active_loop: Form_Report_full_Info
+
+- story: user put complain general-4
+  steps:
+  - checkpoint: ask_for_put_complain
+  - action: utter_ask_for_put_complain
+  - intent: deny
+  - action: utter_deny
+  - action: utter_wait_for_further_queries
+  - intent: deny
+  - action: utter_goodbye
 
 
 - story: put complain about phone
@@ -87,7 +119,7 @@ steps:
 - slot_was_set:
   - requested_slot: phone_number
 - intent: stop
-- action: utter_ask_continue
+- action: utter_ask_continue_complain
 - intent: affirm
 - action: Form_Report_full_Info
 - active_loop: null

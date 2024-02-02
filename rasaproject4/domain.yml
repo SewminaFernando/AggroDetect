@@ -36,8 +36,9 @@ actions:
   - utter_ask_instrument_info
   - utter_put_complain
   - action_save_Report
-  - utter_ask_continue
+  - utter_ask_continue_complain
   - utter_ask_for_put_complain
+  - utter_wait_for_further_queries
 
 
 forms:
@@ -141,8 +142,11 @@ responses:
   utter_ask_for_put_complain:
     - text: "We are deeply sorry for the inconvenience. let me make a complaint for you. They will handle your issue as soon as possible, and let you know."
 
-  utter_ask_continue:
+  utter_ask_continue_complain:
     - text: "No problem! do you want to cancel the complain?"
+
+  utter_wait_for_further_queries:
+    - text: "do you have any further queries? or, Would you like to speak with a customer care agent?"
 
   utter_wait_for_respond:
     - text: "No problem! Take your time."
