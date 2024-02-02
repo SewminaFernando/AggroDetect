@@ -19,6 +19,13 @@ nlu:
     - good afternoon, I am [Manjula](name) calling from [Makale](place)
 
 
+- intent: say_name
+  examples: |
+    - Oh, yeah, [Lynn](name)
+    - my name is [Hussain](name).
+    - [PYDD silver](name).
+
+
 - intent: put_complain
   examples: |
     - i want to add a complain about my [router](device)

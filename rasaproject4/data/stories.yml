@@ -30,7 +30,9 @@ stories:
   - or:
     - intent: affirm
     - intent: thanks
-  - action: utter_affirm
+  - action: utter_ask_name
+  - intent: say_name
+  - action: utter_provide_billing_details
   - intent: goodbye
   - action: utter_goodbye
 
@@ -81,6 +83,9 @@ stories:
   - action: utter_wait_for_further_queries
   - intent: deny
   - action: utter_goodbye
+
+
+
 
 
 - story: put complain about phone
