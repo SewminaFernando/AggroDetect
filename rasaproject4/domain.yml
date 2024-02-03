@@ -18,7 +18,6 @@ intents:
   - thanks
   - deny
   - mood_great
-  - mood_unhappy
   - bot_challenge
 
 
@@ -41,7 +40,6 @@ actions:
   - utter_ask_router_info
   - utter_ask_phone_info
   - utter_ask_instrument_info
-  - utter_put_complain
   - action_save_Report
   - utter_ask_continue_complain
   - utter_ask_for_put_complain
@@ -150,7 +148,7 @@ responses:
   - text: "Again, Please tell me if your phone is working properly, is there any noise? When you pick up the phone, does it beep sound like before?"
   utter_ask_instrument_info:
   - text: "Can you see any cable damage or any instrument fault on your place sir?"
-  utter_put_complain:
+  utter_after_putting_complain:
     - text:  "I recorded your issue. Is there anything else that I can do for you?"
   utter_ask_for_billing_details:
     - text: "To provide billing details, I'll need your account information. Could you please provide your account details, including the billing period you're inquiring about?"
@@ -168,6 +166,10 @@ responses:
 
   utter_wait_for_further_queries:
     - text: "do you have any further queries? or, Would you like to speak with a customer care agent?"
+
+  utter_dirct_to_an_agent:
+    - text: "Kindly allow me a moment to connect you, with the most suitable customer care agent. who will assist you with your concerns."
+
 
   utter_wait_for_respond:
     - text: "No problem! Take your time."
