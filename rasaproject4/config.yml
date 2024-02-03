@@ -29,11 +29,11 @@ pipeline:
 - name: ResponseSelector
   epochs: 100
   constrain_similarities: true
-- name: DucklingHTTPExtractor
-  url: http://localhost:8000/
-  dimensions:
-  - name
-  - number
+#- name: DucklingHTTPExtractor
+#  url: http://localhost:8000/
+#  dimensions:
+#  - name
+#  - number
 - name: FallbackClassifier
   threshold: 0.3
   ambiguity_threshold: 0.1
@@ -52,5 +52,5 @@ policies:
   max_history: 5
   epochs: 100
   constrain_similarities: true
-- name: MappingPolicy
-- name: FormPolicy
+#- name: MappingPolicy
+#- name: FormPolicy

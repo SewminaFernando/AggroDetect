@@ -19,9 +19,24 @@ stories:
 - story: User asks about the latest bill and denies
   steps:
   - intent: ask_bill_details
+  - action: utter_ask_for_billing_details
+  - slot_was_set:
+      - name: null
+  - action: utter_ask_name
+  - intent: say_name
   - action: utter_provide_billing_details
   - intent: deny
   - action: utter_deny
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: User asks about the latest bill-2
+  steps:
+  - intent: ask_bill_details
+  - action: utter_ask_for_billing_details
+  - action: utter_provide_billing_details
+  - intent: affirm
+  - action: utter_ask_for_further_queries
   - intent: goodbye
   - action: utter_goodbye
 
@@ -49,6 +64,19 @@ stories:
     - intent: describe_other_issues
   - action: utter_dirct_to_an_agent
 
+- story: dirct to an agent- deny
+  steps:
+  - action: utter_ask_for_further_queries
+  - intent: deny
+  - action: utter_deny
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: dirct to an agent- affirm
+  steps:
+  - action: utter_ask_for_further_queries
+  - intent: affirm
+  - action: utter_dirct_to_an_agent
 
 
 - story: put complain general
@@ -123,6 +151,34 @@ stories:
   - action: utter_ask_for_further_queries
   - intent: affirm
   - action: utter_dirct_to_an_agent
+
+
+- story: put complain about internet-affirm
+  steps:
+  - intent: describe_issues_in_wifi
+  - action: utter_ask_for_put_complain
+  - or:
+    - intent: affirm
+    - intent: thanks
+  - action: Form_Report_internet_Info
+  - active_loop: Form_Report_internet_Info
+  - action: action_save_Report_internet
+  - or:
+      - intent: affirm
+      - intent: thanks
+  - action: utter_ask_for_further_queries
+  - intent: affirm
+  - action: utter_dirct_to_an_agent
+
+- story: put complain about phone-affirm- deny
+  steps:
+  - intent: describe_issues_in_wifi
+  - action: utter_ask_for_put_complain
+  - intent: deny
+  - action: utter_ask_for_further_queries
+  - intent: affirm
+  - action: utter_dirct_to_an_agent
+
 
 
 
