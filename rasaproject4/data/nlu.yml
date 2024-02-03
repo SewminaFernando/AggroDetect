@@ -12,11 +12,13 @@ nlu:
     - good morning 
     - good morning, my name is [justin martin](name) 
     - good morning, I am [Manjula](name) calling from [Makale](place)
+    - hi, good morning. I'm calling from [Beyond the Ocean Travels](name)
     - good evening
     - good evening, my name is [justin martin](name) 
     - good afternoon
     - good afternoon, my name is [justin martin](name)
     - good afternoon, I am [Manjula](name) calling from [Makale](place)
+  
 
 
 - intent: say_name
@@ -25,6 +27,8 @@ nlu:
     - my name is [Hussain](name).
     - [PYDD silver](name).
     - yeah its [zukzi sali](name)
+    - I am [Manjula](name), my contact number is [077713424](phone_number)
+    - not under the company name
 
 
 - intent: put_complain
@@ -66,6 +70,17 @@ nlu:
     - My [phone]{"entity":"device", "value":"phone"} is not working properly.
     - This is regarding my phone number [2875 436](phone_number), it's not working.
     - our [landline]{"entity":"device", "value":"phone"} is not working now, it's empty.
+    - One is that this [phone]{"entity":"device", "value":"phone"} is very noisy
+    - Only the [voice line]{"entity":"device", "value":"phone"} that's getting noisy
+
+- intent: describe_issues_in_instruments
+  examples: |
+    - Yes, still there are some noises coming from the phone, and the internet not working.
+    - That's right, that got damaged.
+    - you know that cable that goes from the set box to the router, that got damaged.
+    - There are no damages.
+
+
 
 - intent: check_balance
   examples: |
@@ -75,6 +90,10 @@ nlu:
   examples: |
     - we are not getting physical bills.
     - We have two numbers for which we are not getting physical bills.
+    - we got our line when we shifted we shifted house here to Colombo and we got our telephone line wild above
+    - I want to know why the Wi-Fi is not working
+    - can i know how much is the minimum that i should pay to get back my connection
+    - Can you tell me how much GB I've used during peak hours?
 
 - intent: ask_bill_details
   examples: |

@@ -2,21 +2,26 @@ version: "3.1"
 
 intents:
   - greet
+  - say_name
   - put_complain
   - Report_complaints_again
   - wait_for_respond
+  - stop
   - describe_issues_in_wifi
   - describe_issues_in_phone
+  - describe_issues_in_instruments
   - check_balance
   - describe_other_issues
+  - ask_bill_details
   - goodbye
   - affirm
+  - thanks
   - deny
   - mood_great
   - mood_unhappy
-  - stop
-  - thanks
-  - say_name
+  - bot_challenge
+
+
 
 entities:
   - name
@@ -73,22 +78,27 @@ slots:
     influence_conversation: true
     mappings:
       - type: from_entity
+        entity: name
   phone_number:
     type: text
     mappings:
-      - type: from_text
+      - type: from_entity
+        entity: phone_number
   router_status:
     type: text
     mappings:
       - type: from_text
+        intent: describe_issues_in_wifi
   phone_status:
     type: text
     mappings:
       - type: from_text
+        intent: describe_issues_in_phone
   Instrument_status:
     type: text
     mappings:
       - type: from_text
+        intent: describe_issues_in_instruments
 
 
 responses:
@@ -138,7 +148,6 @@ responses:
     - text: "To provide billing details, I'll need your account information. Could you please provide your account details, including the billing period you're inquiring about?"
   utter_provide_billing_details:
     - text: "here is the last billing details!"
-
   utter_deny:
     - text: "No problem! If you change your mind, I'll be here to help."
   utter_affirm:
