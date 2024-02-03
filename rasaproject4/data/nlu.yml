@@ -85,12 +85,6 @@ nlu:
     - That's right, that got damaged.
     - you know that cable that goes from the set box to the router, that got damaged.
     - There are no damages.
-
-
-
-- intent: check_balance
-  examples: |
-    - Can you tell me my balance is there ? 
    
 - intent: describe_other_issues
   examples: |
@@ -103,6 +97,7 @@ nlu:
 
 - intent: ask_bill_details
   examples: |
+    - - Can you tell me my balance is there ? 
     - Can you provide details of my [latest bill](billing_info)?
     - Explain the charges on my [monthly statement](billing_info).
     - What is the [due date](billing_info) for my bill?
@@ -164,23 +159,6 @@ nlu:
     - so so perfect
     - so good
     - so perfect
-
-- intent: mood_unhappy
-  examples: |
-    - my day was horrible
-    - I am sad
-    - I don't feel very well
-    - I am disappointed
-    - super sad
-    - I'm so sad
-    - sad
-    - very sad
-    - unhappy
-    - not good
-    - not very good
-    - extremly sad
-    - so saad
-    - so sad
 
 - intent: bot_challenge
   examples: |

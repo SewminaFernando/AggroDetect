@@ -51,8 +51,8 @@ stories:
   - intent: affirm
   - slot_was_set:
       - device: phone
-  - action: Form_Report_Info
-  - active_loop: Form_Report_Info
+  - action: Form_Report_phone_Info
+  - active_loop: Form_Report_phone_Info
 
 - story: user put complain general-2
   steps:

@@ -11,7 +11,6 @@ intents:
   - describe_issues_in_wifi
   - describe_issues_in_phone
   - describe_issues_in_instruments
-  - check_balance
   - describe_other_issues
   - ask_bill_details
   - goodbye
@@ -124,10 +123,6 @@ responses:
   utter_greet:
   - text: "Hello {name}! how can I help you?"
   - text: "Hello there! how can I guid you today?"
-
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
 
   utter_did_that_help:
   - text: "Did that help you?"
