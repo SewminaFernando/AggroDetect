@@ -16,16 +16,41 @@ from rasa_sdk.types import DomainDict
 from save_report import Datastore
 
 
-class ActionSaveReport(Action):
+class ActionSaveReport_full(Action):
 
     def name(self) -> Text:
-        return "action_save_Report"
+        return "action_save_Report_full"
 
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        Datastore(tracker.get_slot("name"),tracker.get_slot("phone_number"),tracker.get_slot("router_status"),tracker.get_slot("phone_status"), tracker.get_slot("Instrument_status"))
+        Datastore(tracker.get_slot("name"),tracker.get_slot("phone_number"),tracker.get_slot("phone_number2"), tracker.get_slot("router_status"),tracker.get_slot("phone_status"), tracker.get_slot("Instrument_status"))
         dispatcher.utter_message(text="your complain posted successfully!")
 
         return []
 
+class ActionSaveReport_phone(Action):
+
+    def name(self) -> Text:
+        return "action_save_Report_phone"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        Datastore(tracker.get_slot("name"),tracker.get_slot("phone_number"),tracker.get_slot("phone_number2"), tracker.get_slot("phone_status"), tracker.get_slot("Instrument_status"))
+        dispatcher.utter_message(text="your complain posted successfully!")
+
+        return []
+
+class ActionSaveReport_internet(Action):
+
+    def name(self) -> Text:
+        return "action_save_Report_internet"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        Datastore(tracker.get_slot("name"),tracker.get_slot("phone_number"), tracker.get_slot("router_status"), tracker.get_slot("phone_status"), tracker.get_slot("Instrument_status"))
+        dispatcher.utter_message(text="your complain posted successfully!")
+
+        return []

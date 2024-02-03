@@ -26,7 +26,7 @@ rules:
   - active_loop: null
   - slot_was_set:
       - requested_slot: null
-  - action: action_save_Report
+  - action: action_save_Report_full
 
 - rule: interruption_put a full complain
   condition:
@@ -46,7 +46,7 @@ rules:
   - active_loop: null
   - slot_was_set:
       - requested_slot: null
-  - action: action_save_Report
+  - action: action_save_Report_full
 
 - rule: interruption_put a phone_Info complain
   condition:
@@ -66,7 +66,7 @@ rules:
     - active_loop: null
     - slot_was_set:
         - requested_slot: null
-    - action: action_save_Report
+    - action: action_save_Report_full
 
 - rule: interruption_put an internet_Info complain
   condition:

@@ -40,7 +40,9 @@ actions:
   - utter_ask_router_info
   - utter_ask_phone_info
   - utter_ask_instrument_info
-  - action_save_Report
+  - action_save_Report_full
+  - action_save_Report_phone
+  - action_save_Report_internet
   - utter_ask_continue_complain
   - utter_ask_for_put_complain
   - utter_ask_for_further_queries
