@@ -81,6 +81,12 @@ slots:
     mappings:
       - type: from_entity
         entity: name
+  device:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: device
   phone_number:
     type: text
     mappings:
