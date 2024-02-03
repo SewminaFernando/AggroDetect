@@ -43,7 +43,7 @@ actions:
   - action_save_Report
   - utter_ask_continue_complain
   - utter_ask_for_put_complain
-  - utter_wait_for_further_queries
+  - utter_ask_for_further_queries
 
 
 forms:
@@ -164,7 +164,7 @@ responses:
   utter_ask_continue_complain:
     - text: "No problem! do you want to cancel the complain?"
 
-  utter_wait_for_further_queries:
+  utter_ask_for_further_queries:
     - text: "do you have any further queries? or, Would you like to speak with a customer care agent?"
 
   utter_dirct_to_an_agent:

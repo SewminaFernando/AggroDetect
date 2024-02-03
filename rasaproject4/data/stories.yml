@@ -89,33 +89,78 @@ stories:
   - action: utter_ask_for_put_complain
   - intent: deny
   - action: utter_deny
-  - action: utter_wait_for_further_queries
+  - action: utter_ask_for_further_queries
   - intent: deny
   - action: utter_goodbye
 
 
-
-
-
-- story: put complain about phone
+- story: put complain about phone-affirm
   steps:
   - intent: describe_issues_in_phone
+  - action: utter_ask_for_put_complain
+  - or:
+    - intent: affirm
+    - intent: thanks
   - action: Form_Report_phone_Info
   - active_loop: Form_Report_phone_Info
-  - slot_was_set:
-    - name: null
-  - intent: affirm
   - action: action_save_Report
+  - or:
+      - intent: affirm
+      - intent: thanks
+  - action: utter_ask_for_further_queries
+  - intent: affirm
+  - action: utter_dirct_to_an_agent
 
-- story: interactive_story_1
+- story: put complain about phone-affirm- deny
   steps:
-    - intent: describe_issues_in_phone
-    - action: Form_Report_phone_Info
-    - active_loop: Form_Report_phone_Info
-    - slot_was_set:
-        - name: null
+  - intent: describe_issues_in_phone
+  - action: utter_ask_for_put_complain
+  - intent: deny
+  - action: utter_ask_for_further_queries
+  - intent: affirm
+  - action: utter_dirct_to_an_agent
+
+- story: User interrupts the form and doesn't want to continue-1
+  steps:
+  - intent: describe_issues_in_phone
+  - action: utter_ask_for_put_complain
+  - or:
     - intent: affirm
-    - action: action_save_Report
+    - intent: thanks
+  - action: Form_Report_phone_Info
+  - active_loop: Form_Report_phone_Info
+  - intent: stop
+  - action: utter_ask_continue_complain
+  - intent: stop
+  - or:
+      - intent: stop
+      - intent: affirm
+  - action: utter_ask_for_further_queries
+  - active_loop: null
+  - intent: affirm
+  - action: utter_dirct_to_an_agent
+
+- story: User interrupts the form and doesn't want to continue-2
+  steps:
+  - intent: describe_issues_in_phone
+  - action: utter_ask_for_put_complain
+  - or:
+    - intent: affirm
+    - intent: thanks
+  - action: Form_Report_phone_Info
+  - active_loop: Form_Report_phone_Info
+  - intent: stop
+  - action: utter_ask_continue_complain
+  - intent: stop
+  - or:
+      - intent: stop
+      - intent: affirm
+  - action: utter_ask_for_further_queries
+  - active_loop: null
+  - intent: deny
+  - action: utter_goodbye
+
+
 
 
 - story: interactive_story_5
@@ -130,12 +175,12 @@ steps:
 - intent: bot_challenge
 - action: utter_iamabot
 - action: Form_Report_full_Info
+- active_loop: Form_Report_full_Info
 - slot_was_set:
   - requested_slot: phone_number
 - intent: stop
 - action: utter_ask_continue_complain
 - intent: affirm
-- action: Form_Report_full_Info
 - active_loop: null
 - slot_was_set:
   - requested_slot: null

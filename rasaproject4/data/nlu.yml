@@ -58,7 +58,7 @@ nlu:
     - sorry, I dont want to put a complain.
     - hold on a second, no now its fine.
     - stop
-    - no, i want to complain about my [phone]{"entity":"device", "value":"phone"}
+    - i want to talk to an agent
 
 - intent: describe_issues_in_wifi
   examples: |
