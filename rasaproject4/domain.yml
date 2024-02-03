@@ -2,6 +2,7 @@ version: "3.1"
 
 intents:
   - greet
+  - giving_other_phone_number
   - say_name
   - put_complain
   - Report_complaints_again
@@ -28,6 +29,7 @@ entities:
   - place
   - device
   - phone_number
+  - phone_number2
   - router_status
   - phone_status
   - Instrument_status
@@ -84,6 +86,11 @@ slots:
     mappings:
       - type: from_entity
         entity: phone_number
+  phone_number2:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: phone_number2
   router_status:
     type: text
     mappings:

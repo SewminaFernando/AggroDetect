@@ -19,6 +19,11 @@ nlu:
     - good afternoon, my name is [justin martin](name)
     - good afternoon, I am [Manjula](name) calling from [Makale](place)
   
+- intent: giving_other_phone_number
+  examples: |
+    - my contact number is [077713424](phone_number2)
+    - I do is [0112540233](phone_number2)
+    - Phone number is [033 2222 157](phone_number2)
 
 
 - intent: say_name
@@ -46,6 +51,7 @@ nlu:
   examples: |   
     - Just give me a minute.
     - hold on a second.
+    - Just give me a moment.
 
 - intent: stop
   examples: |   
