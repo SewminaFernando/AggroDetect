@@ -19,12 +19,19 @@ nlu:
     - good afternoon, my name is [justin martin](name)
     - good afternoon, I am [Manjula](name) calling from [Makale](place)
   
+
+- intent: say_phone_number
+  examples: |
+    - Oh, yeah, [2875 436](phone_number)
+    - This is regarding my phone number [2875 436](phone_number)
+
 - intent: giving_other_phone_number
   examples: |
     - my contact number is [077713424](phone_number2)
     - I do is [0112540233](phone_number2)
     - Phone number is [033 2222 157](phone_number2)
-
+    - [0752540233](phone_number2)
+    - okay, it's [0782540233](phone_number2)
 
 - intent: say_name
   examples: |
@@ -94,6 +101,7 @@ nlu:
     - I want to know why the Wi-Fi is not working
     - can i know how much is the minimum that i should pay to get back my connection
     - Can you tell me how much GB I've used during peak hours?
+    - my son did somthing last night, and the inter net is not working now.
 
 - intent: ask_bill_details
   examples: |

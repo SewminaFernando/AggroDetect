@@ -271,9 +271,9 @@ stories:
 - story: User asks about the latest bill and denies
   steps:
   - intent: ask_bill_details
-  - action: utter_ask_for_billing_details
   - slot_was_set:
       - name: null
+  - action: utter_ask_for_billing_details
   - action: utter_ask_name
   - intent: say_name
   - action: utter_provide_billing_details
@@ -338,30 +338,89 @@ stories:
   - checkpoint: ask_for_put_complain
   - action: utter_ask_for_put_complain
   - intent: affirm
-  - slot_was_set:
-      - device: phone
+  - or:
+    - slot_was_set:
+        - device: phone
   - action: Form_Report_phone_Info
   - active_loop: Form_Report_phone_Info
+  - slot_was_set:
+      - name: null
+  - action: utter_ask_name
+  - intent: say_name
+  - or:
+    - slot_was_set:
+      - phone_number: null
+  - action: utter_ask_phone_Number
+  - intent: say_phone_number
+  - action: utter_ask_phone_Number2
+  - intent: giving_other_phone_number
+  - action: utter_ask_instrument_info
+  - intent: describe_issues_in_instruments
+  - active_loop: null
+  - slot_was_set:
+      - requested_slot: null
+  - action: action_save_Report_phone
 
 - story: user put complain general-2
   steps:
   - checkpoint: ask_for_put_complain
   - action: utter_ask_for_put_complain
   - intent: affirm
-  - slot_was_set:
-      - device: router
+  - or:
+    - slot_was_set:
+        - device: router
   - action: Form_Report_internet_Info
   - active_loop: Form_Report_internet_Info
+  - or:
+    - slot_was_set:
+        - name: null
+  - action: utter_ask_name
+  - intent: say_name
+  - slot_was_set:
+    - phone_number: null
+  - action: utter_ask_phone_Number
+  - intent: say_phone_number
+  - action: utter_ask_router_info
+  - intent: describe_issues_in_wifi
+  - action: utter_ask_phone_info
+  - intent: describe_issues_in_phone
+  - action: utter_ask_instrument_info
+  - intent: describe_issues_in_instruments
+  - active_loop: null
+  - slot_was_set:
+      - requested_slot: null
+  - action: action_save_Report_internet
 
 - story: user put complain general-3
   steps:
   - checkpoint: ask_for_put_complain
   - action: utter_ask_for_put_complain
   - intent: affirm
-  - slot_was_set:
-      - device: null
+  - or:
+    - slot_was_set:
+        - device: null
   - action: Form_Report_full_Info
   - active_loop: Form_Report_full_Info
+  - slot_was_set:
+      - name: null
+  - action: utter_ask_name
+  - intent: say_name
+  - slot_was_set:
+    - phone_number: null
+  - action: utter_ask_phone_Number
+  - intent: say_phone_number
+  - action: utter_ask_phone_Number2
+  - intent: giving_other_phone_number
+  - action: utter_ask_router_info
+  - intent: describe_issues_in_wifi
+  - action: utter_ask_phone_info
+  - intent: describe_issues_in_phone
+  - action: utter_ask_instrument_info
+  - intent: describe_issues_in_instruments
+  - active_loop: null
+  - slot_was_set:
+      - requested_slot: null
+  - action: action_save_Report_full
 
 - story: user put complain general-4
   steps:
@@ -373,6 +432,10 @@ stories:
   - intent: deny
   - action: utter_goodbye
 
+
+
+
+
 - story: put complain about phone-affirm
   steps:
   - intent: describe_issues_in_phone
@@ -382,6 +445,9 @@ stories:
     - intent: thanks
   - action: Form_Report_phone_Info
   - active_loop: Form_Report_phone_Info
+  - active_loop: null
+  - slot_was_set:
+      - requested_slot: null
   - action: action_save_Report_phone
   - or:
       - intent: affirm
@@ -410,6 +476,9 @@ stories:
     - intent: thanks
   - action: Form_Report_internet_Info
   - active_loop: Form_Report_internet_Info
+  - active_loop: null
+  - slot_was_set:
+      - requested_slot: null
   - action: action_save_Report_internet
   - or:
       - intent: affirm

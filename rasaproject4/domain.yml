@@ -2,6 +2,7 @@ version: "3.1"
 
 intents:
   - greet
+  - say_phone_number
   - giving_other_phone_number
   - say_name
   - put_complain
