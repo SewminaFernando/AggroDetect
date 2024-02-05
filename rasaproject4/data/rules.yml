@@ -1,3 +1,84 @@
+##version: "3.1"
+##
+##rules:
+##
+##- rule: Say goodbye anytime the user says goodbye
+##  steps:
+##  - intent: goodbye
+##  - action: utter_goodbye
+##
+##- rule: wait for respod
+##  steps:
+##  - intent: wait_for_respond
+##  - action: utter_wait_for_respond
+##
+##- rule: Say 'I am a bot' anytime the user challenges
+##  steps:
+##  - intent: bot_challenge
+##  - action: utter_iamabot
+##
+##
+##- rule: submit the full complain
+##  condition:
+##  - active_loop: Form_Report_full_Info
+##  steps:
+##  - action: Form_Report_full_Info
+##  - active_loop: null
+##  - slot_was_set:
+##      - requested_slot: null
+##  - action: action_save_Report_full
+##
+##- rule: interruption_put a full complain
+##  condition:
+##    - active_loop: Form_Report_full_Info
+##  steps:
+##  - intent: bot_challenge
+##  - action: utter_iamabot
+##  - action: Form_Report_full_Info
+##  - active_loop: Form_Report_full_Info
+##
+##
+##- rule: submit the phone_Info complain
+##  condition:
+##  - active_loop: Form_Report_phone_Info
+##  steps:
+##  - action: Form_Report_phone_Info
+##  - active_loop: null
+##  - slot_was_set:
+##      - requested_slot: null
+##  - action: action_save_Report_phone
+##
+##- rule: interruption_put a phone_Info complain
+##  condition:
+##    - active_loop: Form_Report_phone_Info
+##  steps:
+##  - intent: bot_challenge
+##  - action: utter_iamabot
+##  - action: Form_Report_phone_Info
+##  - active_loop: Form_Report_phone_Info
+##
+##
+##- rule: submit the internet_Info complain
+##  condition:
+##    - active_loop: Form_Report_internet_Info
+##  steps:
+##    - action: Form_Report_internet_Info
+##    - active_loop: null
+##    - slot_was_set:
+##        - requested_slot: null
+##    - action: action_save_Report_internet
+##
+##- rule: interruption_put an internet_Info complain
+##  condition:
+##    - active_loop: Form_Report_internet_Info
+##  steps:
+##    - intent: bot_challenge
+##    - action: utter_iamabot
+##    - action: Form_Report_internet_Info
+##    - active_loop: Form_Report_internet_Info
+#
+#
+#
 #version: "3.1"
 #
 #rules:
@@ -7,7 +88,7 @@
 #  - intent: goodbye
 #  - action: utter_goodbye
 #
-#- rule: wait for respod
+#- rule: wait for respond
 #  steps:
 #  - intent: wait_for_respond
 #  - action: utter_wait_for_respond
@@ -16,7 +97,6 @@
 #  steps:
 #  - intent: bot_challenge
 #  - action: utter_iamabot
-#
 #
 #- rule: submit the full complain
 #  condition:
@@ -30,19 +110,18 @@
 #
 #- rule: interruption_put a full complain
 #  condition:
-#    - active_loop: Form_Report_full_Info
+#  - active_loop: Form_Report_full_Info
 #  steps:
 #  - intent: bot_challenge
 #  - action: utter_iamabot
 #  - action: Form_Report_full_Info
 #  - active_loop: Form_Report_full_Info
 #
-#
 #- rule: submit the phone_Info complain
 #  condition:
 #  - active_loop: Form_Report_phone_Info
 #  steps:
-#  - action: Form_Report_phone_Info
+#  - action: Form_Report_full_Info
 #  - active_loop: null
 #  - slot_was_set:
 #      - requested_slot: null
@@ -50,19 +129,18 @@
 #
 #- rule: interruption_put a phone_Info complain
 #  condition:
-#    - active_loop: Form_Report_phone_Info
+#  - active_loop: Form_Report_phone_Info
 #  steps:
 #  - intent: bot_challenge
 #  - action: utter_iamabot
 #  - action: Form_Report_phone_Info
 #  - active_loop: Form_Report_phone_Info
 #
-#
 #- rule: submit the internet_Info complain
 #  condition:
 #    - active_loop: Form_Report_internet_Info
 #  steps:
-#    - action: Form_Report_internet_Info
+#    - action: Form_Report_full_Info
 #    - active_loop: null
 #    - slot_was_set:
 #        - requested_slot: null
@@ -76,9 +154,9 @@
 #    - action: utter_iamabot
 #    - action: Form_Report_internet_Info
 #    - active_loop: Form_Report_internet_Info
-
-
-
+#
+#
+#
 version: "3.1"
 
 rules:
@@ -114,14 +192,12 @@ rules:
   steps:
   - intent: bot_challenge
   - action: utter_iamabot
-  - action: Form_Report_full_Info
-  - active_loop: Form_Report_full_Info
 
 - rule: submit the phone_Info complain
   condition:
   - active_loop: Form_Report_phone_Info
   steps:
-  - action: Form_Report_full_Info
+  - action: Form_Report_phone_Info
   - active_loop: null
   - slot_was_set:
       - requested_slot: null
@@ -133,14 +209,12 @@ rules:
   steps:
   - intent: bot_challenge
   - action: utter_iamabot
-  - action: Form_Report_phone_Info
-  - active_loop: Form_Report_phone_Info
 
 - rule: submit the internet_Info complain
   condition:
     - active_loop: Form_Report_internet_Info
   steps:
-    - action: Form_Report_full_Info
+    - action: Form_Report_internet_Info
     - active_loop: null
     - slot_was_set:
         - requested_slot: null
@@ -152,8 +226,3 @@ rules:
   steps:
     - intent: bot_challenge
     - action: utter_iamabot
-    - action: Form_Report_internet_Info
-    - active_loop: Form_Report_internet_Info
-
-
-

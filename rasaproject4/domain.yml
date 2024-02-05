@@ -121,18 +121,21 @@ responses:
 #  utter_take_host_contact_number:
 #    - text: "can I get your contact number please ?, Our agent will call with progress."
 
+  utter_startup:
+  - text: "Thank you for calling us, How can I help you?"
+
   utter_greet:
   - text: "Hello {name}! how can I help you?"
-  - text: "Hello there! how can I guid you today?"
+  - text: "Hello there! how can I guide you today?"
 
   utter_happy:
   - text: "Great, carry on!"
 
   utter_goodbye:
-  - text: "thank you for calling SLT. have a nice day!"
+  - text: "thank you for calling us. have a nice day!"
 
   utter_iamabot:
-  - text: "I am a bot, powered by SLT, It's all about helping you!."
+  - text: "I am a bot, powered by Rasa, It's all about helping you!."
 
   utter_ask_name:
   - text: "Can you confirm the owner's name please?"

@@ -5,20 +5,20 @@ nlu:
   examples: |
     - hey
     - hello
+    - good morning 
+    - good evening
+    - good afternoon
+    - hi, good morning.
     - hello, my name is [justin martin](name)
     - hello, I'm calling from [Bambalapitiya](place).
     - hello, I'm [justin martin](name) and I'm calling from [panadura](place)
-    - Yeah, my name is [Zumi](name). This is regarding my phone number [2875 436](phone_number).
-    - good morning 
     - good morning, my name is [justin martin](name) 
     - good morning, I am [Manjula](name) calling from [Makale](place)
     - hi, good morning. I'm calling from [Beyond the Ocean Travels](name)
-    - good evening
-    - good evening, my name is [justin martin](name) 
-    - good afternoon
+    - Yeah, my name is [Zumi](name). This is regarding my phone number [2875 436](phone_number).
     - good afternoon, my name is [justin martin](name)
     - good afternoon, I am [Manjula](name) calling from [Makale](place)
-  
+    - good evening, my name is [justin martin](name) 
 
 - intent: say_phone_number
   examples: |
@@ -41,7 +41,14 @@ nlu:
     - yeah its [zukzi sali](name)
     - I am [Manjula](name), my contact number is [077713424](phone_number)
     - not under the company name
-
+#    - my name is [justin martin](name)
+#    - I'm calling from [Bambalapitiya](place).
+#    - I'm [justin martin](name) and I'm calling from [panadura](place)
+#    - my name is [justin martin](name)
+#    - I am [Manjula](name) calling from [Makale](place)
+#    - I'm calling from [Beyond the Ocean Travels](name)
+#    - Yeah, my name is [Zumi](name). This is regarding my phone number [+942875 436](phone_number).
+ 
 
 - intent: put_complain
   examples: |
@@ -105,7 +112,7 @@ nlu:
 
 - intent: ask_bill_details
   examples: |
-    - - Can you tell me my balance is there ? 
+    - Can you tell me my balance is there ? 
     - Can you provide details of my [latest bill](billing_info)?
     - Explain the charges on my [monthly statement](billing_info).
     - What is the [due date](billing_info) for my bill?

@@ -42,7 +42,9 @@
         {% if old_conv %}
         {% for i in range(size) %}
             <div class="user-message">
-                You: {{ old_conv['user_messagee'][i] }}<br>
+                {% if i != 0 %}
+                    You: {{ old_conv['user_messagee'][i] }}<br>
+                {% endif %}
                 Bot: {{ old_conv['resp'][i] }}
             </div>
         {% endfor %}
