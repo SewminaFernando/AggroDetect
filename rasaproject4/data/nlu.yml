@@ -147,6 +147,16 @@ nlu:
     - oh! that's great thank you so much.
     - thanks
     
+- intent: technical_support
+  examples: |
+    - I want to know some some details about my data package.
+    - I need technical support for my router
+    - My phone is not connecting to the network.
+    - Provide assistance with troubleshooting my internet connection.
+    - I want to change my current data package.
+    - I want to upgrade my current data plan.
+    - How can I downgrade to a basic plan?
+    - Change my subscription to a family plan.
 
 - intent: deny
   examples: |

@@ -17,6 +17,7 @@ intents:
   - goodbye
   - affirm
   - thanks
+  - technical_support
   - deny
   - mood_great
   - bot_challenge
@@ -121,9 +122,6 @@ responses:
 #  utter_take_host_contact_number:
 #    - text: "can I get your contact number please ?, Our agent will call with progress."
 
-  utter_startup:
-  - text: "Thank you for calling us, How can I help you?"
-
   utter_greet:
   - text: "Hello {name}! how can I help you?"
   - text: "Hello there! how can I guide you today?"
@@ -153,6 +151,10 @@ responses:
   utter_after_putting_complain:
     - text:  "I recorded your issue. Is there anything else that I can do for you?"
 
+  utter_after_putting_complain:
+    - text:  "I recorded your issue. Is there anything else that I can do for you?"
+
+
   utter_ask_for_billing_details:
     - text: "To provide billing details, I'll need your account information. Could you please provide your account details?"
   utter_provide_billing_details:
@@ -160,8 +162,6 @@ responses:
 
   utter_deny:
     - text: "No problem! If you change your mind, I'll be here to help."
-  utter_affirm:
-    - text: "it's pleasure to help you! If you have any issues with our services, I'll be here to help."
 
   utter_ask_for_put_complain:
     - text: "We are deeply sorry for the inconvenience. let me make a complaint for you.Could you please tell me your problem briefly?, then I can make a complaint for you. our technical teams will handle your issue as soon as possible, and let you know."
