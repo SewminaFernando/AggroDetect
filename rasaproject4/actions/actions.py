@@ -25,7 +25,7 @@ class ActionSaveReport_full(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         Datastore(tracker.get_slot("name"),tracker.get_slot("phone_number"),tracker.get_slot("phone_number2"), tracker.get_slot("router_status"),tracker.get_slot("phone_status"), tracker.get_slot("Instrument_status"))
-        dispatcher.utter_message(text="your complain posted successfully!")
+        dispatcher.utter_message(text="your complain recorded successfully!")
 
         return []
 
@@ -38,7 +38,7 @@ class ActionSaveReport_phone(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         Datastore(tracker.get_slot("name"),tracker.get_slot("phone_number"),tracker.get_slot("phone_number2"), tracker.get_slot("phone_status"), tracker.get_slot("Instrument_status"))
-        dispatcher.utter_message(text="your complain posted successfully!")
+        dispatcher.utter_message(text="your complain recorded successfully!")
 
         return []
 
@@ -51,6 +51,57 @@ class ActionSaveReport_internet(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         Datastore(tracker.get_slot("name"),tracker.get_slot("phone_number"), tracker.get_slot("router_status"), tracker.get_slot("phone_status"), tracker.get_slot("Instrument_status"))
-        dispatcher.utter_message(text="your complain posted successfully!")
+        dispatcher.utter_message(text="your complain recorded successfully!")
 
         return []
+
+
+class ActionUtterGoodbye(Action):
+    def name(self) -> Text:
+        return "utter_goodbye"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        # Generate the custom JSON response
+        json_response = {
+            "message": "thank you for calling us. have a nice day!",
+            "meta": True
+        }
+        # Send the custom JSON response
+        dispatcher.utter_message(json_message=json_response)
+        return []
+# class ActionUtterGoodbye(Action):
+#     def name(self) -> Text:
+#         return "utter_goodbye"
+#
+#     def run(self, dispatcher: CollectingDispatcher,
+#             tracker: Tracker,
+#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+#
+#         value_to_return = True
+#
+#         # Send the value back as part of the response
+#         dispatcher.utter_message(text="thank you for calling us. have a nice day!",metadata={"value": value_to_return})
+#
+#         # Include the value in the metadata of the response
+#         return []
+
+    # class ActionUtterGoodbye(Action):
+    #     def name(self) -> Text:
+    #         return "utter_goodbye"
+    #
+    #     def run(self, dispatcher: CollectingDispatcher,
+    #             tracker: Tracker,
+    #             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+    #         # Generate the custom JSON response
+    #
+    #         json_response = {
+    #             "message": "thank you for calling us. have a nice day!",
+    #             "meta": True
+    #         }
+    #         # Send the custom JSON response
+    #         dispatcher.utter_message(json_message=json_response)
+    #         dispatcher.utter_message(text="your complain recorded successfully!")
+    #
+    #         return []

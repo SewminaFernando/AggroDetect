@@ -2,12 +2,7 @@
 #
 #stories:
 #
-#- story: happy path
-#  steps:
-#  - intent: greet
-#  - action: utter_greet
-#  - intent: mood_great
-#  - action: utter_happy
+
 #
 #- story: sad path 2
 #  steps:
@@ -256,12 +251,41 @@ version: "3.1"
 
 stories:
 
-- story: happy path
+- story: unexpected-affirm
   steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_great
-  - action: utter_happy
+  - or:
+    - intent: deny
+    - intent: stop
+    - intent: unexpected
+  - action: utter_unexpected
+  - or:
+    - intent: deny
+    - intent: stop
+    - intent: unexpected
+  - action: utter_ask_to_direct_agent
+  - intent: affirm
+  - action: utter_dirct_to_an_agent
+
+- story: unexpected-deny
+  steps:
+  - or:
+    - intent: deny
+    - intent: stop
+    - intent: unexpected
+  - action: utter_unexpected
+  - or:
+    - intent: deny
+    - intent: stop
+    - intent: unexpected
+  - action: utter_ask_to_direct_agent
+  - intent: deny
+  - action: utter_deny
+  - intent: goodbye
+  - action: utter_goodbye
+
+
+
+
 
 - story: sad path 2
   steps:
@@ -270,7 +294,6 @@ stories:
 
 - story: User dirct to an agent
   steps:
-
   - intent: greet
   - action: utter_greet
   - or:
@@ -504,71 +527,74 @@ stories:
   - action: utter_goodbye
 
 
-- story: User asks about the latest bill and denies
-  steps:
-  - intent: ask_bill_details
-  - action: utter_ask_for_billing_details
-  - intent: affirm
-  - action: utter_provide_billing_details
-  - intent: deny
-  - action: utter_deny
-  - intent: goodbye
-  - action: utter_goodbye
 
-- story: User asks about the latest bill-2
+- story: User ask for wait
   steps:
-  - intent: ask_bill_details
-  - action: utter_ask_for_billing_details
-  - action: utter_provide_billing_details
-  - intent: affirm
-  - action: utter_ask_for_further_queries
-  - intent: goodbye
-  - action: utter_goodbye
+  - intent: wait_for_respond
+  - action: utter_wait_for_respond
 
-- story: User asks about the latest bill and affirm
+- story: User asks about the latest bill details
   steps:
   - intent: ask_bill_details
   - action: utter_provide_billing_details
-  - or:
-    - intent: affirm
-    - intent: thanks
-  - action: utter_ask_name
-  - intent: say_name
-  - action: utter_provide_billing_details
-  - intent: goodbye
-  - action: utter_goodbye
 
-- story: User asks about the latest bill and affirm
-  steps:
-  - intent: ask_bill_details
-  - action: utter_provide_billing_details
-  - or:
-    - intent: affirm
-    - intent: thanks
+#- story: User asks about the latest bill and denies
+#  steps:
+#  - intent: ask_bill_details
+#  - action: utter_ask_for_billing_details
+#  - intent: affirm
+#  - action: utter_provide_billing_details
+#  - intent: deny
+#  - action: utter_deny
+#  - intent: goodbye
+#  - action: utter_goodbye
+#
+#- story: User asks about the latest bill-2
+#  steps:
+#  - intent: ask_bill_details
+#  - action: utter_ask_for_billing_details
+#  - action: utter_provide_billing_details
+#  - intent: affirm
+#  - action: utter_ask_for_further_queries
+#  - intent: goodbye
+#  - action: utter_goodbye
+#
+#- story: User asks about the latest bill and affirm
+#  steps:
+#  - intent: ask_bill_details
+#  - action: utter_provide_billing_details
+#  - or:
+#    - intent: affirm
+#    - intent: thanks
 #  - action: utter_ask_name
 #  - intent: say_name
-  - action: utter_provide_billing_details
-  - intent: goodbye
-  - action: utter_goodbye
+#  - action: utter_provide_billing_details
+#  - intent: goodbye
+#  - action: utter_goodbye
+#
+#- story: User asks about the latest bill and affirm
+#  steps:
+#  - intent: ask_bill_details
+#  - action: utter_provide_billing_details
+#  - or:
+#    - intent: affirm
+#    - intent: thanks
+##  - action: utter_ask_name
+##  - intent: say_name
+#  - action: utter_provide_billing_details
+#  - intent: goodbye
+#  - action: utter_goodbye
+#
+#- story: User asks about the latest bill and denies
+#  steps:
+#  - intent: ask_bill_details
+##  - slot_was_set:
+##      - name: null
+#  - action: utter_ask_for_billing_details
+##  - action: utter_ask_name
+##  - intent: say_name
+#  - intent: deny
+#  - action: utter_deny
+#  - intent: goodbye
+#  - action: utter_goodbye
 
-- story: User asks about the latest bill and denies
-  steps:
-  - intent: ask_bill_details
-#  - slot_was_set:
-#      - name: null
-  - action: utter_ask_for_billing_details
-#  - action: utter_ask_name
-#  - intent: say_name
-  - intent: deny
-  - action: utter_deny
-  - intent: goodbye
-  - action: utter_goodbye
-
-- story: User asks about the latest bill-2
-  steps:
-  - intent: ask_bill_details
-  - action: utter_provide_billing_details
-  - intent: affirm
-  - action: utter_ask_for_further_queries
-  - intent: goodbye
-  - action: utter_goodbye

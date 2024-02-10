@@ -41,14 +41,7 @@ nlu:
     - yeah its [zukzi sali](name)
     - I am [Manjula](name), my contact number is [077713424](phone_number)
     - not under the company name
-#    - my name is [justin martin](name)
-#    - I'm calling from [Bambalapitiya](place).
-#    - I'm [justin martin](name) and I'm calling from [panadura](place)
-#    - my name is [justin martin](name)
-#    - I am [Manjula](name) calling from [Makale](place)
-#    - I'm calling from [Beyond the Ocean Travels](name)
-#    - Yeah, my name is [Zumi](name). This is regarding my phone number [+942875 436](phone_number).
- 
+
 
 - intent: put_complain
   examples: |
@@ -80,7 +73,7 @@ nlu:
     - I'm experiencing [network issues](issue_type) in my area.
     - There is always [no signal](issue_type) at our house
     - There is a problem with my [internet connection]{"entity":"device", "value":"router"}.
-    - I need [technical support](support_type) because my [router]{"entity":"device", "value":"router"} has [no signal](issue_type)
+    - I need technical support because my [router]{"entity":"device", "value":"router"} has [no signal](issue_type)
     - I have a loss of signal blinking red lights on my [router]{"entity":"device", "value":"router"}
     - the [Wi-Fi light]{"entity":"device", "value":"router"} is not lighting
     - there's nothing, but the only thing is that the four or five lights are lighting, but about two lights are not lighting
@@ -113,9 +106,8 @@ nlu:
 - intent: ask_bill_details
   examples: |
     - Can you tell me my balance is there ? 
-    - Can you provide details of my [latest bill](billing_info)?
-    - Explain the charges on my [monthly statement](billing_info).
-    - What is the [due date](billing_info) for my bill?
+    - Can you provide details of my latest bill?
+    - Explain the charges on my last month.
 
 - intent: goodbye
   examples: |
@@ -157,6 +149,7 @@ nlu:
     - I want to upgrade my current data plan.
     - How can I downgrade to a basic plan?
     - Change my subscription to a family plan.
+    - What is the due date for my bill?
 
 - intent: deny
   examples: |
@@ -167,6 +160,14 @@ nlu:
     - don't like that
     - no way
     - not really
+
+- intent: unexpected
+  examples: |
+    - how?
+    - what?
+    - aaahhhh
+
+
 
 - intent: mood_great
   examples: |

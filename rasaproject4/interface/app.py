@@ -3,7 +3,20 @@
 from flask import Flask, render_template, request, jsonify
 import requests
 import pyttsx3
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import db
 
+# Fetch the service account key JSON file contents
+cred = credentials.Certificate('aggrodetectdb-firebase-adminsdk-g7mwx-5a58418db8.json')
+
+# Initialize the app with a service account, granting admin privileges
+firebase_admin.initialize_app(cred, {
+    'databaseURL': 'https://aggrodetectdb-default-rtdb.asia-southeast1.firebasedatabase.app/'
+})
+
+# As an admin, the app has access to read and write all data, regradless of Security Rules
+ref = db.reference('users')
 
 app = Flask(__name__)
 
@@ -16,14 +29,14 @@ old_conv = {
     }
 def add_welcome_message():
     global welcome_message_spoken
+    message = "Thank you for calling us, How can I help you?"
     if not welcome_message_spoken:
         text_speech = pyttsx3.init()
-        text_speech.say("Thank you for calling us, How can I help you?")
+        text_speech.say(message)
         text_speech.runAndWait()
         old_conv['user_messagee'].append("_")
-        old_conv['resp'].append("Thank you for calling us, How can I help you?")
+        old_conv['resp'].append(message)
         welcome_message_spoken = True
-        return "Thank you for calling us, How can I help you?"
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -33,6 +46,9 @@ def chat():
         user_message = request.form['user_message']
         old_conv['user_messagee'].append(user_message)
         rasa_response = send_message_to_rasa(user_message)
+        print(rasa_response)
+
+
 
         # Check if the response from Rasa is not empty and contains 'text'
         if rasa_response and isinstance(rasa_response, list) and rasa_response[0].get('text'):
@@ -46,6 +62,20 @@ def chat():
 
             # Append the bot's response to the conversation
             old_conv['resp'].append(bot_response)
+            if 'meta' in rasa_response and rasa_response['meta'] == 'utter_goodbye':
+                # Extract the value returned from utter_goodbye
+                if rasa_response.get('meta'):
+
+                    child_name = "asdasdas"
+                    child_data = {
+                        "conversation": old_conv,
+                        "aggresion_level": "Angry"
+                    }
+
+                    # Add the child node with the specified name
+                    ref.child(child_name).set(child_data)
+
+
 
 
             return render_template('index.html', user_message=user_message, bot_response=bot_response,
