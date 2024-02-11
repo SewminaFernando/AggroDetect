@@ -1,85 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="CSS/home.css">
-</head>
-<body>
-    <header class="header">
-        <a href="#" class="logo">Logo</a>
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home</title>
+        <!-- CSS -->
+        <link rel="stylesheet" href="CSS/home.css">
+    </head>
 
-        <nav class="navbar">
-            <a href="#bg-section">Home</a>
-            <a href="#about">About</a>
-            <a href="#service">Service</a>
-            <a href="#" class="login">LogIn</a>
-        </nav>
-        
-        
+    <body>
+        <header class="header">
+            <!-- Logo -->
+            <a href="#" class="logo">AggroDetect</a>
 
-    </header>
-    <section id="bg-section" class="bg-section">
-        <div class="bg-image"></div>
-        <div class="bg-text">
-            <h1 id="title">AGGRODETECT</h1>
-            <p>Empower Your Call Center with Peaceful Conversations</p>
-        </div>
-    </section>
-    <section id="about" class="about">
-        <video autoplay muted loop class="about-video">
-            <source src="Videos/call-center.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="about-text">
-            <h1>ABOUT US</h1>
-            <p>AggroDetect is a system that is directed by revolutionized call center experience, retrieved 
-                from data science methodologies to analyze voice and transcript text. The system enables 
-                distinguishing between Aggressive and Non-Aggressive customers to provide tailored and 
-                exceptional call center experience to the customers. The call center agents will be empowered 
-                by the system to enhance customer satisfaction while onboarding aggressive customers with a 
-                careful and deeper understanding.</p>
-        </div>
-    </section>
-    <section id="service" class="service">
-        <div class="service-text">
-            <h1>Services</h1>
-        </div>
-        <div class="service-boxes">
-            <!--Box1-->
-            <div class="service-box">
-                <img src="Images/voice.png" alt="" class="serivce-img">
-                <h2 class="service-title">Aggressiveness Detection By Voice</h2>
-                <p class="details">
-                    Our system uses advanced technology to analyze the tone, volume, and choice of words in someone's speech. 
-                    It then compares these features to known patterns associated with aggressive behavior. If it detects similarities, 
-                    it flags the speech as potentially aggressive.
-                </p>
-            </div>
+            <!-- Navigation Bar -->
+            <nav class="navbar">
+                <a href="#bg-section" >Home</a>
+                <a href="#about">About</a>
+                <a href="#service">Services</a>
+                <a href="login.html" class="login">LogIn</a>
+            </nav>
+        </header>
 
-            <!--Box2-->
-            <div class="service-box">
-                <img src="Images/bot.png" alt="" class="serivce-img">
-                <h2 class="service-title">Automated Response System</h2>
-                <p class="details">
-                    Our automated response system provides responses to customers and helps them with questions or requests they have. 
-                    It understands what customers say and gives helpful answers or guides them to the right place. 
-                    It learns over time to get better at understanding and helping customers.
-                </p>
+        <!-- Main Section -->
+        <section id="bg-section" class="bg-section">
+            <div class="bg-image"></div>
+            <div class="bg-text">
+                <h1 id="title">AGGRODETECT</h1>
+                <p>Empower Your Call Center with Peaceful Conversations</p>
             </div>
-            <!--Box3-->
-            <div class="service-box">
-                <img src="Images/agent.png" alt="" class="serivce-img">
-                <h2 class="service-title">Agent Routing</h2>
-                <p class="details">
-                    Our system helps streamline the handling of requests by ensuring they are directed to the most appropriate department and agent, 
-                    improving efficiency and customer experience.
-                </p>
+        </section>
+
+        <!-- About Us -->
+        <section id="about" class="about">
+            <video autoplay muted loop class="about-video">
+                <source src="Videos/call-center.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="about-text">
+                <h1>ABOUT US</h1>
+                <p>AggroDetect is a system that is directed by revolutionized call center experience, retrieved 
+                    from data science methodologies to analyze voice and transcript text. The system enables 
+                    distinguishing between Aggressive and Non-Aggressive customers to provide tailored and 
+                    exceptional call center experience to the customers. The call center agents will be empowered 
+                    by the system to enhance customer satisfaction while onboarding aggressive customers with a 
+                    careful and deeper understanding.</p>
             </div>
-        </div>
-    </section>
-</body>
+        </section>
+
+        <!-- Services -->
+        <section id="service" class="service">
+            <div class="service-text">
+                <h1>Services</h1>
+            </div>
+            <div class="service-boxes">
+                <!--Box1-->
+                <div class="service-box">
+                    <img src="Images/voice.png" alt="" class="serivce-img">
+                    <h2 class="service-title">Aggressiveness Detection By Voice</h2>
+                    <p class="details">
+                        Our system uses advanced technology to analyze the tone, volume, and choice of words in someone's speech. 
+                        It then compares these features to known patterns associated with aggressive behavior. If it detects similarities, 
+                        it flags the speech as potentially aggressive.
+                    </p>
+                </div>
+
+                <!--Box2-->
+                <div class="service-box">
+                    <img src="Images/bot.png" alt="" class="serivce-img">
+                    <h2 class="service-title">Automated Response System</h2>
+                    <p class="details">
+                        Our automated response system provides responses to customers and helps them with questions or requests they have. 
+                        It understands what customers say and gives helpful answers or guides them to the right place. 
+                        It learns over time to get better at understanding and helping customers.
+                    </p>
+                </div>
+                <!--Box3-->
+                <div class="service-box">
+                    <img src="Images/agent.png" alt="" class="serivce-img">
+                    <h2 class="service-title">Agent Routing</h2>
+                    <p class="details">
+                        Our system helps streamline the handling of requests by ensuring they are directed to the most appropriate department and agent, 
+                        improving efficiency and customer experience.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </body>
 </html>

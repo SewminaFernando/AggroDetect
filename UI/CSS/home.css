@@ -25,7 +25,7 @@ header{
     z-index: 100;
 }
 .logo{
-    font-size: 32px;
+    font-size: 28px;
     color: #ff6f31ef;
     text-decoration: none;
     font-weight: 700;
@@ -53,6 +53,7 @@ header{
 .navbar a:not(.login):hover::before {
     width: 100%;
 }
+
 .login{
     padding: 3px 10px 3px 10px;
     background-color: #ff6f31ef ;
