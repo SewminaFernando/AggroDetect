@@ -23,7 +23,7 @@
 #  - intent: deny
 #  - action: utter_deny
 #  - intent: goodbye
-#  - action: utter_goodbye
+#  - action: action_utter_goodbye
 #
 #- story: User asks about the latest bill-2
 #  steps:
@@ -33,7 +33,7 @@
 #  - intent: affirm
 #  - action: utter_ask_for_further_queries
 #  - intent: goodbye
-#  - action: utter_goodbye
+#  - action: action_utter_goodbye
 #
 #- story: User asks about the latest bill and affirm
 #  steps:
@@ -46,7 +46,7 @@
 #  - intent: say_name
 #  - action: utter_provide_billing_details
 #  - intent: goodbye
-#  - action: utter_goodbye
+#  - action: action_utter_goodbye
 #
 #
 #
@@ -65,7 +65,7 @@
 #  - intent: deny
 #  - action: utter_deny
 #  - intent: goodbye
-#  - action: utter_goodbye
+#  - action: action_utter_goodbye
 #
 #- story: dirct to an agent- affirm
 #  steps:
@@ -117,7 +117,7 @@
 #  - action: utter_deny
 #  - action: utter_ask_for_further_queries
 #  - intent: deny
-#  - action: utter_goodbye
+#  - action: action_utter_goodbye
 #
 #
 #
@@ -215,7 +215,7 @@
 #  - action: utter_ask_for_further_queries
 #  - active_loop: null
 #  - intent: deny
-#  - action: utter_goodbye
+#  - action: action_utter_goodbye
 #
 #
 #
@@ -242,7 +242,7 @@
 #- slot_was_set:
 #  - requested_slot: null
 #- intent: goodbye
-#- action: utter_goodbye
+#- action: action_utter_goodbye
 
 
 
@@ -281,7 +281,7 @@ stories:
   - intent: deny
   - action: utter_deny
   - intent: goodbye
-  - action: utter_goodbye
+  - action: action_utter_goodbye
 
 
 
@@ -308,7 +308,7 @@ stories:
   - intent: deny
   - action: utter_deny
   - intent: goodbye
-  - action: utter_goodbye
+  - action: action_utter_goodbye
 
 - story: dirct to an agent- affirm
   steps:
@@ -418,8 +418,7 @@ stories:
   - action: utter_deny
   - action: utter_ask_for_further_queries
   - intent: deny
-  - action: utter_goodbye
-
+  - action: action_utter_goodbye
 
 
 
@@ -524,7 +523,7 @@ stories:
   - action: utter_ask_for_further_queries
   - active_loop: null
   - intent: deny
-  - action: utter_goodbye
+  - action: action_utter_goodbye
 
 
 
@@ -547,7 +546,7 @@ stories:
 #  - intent: deny
 #  - action: utter_deny
 #  - intent: goodbye
-#  - action: utter_goodbye
+#  - action: action_utter_goodbye
 #
 #- story: User asks about the latest bill-2
 #  steps:
@@ -557,7 +556,7 @@ stories:
 #  - intent: affirm
 #  - action: utter_ask_for_further_queries
 #  - intent: goodbye
-#  - action: utter_goodbye
+#  - action: action_utter_goodbye
 #
 #- story: User asks about the latest bill and affirm
 #  steps:
@@ -570,7 +569,7 @@ stories:
 #  - intent: say_name
 #  - action: utter_provide_billing_details
 #  - intent: goodbye
-#  - action: utter_goodbye
+#  - action: action_utter_goodbye
 #
 #- story: User asks about the latest bill and affirm
 #  steps:
@@ -583,7 +582,7 @@ stories:
 ##  - intent: say_name
 #  - action: utter_provide_billing_details
 #  - intent: goodbye
-#  - action: utter_goodbye
+#  - action: action_utter_goodbye
 #
 #- story: User asks about the latest bill and denies
 #  steps:
@@ -596,5 +595,5 @@ stories:
 #  - intent: deny
 #  - action: utter_deny
 #  - intent: goodbye
-#  - action: utter_goodbye
+#  - action: action_utter_goodbye
 

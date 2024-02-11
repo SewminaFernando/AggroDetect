@@ -7,16 +7,16 @@ from tkinter import EventType
 # This is a simple example for a custom action which utters "Hello World!"
 
 from typing import Any, Text, Dict, List, Union
-
 from rasa.core.actions.forms import FormAction
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.types import DomainDict
+from save_report import firebase_datastore
+from save_report import datastore
+from interface.app import dict_to_pickle
+import pickle
 
-from save_report import Datastore
-
-
-class ActionSaveReport_full(Action):
+class ActionSaveReportFull(Action):
 
     def name(self) -> Text:
         return "action_save_Report_full"
@@ -24,12 +24,12 @@ class ActionSaveReport_full(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        Datastore(tracker.get_slot("name"),tracker.get_slot("phone_number"),tracker.get_slot("phone_number2"), tracker.get_slot("router_status"),tracker.get_slot("phone_status"), tracker.get_slot("Instrument_status"))
+        datastore([tracker.get_slot("name"), tracker.get_slot("phone_number"), tracker.get_slot("phone_number2"), tracker.get_slot("router_status"), tracker.get_slot("phone_status"), tracker.get_slot("Instrument_status")])
         dispatcher.utter_message(text="your complain recorded successfully!")
 
         return []
 
-class ActionSaveReport_phone(Action):
+class ActionSaveReportPhone(Action):
 
     def name(self) -> Text:
         return "action_save_Report_phone"
@@ -37,12 +37,12 @@ class ActionSaveReport_phone(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        Datastore(tracker.get_slot("name"),tracker.get_slot("phone_number"),tracker.get_slot("phone_number2"), tracker.get_slot("phone_status"), tracker.get_slot("Instrument_status"))
+        datastore([tracker.get_slot("name"), tracker.get_slot("phone_number"), tracker.get_slot("phone_number2"), tracker.get_slot("phone_status"), tracker.get_slot("Instrument_status")])
         dispatcher.utter_message(text="your complain recorded successfully!")
 
         return []
 
-class ActionSaveReport_internet(Action):
+class ActionSaveReportInternet(Action):
 
     def name(self) -> Text:
         return "action_save_Report_internet"
@@ -50,7 +50,7 @@ class ActionSaveReport_internet(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        Datastore(tracker.get_slot("name"),tracker.get_slot("phone_number"), tracker.get_slot("router_status"), tracker.get_slot("phone_status"), tracker.get_slot("Instrument_status"))
+        datastore([tracker.get_slot("name"), tracker.get_slot("phone_number"), tracker.get_slot("router_status"), tracker.get_slot("phone_status"), tracker.get_slot("Instrument_status")])
         dispatcher.utter_message(text="your complain recorded successfully!")
 
         return []
@@ -58,18 +58,23 @@ class ActionSaveReport_internet(Action):
 
 class ActionUtterGoodbye(Action):
     def name(self) -> Text:
-        return "utter_goodbye"
+        return "action_utter_goodbye"
 
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        # Generate the custom JSON response
-        json_response = {
-            "message": "thank you for calling us. have a nice day!",
-            "meta": True
-        }
+        flag = dict_to_pickle()
+        if flag:
+            with open('rasaproject4\old_conv.pkl', 'rb') as f:
+                # Load the data from the file
+                old_conv = pickle.load(f)
+
+            print(old_conv)
+
         # Send the custom JSON response
-        dispatcher.utter_message(json_message=json_response)
+        dispatcher.utter_message(text="thank you for calling us. have a nice day!")
+
+        firebase_datastore('chuula', old_conv) # 'chuula' is a dummy username
         return []
 # class ActionUtterGoodbye(Action):
 #     def name(self) -> Text:

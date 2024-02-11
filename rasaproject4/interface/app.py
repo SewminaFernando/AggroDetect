@@ -3,20 +3,7 @@
 from flask import Flask, render_template, request, jsonify
 import requests
 import pyttsx3
-import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import db
-
-# Fetch the service account key JSON file contents
-cred = credentials.Certificate('aggrodetectdb-firebase-adminsdk-g7mwx-5a58418db8.json')
-
-# Initialize the app with a service account, granting admin privileges
-firebase_admin.initialize_app(cred, {
-    'databaseURL': 'https://aggrodetectdb-default-rtdb.asia-southeast1.firebasedatabase.app/'
-})
-
-# As an admin, the app has access to read and write all data, regradless of Security Rules
-ref = db.reference('users')
+import pickle
 
 app = Flask(__name__)
 
@@ -45,15 +32,11 @@ def chat():
     if request.method == 'POST':
         user_message = request.form['user_message']
         old_conv['user_messagee'].append(user_message)
+        print(old_conv)
         rasa_response = send_message_to_rasa(user_message)
-        print(rasa_response)
-
-
-
         # Check if the response from Rasa is not empty and contains 'text'
         if rasa_response and isinstance(rasa_response, list) and rasa_response[0].get('text'):
             bot_response = rasa_response[0]['text']
-
 
             # Text-to-speech conversion using pyttsx3
             text_speech = pyttsx3.init()
@@ -62,21 +45,6 @@ def chat():
 
             # Append the bot's response to the conversation
             old_conv['resp'].append(bot_response)
-            if 'meta' in rasa_response and rasa_response['meta'] == 'utter_goodbye':
-                # Extract the value returned from utter_goodbye
-                if rasa_response.get('meta'):
-
-                    child_name = "asdasdas"
-                    child_data = {
-                        "conversation": old_conv,
-                        "aggresion_level": "Angry"
-                    }
-
-                    # Add the child node with the specified name
-                    ref.child(child_name).set(child_data)
-
-
-
 
             return render_template('index.html', user_message=user_message, bot_response=bot_response,
                                    old_conv=old_conv, size=len(old_conv["user_messagee"]))
@@ -98,12 +66,17 @@ def send_message_to_rasa(message):
         "message": message,
     }
     response = requests.post(rasa_server_url, json=payload)
-    print('wada')
     if response.status_code == 200:
-        print('wada')
         return response.json()
     else:
         return {"error": "Failed to send message to Rasa."}
+def dict_to_pickle():
+    global old_conv
+    print(old_conv)
+    with open('old_conv.pkl','wb') as data:
+        pickle.dump(old_conv, data)
+        return True
+
 
 
 if __name__ == '__main__':

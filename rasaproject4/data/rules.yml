@@ -5,7 +5,7 @@
 ##- rule: Say goodbye anytime the user says goodbye
 ##  steps:
 ##  - intent: goodbye
-##  - action: utter_goodbye
+##  - action: action_utter_goodbye
 ##
 ##- rule: wait for respod
 ##  steps:
@@ -86,7 +86,7 @@
 #- rule: Say goodbye anytime the user says goodbye
 #  steps:
 #  - intent: goodbye
-#  - action: utter_goodbye
+#  - action: action_utter_goodbye
 #
 #- rule: wait for respond
 #  steps:
@@ -164,7 +164,7 @@ rules:
 - rule: Say goodbye anytime the user says goodbye
   steps:
   - intent: goodbye
-  - action: utter_goodbye
+  - action: action_utter_goodbye
 
 - rule: wait for respond
   steps:

@@ -36,22 +36,22 @@ entities:
   - Instrument_status
 
 actions:
-  - utter_goodbye
-  - utter_ask_name
-  - utter_ask_report
-  - utter_ask_phone_Number
-  - utter_ask_phone_Number2
-  - utter_ask_router_info
-  - utter_ask_phone_info
-  - utter_ask_instrument_info
+#  - utter_ask_name
+#  - utter_ask_report
+#  - utter_ask_phone_Number
+#  - utter_ask_phone_Number2
+#  - utter_ask_router_info
+#  - utter_ask_phone_info
+#  - utter_ask_instrument_info
 
+  - action_utter_goodbye
   - action_save_Report_full
   - action_save_Report_phone
   - action_save_Report_internet
 
-  - utter_ask_continue_complain
-  - utter_ask_for_put_complain
-  - utter_ask_for_further_queries
+#  - utter_ask_continue_complain
+#  - utter_ask_for_put_complain
+#  - utter_ask_for_further_queries
 
 
 forms:

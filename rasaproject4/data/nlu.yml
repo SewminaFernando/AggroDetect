@@ -5,6 +5,7 @@ nlu:
   examples: |
     - hey
     - hello
+    - hello, im [chualanjana](name)
     - good morning 
     - good evening
     - good afternoon
@@ -162,7 +163,7 @@ nlu:
     - not really
 
 - intent: unexpected
-  examples: |
+  examples: | 
     - how?
     - what?
     - aaahhhh
