@@ -1,11 +1,5 @@
-# This files contains your custom actions which can be used to run
-# custom Python code.
-#
-# See this guide on how to implement these action:
-# https://rasa.com/docs/rasa/custom-actions
+import subprocess
 from tkinter import EventType
-# This is a simple example for a custom action which utters "Hello World!"
-
 from typing import Any, Text, Dict, List, Union
 from rasa.core.actions.forms import FormAction
 from rasa_sdk import Action, Tracker
@@ -13,7 +7,6 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.types import DomainDict
 from save_report import firebase_datastore
 from save_report import datastore
-from interface.app import dict_to_pickle
 import pickle
 
 class ActionSaveReportFull(Action):
@@ -63,50 +56,21 @@ class ActionUtterGoodbye(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        flag = dict_to_pickle()
-        if flag:
-            with open('rasaproject4\old_conv.pkl', 'rb') as f:
-                # Load the data from the file
-                old_conv = pickle.load(f)
-
-            print(old_conv)
-
         # Send the custom JSON response
         dispatcher.utter_message(text="thank you for calling us. have a nice day!")
+        print("hi")
+        # with open('interface\old_conv.pkl', 'rb') as f:
+        #     old_conv = pickle.load(f)
+        # firebase_datastore('chuula6', old_conv) # 'chuula' is a dummy username
 
-        firebase_datastore('chuula', old_conv) # 'chuula' is a dummy username
+        # rasa_server_process = subprocess.Popen(['pkill', '-f', 'rasa', '-e'])
+        # rasa_server_process.wait()  # Wait for the process to finish
+        # # Terminate the action server
+        # action_server_process = subprocess.Popen(['pkill', '-f', 'rasa_sdk', '-e'])
+        # action_server_process.wait()
         return []
-# class ActionUtterGoodbye(Action):
-#     def name(self) -> Text:
-#         return "utter_goodbye"
-#
-#     def run(self, dispatcher: CollectingDispatcher,
-#             tracker: Tracker,
-#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-#
-#         value_to_return = True
-#
-#         # Send the value back as part of the response
-#         dispatcher.utter_message(text="thank you for calling us. have a nice day!",metadata={"value": value_to_return})
-#
-#         # Include the value in the metadata of the response
-#         return []
 
-    # class ActionUtterGoodbye(Action):
-    #     def name(self) -> Text:
-    #         return "utter_goodbye"
-    #
-    #     def run(self, dispatcher: CollectingDispatcher,
-    #             tracker: Tracker,
-    #             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-    #         # Generate the custom JSON response
-    #
-    #         json_response = {
-    #             "message": "thank you for calling us. have a nice day!",
-    #             "meta": True
-    #         }
-    #         # Send the custom JSON response
-    #         dispatcher.utter_message(json_message=json_response)
-    #         dispatcher.utter_message(text="your complain recorded successfully!")
-    #
-    #         return []
+
+
+
+

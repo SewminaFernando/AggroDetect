@@ -22,7 +22,7 @@ def datastore(name, mobile_number, email, occupation):
 
 def firebase_datastore(username, convesation):
     # Fetch the service account key JSON file contents
-    cred = credentials.Certificate('aggrodetectdb-firebase-adminsdk-g7mwx-5a58418db8.json')
+    cred = credentials.Certificate('interface/aggrodetectdb-firebase-adminsdk-g7mwx-5a58418db8.json')
 
     # Initialize the app with a service account, granting admin privileges
     firebase_admin.initialize_app(cred, {
