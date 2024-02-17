@@ -30,7 +30,7 @@ class ActionSaveReportPhone(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        datastore([tracker.get_slot("name"), tracker.get_slot("phone_number"), tracker.get_slot("phone_number2"), tracker.get_slot("phone_status"), tracker.get_slot("Instrument_status")])
+        datastore([tracker.get_slot("name"), tracker.get_slot("phone_number"), tracker.get_slot("phone_number2"), "_", tracker.get_slot("phone_status"), tracker.get_slot("Instrument_status")])
         dispatcher.utter_message(text="your complain recorded successfully!")
 
         return []
@@ -43,7 +43,7 @@ class ActionSaveReportInternet(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        datastore([tracker.get_slot("name"), tracker.get_slot("phone_number"), tracker.get_slot("router_status"), tracker.get_slot("phone_status"), tracker.get_slot("Instrument_status")])
+        datastore([tracker.get_slot("name"), tracker.get_slot("phone_number"), "_", tracker.get_slot("router_status"), tracker.get_slot("phone_status"), tracker.get_slot("Instrument_status")])
         dispatcher.utter_message(text="your complain recorded successfully!")
 
         return []

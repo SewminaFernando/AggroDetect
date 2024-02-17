@@ -3,21 +3,62 @@ import os
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
+from pyarrow import null
 
 
-def datastore(name, mobile_number, email, occupation):
+# def datastore(name, phone_number, phone_number2=null, router_status=null,phone_status=null,Instrument_status=null):
+#
+#
+#     if os.path.isfile("user_data.xlsx"):
+#
+#         df=pd.read_excel("user_data.xlsx")
+#
+#         df.append([name,phone_number, phone_number2, router_status, phone_status, Instrument_status])
+#         df.to_excel("user_data.xlsx",index=False)
+#
+#     else:
+#         df=pd.DataFrame([name,phone_number, phone_number2, router_status, phone_status, Instrument_status],columns=["name","phone_number", "phone_number2", "router_status", "phone_status", "Instrument_status"])
+#         df.to_excel("user_data.xlsx", index=False)
 
+# def datastore(name, phone_number, phone_number2=null, router_status=null, phone_status=null, Instrument_status=null):
+#
+#     data = {
+#         "name": [name],
+#         "phone_number": [phone_number],
+#         "phone_number2": [phone_number2],
+#         "router_status": [router_status],
+#         "phone_status": [phone_status],
+#         "Instrument_status": [Instrument_status]
+#     }
+#
+#     if os.path.isfile("user_data.xlsx"):
+#         df = pd.read_excel("user_data.xlsx")
+#         df = df.append(pd.DataFrame(data))
+#     else:
+#         df = pd.DataFrame(data)
+#
+#     df.to_excel("user_data.xlsx", index=False)
+
+
+def datastore(name, phone_number, phone_number2=null, router_status=null, phone_status=null, Instrument_status=null):
+
+    data = {
+        "name": [name],
+        "phone_number": [phone_number],
+        "phone_number2": [phone_number2],
+        "router_status": [router_status],
+        "phone_status": [phone_status],
+        "Instrument_status": [Instrument_status]
+    }
 
     if os.path.isfile("user_data.xlsx"):
-
-        df=pd.read_excel("user_data.xlsx")
-
-        df.append([name,mobile_number, email, occupation])
-        df.to_excel("user_data.xlsx",index=False)
-
+        df = pd.read_excel("user_data.xlsx")
+        df = pd.concat([df, pd.DataFrame(data)])
     else:
-        df=pd.DataFrame([name,mobile_number, email, occupation],columns=["name","mobile_number","email","occupation"])
-        df.to_excel("user_data.xlsx", index=False)
+        df = pd.DataFrame(data)
+
+    df.to_excel("user_data.xlsx", index=False)
+
 
 
 def firebase_datastore(username, convesation):

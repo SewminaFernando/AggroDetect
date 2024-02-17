@@ -168,7 +168,7 @@ responses:
 
 
   utter_unexpected:
-    - text: "I'm sorry, I didn't quite understand what you were saying. Could you please repeat your problem to me?"
+    - text: "I'm sorry, I didn't quite understand what you were saying. Could you please repeat it please?"
   utter_ask_to_direct_agent:
     - text: "Would you like to speak with a customer care agent?"
   utter_dirct_to_an_agent:

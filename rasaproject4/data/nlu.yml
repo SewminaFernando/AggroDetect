@@ -133,6 +133,7 @@ nlu:
     - that sounds good
     - correct
     - yes thank you
+    - yeah 
 
 - intent: thanks
   examples: |
