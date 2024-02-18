@@ -1,0 +1,73 @@
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <title>Rasa Chatbot</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <div id="chat-container">-->
+<!--        <div id="chat-log"></div>-->
+<!--        <input type="text" id="user-input" placeholder="Type a message..." />-->
+<!--        <button onclick="sendMessage()">Send</button>-->
+<!--    </div>-->
+<!--    <script>-->
+<!--        function sendMessage() {-->
+<!--            var userMessage = document.getElementById('user-input').value;-->
+<!--            document.getElementById('chat-log').innerHTML += '<div>User: ' + userMessage + '</div>';-->
+<!--            document.getElementById('user-input').value = '';-->
+
+<!--            // Send the user message to the Rasa server-->
+<!--            fetch('/webhooks/rest/webhook', {-->
+<!--                method: 'POST',-->
+<!--                headers: { 'Content-Type': 'application/json' },-->
+<!--                body: JSON.stringify({ message: userMessage })-->
+<!--            })-->
+<!--            .then(response => response.json())-->
+<!--            .then(data => {-->
+<!--                var botMessage = data[0].text;-->
+<!--                document.getElementById('chat-log').innerHTML += '<div>Bot: ' + botMessage + '</div>';-->
+<!--            });-->
+<!--        }-->
+<!--    </script>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat with Rasa Bot</title>
+</head>
+<body>
+    <h1>Chat with Rasa Bot</h1>
+
+    <div id="chat-container2">
+        {% if old_conv %}
+        {% for i in range(size) %}
+            <div class="user-message">
+                {% if i != 0 %}
+                    You: {{ old_conv['user_messagee'][i] }}<br>
+                {% endif %}
+                Bot: {{ old_conv['resp'][i] }}
+            </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+<!--    <div id="chat-container">-->
+<!--        {% if user_message %}-->
+<!--            <div class="user-message">-->
+<!--                You: {{ user_message }}-->
+<!--            </div>-->
+<!--        {% endif %}-->
+
+<!--        {% if bot_response %}-->
+<!--            <div class="bot-message">-->
+<!--                Bot: {{ bot_response }}-->
+<!--            </div>-->
+<!--        {% endif %}-->
+<!--    </div>-->
+
+    <form method="POST" action="/">
+        <input type="text" name="user_message" placeholder="Type your message..." required>
+        <input type="submit" value="Send">
+    </form>
+</body>
+</html>

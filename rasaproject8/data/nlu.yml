@@ -1,0 +1,201 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hello, im [chualanjana](name)
+    - good morning 
+    - good evening
+    - good afternoon
+    - hi, good morning.
+    - hello, my name is [justin martin](name)
+    - hello, I'm calling from [Bambalapitiya](place).
+    - hello, I'm [justin martin](name) and I'm calling from [panadura](place)
+    - good morning, my name is [justin martin](name) 
+    - good morning, I am [Manjula](name) calling from [Makale](place)
+    - hi, good morning. I'm calling from [Beyond the Ocean Travels](name)
+    - Yeah, my name is [Zumi](name). This is regarding my phone number [2875 436](phone_number).
+    - good afternoon, my name is [justin martin](name)
+    - good afternoon, I am [Manjula](name) calling from [Makale](place)
+    - good evening, my name is [justin martin](name) 
+
+- intent: say_phone_number
+  examples: |
+    - Oh, yeah, [2875 436](phone_number)
+    - This is regarding my phone number [2875 436](phone_number)
+
+- intent: giving_other_phone_number
+  examples: |
+    - my contact number is [077713424](phone_number2)
+    - I do is [0112540233](phone_number2)
+    - Phone number is [033 2222 157](phone_number2)
+    - [0752540233](phone_number2)
+    - okay, it's [0782540233](phone_number2)
+
+- intent: say_name
+  examples: |
+    - Oh, yeah, [Lynn](name)
+    - my name is [Hussain](name).
+    - [PYDD silver](name).
+    - yeah its [zukzi sali](name)
+    - I am [Manjula](name), my contact number is [077713424](phone_number)
+    - not under the company name
+
+
+- intent: put_complain
+  examples: |
+    - i want to add a complain about my [router](device)
+
+
+- intent: Report_complaints_again
+  examples: |
+    - yesterday I made the complaint about my [telephone]{"entity":"device", "value":"phone"}
+    - I made a few complaints last few days, but still no one attending to the resolved that issue
+    - Hello, I have made a complaint regarding the [picture not appearing on our TV](issue_type).
+    
+- intent: wait_for_respond
+  examples: |   
+    - Just give me a minute.
+    - hold on a second.
+    - Just give me a moment.
+
+- intent: stop
+  examples: |   
+    - sorry, I dont want to put a complain.
+    - hold on a second, no now its fine.
+    - stop
+    - i want to talk to an agent
+
+- intent: describe_issues_in_wifi
+  examples: |
+    - I can't get my [Wi-Fi]{"entity":"device", "value":"router"}, my [Wi-Fi]{"entity":"device", "value":"router"} is not working at all
+    - I'm experiencing [network issues](issue_type) in my area.
+    - There is always [no signal](issue_type) at our house
+    - There is a problem with my [internet connection]{"entity":"device", "value":"router"}.
+    - I need technical support because my [router]{"entity":"device", "value":"router"} has [no signal](issue_type)
+    - I have a loss of signal blinking red lights on my [router]{"entity":"device", "value":"router"}
+    - the [Wi-Fi light]{"entity":"device", "value":"router"} is not lighting
+    - there's nothing, but the only thing is that the four or five lights are lighting, but about two lights are not lighting
+
+- intent: describe_issues_in_phone
+  examples: |
+    - My [phone]{"entity":"device", "value":"phone"} is not working properly.
+    - This is regarding my phone number [2875 436](phone_number), it's not working.
+    - our [landline]{"entity":"device", "value":"phone"} is not working now, it's empty.
+    - One is that this [phone]{"entity":"device", "value":"phone"} is very noisy
+    - Only the [voice line]{"entity":"device", "value":"phone"} that's getting noisy
+
+- intent: describe_issues_in_instruments
+  examples: |
+    - Yes, still there are some noises coming from the phone, and the internet not working.
+    - That's right, that got damaged.
+    - you know that cable that goes from the set box to the router, that got damaged.
+    - There are no damages.
+   
+- intent: describe_other_issues
+  examples: |
+    - we are not getting physical bills.
+    - We have two numbers for which we are not getting physical bills.
+    - we got our line when we shifted we shifted house here to Colombo and we got our telephone line wild above
+    - I want to know why the Wi-Fi is not working
+    - can i know how much is the minimum that i should pay to get back my connection
+    - Can you tell me how much GB I've used during peak hours?
+    - my son did somthing last night, and the inter net is not working now.
+
+- intent: ask_bill_details
+  examples: |
+    - Can you tell me my balance is there ? 
+    - Can you provide details of my latest bill?
+    - Explain the charges on my last month.
+
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: affirm
+  examples: |
+    - yes
+    - ok
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+    - yes thank you
+
+- intent: thanks
+  examples: |
+    - thank you.
+    - oh! that's great thank you so much.
+    - thanks
+    
+- intent: technical_support
+  examples: |
+    - I want to know some some details about my data package.
+    - I need technical support for my router
+    - My phone is not connecting to the network.
+    - Provide assistance with troubleshooting my internet connection.
+    - I want to change my current data package.
+    - I want to upgrade my current data plan.
+    - How can I downgrade to a basic plan?
+    - Change my subscription to a family plan.
+    - What is the due date for my bill?
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+
+- intent: unexpected
+  examples: | 
+    - how?
+    - what?
+    - aaahhhh
+
+
+
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+    
+
+- synonym: router
+  examples: |
+    - wi-fi device
+    - wi-fi connection
