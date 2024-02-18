@@ -25,6 +25,7 @@ def datastore(name, phone_number, phone_number2=null, router_status=null, phone_
 
     df.to_excel("user_data.xlsx", index=False)
 
+# datastore("John", "1234567890", phone_number2="0987654321", router_status="Online", phone_status="Active", Instrument_status="Working")
 
 def firebase_datastore(username, convesation):
     # Fetch the service account key JSON file contents
