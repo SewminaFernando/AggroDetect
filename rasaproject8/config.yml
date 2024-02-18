@@ -11,12 +11,23 @@ assistant_id: 20240121-025706-crimson-crocodile
 language: en
 
 pipeline:
-# # No configuration for the NLU pipeline was provided. The following default pipeline was used to train your model.
+- name: "SpacyNLP"
+  # language model to load
+  model: "en_core_web_md"
+- name: "SpacyTokenizer"
+- name: "SpacyFeaturizer"
+- name: "RegexFeaturizer"
+- name: "CRFEntityExtractor"
+- name: "EntitySynonymMapper"
+- name: "SklearnIntentClassifier"
+
+  # # No configuration for the NLU pipeline was provided. The following default pipeline was used to train your model.
 # # If you'd like to customize it, uncomment and adjust the pipeline.
 # # See https://rasa.com/docs/rasa/tuning-your-model for more information.
-- name: WhitespaceTokenizer
+#- name: WhitespaceTokenizer
 - name: RegexFeaturizer
 - name: LexicalSyntacticFeaturizer
+#- name: "SklearnIntentClassifier"
 - name: CountVectorsFeaturizer
 - name: CountVectorsFeaturizer
   analyzer: char_wb
@@ -25,7 +36,7 @@ pipeline:
 - name: DIETClassifier
   epochs: 100
   constrain_similarities: true
-- name: EntitySynonymMapper
+#- name: EntitySynonymMapper
 - name: ResponseSelector
   epochs: 100
   constrain_similarities: true

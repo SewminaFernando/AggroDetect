@@ -9,10 +9,10 @@ intents:
 - describe_issues_in_phone
 - describe_issues_in_wifi
 - describe_other_issues
-- giving_other_phone_number
 - goodbye
 - greet
 - mood_great
+- nlu_fallback
 - put_complain
 - say_name
 - say_phone_number
@@ -23,40 +23,31 @@ intents:
 - wait_for_respond
 entities:
 - name
-- phone_number2
-- device
-- place
 - phone_number
+- device
 - router_status
 - phone_status
 - Instrument_status
 actions:
-- utter_ask_for_put_complain
 - utter_greet
+- utter_ask_for_put_complain
+
+- utter_ask_name
+- utter_ask_phone_Number
+- utter_ask_router_info
+- utter_ask_phone_info
+- utter_ask_instrument_info
+
+- utter_provide_billing_details
 - utter_unexpected
 - utter_dirct_to_an_agent
 - utter_ask_to_direct_agent
 - action_utter_goodbye
+- Form_Report_full_Info
 - action_save_Report_full
-- action_save_Report_phone
-- action_save_Report_internet
+
 forms:
   Form_Report_full_Info:
-    required_slots:
-    - name
-    - phone_number
-    - phone_number2
-    - router_status
-    - phone_status
-    - Instrument_status
-  Form_Report_phone_Info:
-    required_slots:
-    - name
-    - phone_number
-    - phone_number2
-    - phone_status
-    - Instrument_status
-  Form_Report_internet_Info:
     required_slots:
     - name
     - phone_number
@@ -81,11 +72,6 @@ slots:
     mappings:
     - type: from_entity
       entity: phone_number
-  phone_number2:
-    type: text
-    mappings:
-    - type: from_entity
-      entity: phone_number2
   router_status:
     type: text
     mappings:
@@ -114,9 +100,7 @@ responses:
   utter_ask_name:
   - text: Can you confirm the owner's name please?
   utter_ask_phone_Number:
-  - text: May I know the number?
-  utter_ask_phone_Number2:
-  - text: Please give me another phone number where I can reach you.
+  - text: Please give me phone number where I can reach you.
   utter_ask_router_info:
   - text: dou you have internet connection?, if you have Please tell me if your router is working properly, I mean, are all the blinking lights on as before?...Are there any blinking red lights?... If so, what are they?
   utter_ask_phone_info:
@@ -124,7 +108,7 @@ responses:
   utter_ask_instrument_info:
   - text: Can you see any cable damage or any instrument fault on your place sir?
   utter_provide_billing_details:
-  - text: here is the last billing details!
+  - text: here is the last billing details, Dear customer, you have 604.00 MB free Data, 478.59 MB Free Data, 18.99 MB free 1for1 DATA,Thank you!
   utter_deny:
   - text: No problem! If you change your mind, I'll be here to help.
   utter_ask_for_put_complain:

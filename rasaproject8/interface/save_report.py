@@ -7,11 +7,10 @@ from pyarrow import null
 import re
 
 
-def datastore(name, phone_number, phone_number2=null, router_status=null, phone_status=null, Instrument_status=null):
+def datastore(name, phone_number, router_status=null, phone_status=null, Instrument_status=null):
     data = {
         "name": [name],
         "phone_number": [phone_number],
-        "phone_number2": [phone_number2],
         "router_status": [router_status],
         "phone_status": [phone_status],
         "Instrument_status": [Instrument_status]

@@ -54,11 +54,10 @@ def chat():
                 # Append the bot's response to the conversation
                 old_conv['resp'].append(bot_response)
 
-                firebase_datastore('new chat1', old_conv)
+                firebase_datastore('new chat3', old_conv)
 
             else:
                 bot_response = rasa_response[0]['text']
-
                 # Text-to-speech conversion using pyttsx3
                 text_speech = pyttsx3.init()
                 text_speech.say(bot_response)
@@ -75,10 +74,6 @@ def chat():
 
             return render_template('index.html', user_message=user_message, bot_response="No Response",
                                    old_conv=old_conv, size=len(old_conv["user_messagee"]))
-        # Handle the case when the response is empty or does not contain 'text'
-        return render_template('index.html', user_message=user_message,
-                               bot_response="Error: Invalid response from Rasa", old_conv=old_conv,
-                               size=len(old_conv["user_messagee"]))
 
     # Render the chat interface template for initial load
     return render_template('index.html')

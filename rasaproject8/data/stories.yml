@@ -61,217 +61,226 @@ stories:
   - action: utter_dirct_to_an_agent
 
 
+#- story: put complain general
+#  steps:
+#  - intent: put_complain
+#  - action: utter_ask_for_put_complain
+#  - intent: affirm
+#  - action: Form_Report_full_Info
+#  - active_loop: Form_Report_full_Info
+#  - slot_was_set:
+#      - requested_slot: name
 
 
-- story: put complain general
-  steps:
-  - intent: put_complain
-  - checkpoint: ask_for_put_complain
+#- story: put complain general
+#  steps:
+#  - intent: put_complain
+#  - checkpoint: ask_for_put_complain
+#
+#- story: user put complain general
+#  steps:
+#  - checkpoint: ask_for_put_complain
+#  - action: utter_ask_for_put_complain
+#  - intent: affirm
+#  - or:
+#    - slot_was_set:
+#        - device: phone
+#  - action: Form_Report_phone_Info
+#  - active_loop: Form_Report_phone_Info
+#  - slot_was_set:
+#      - name: null
+#  - action: utter_ask_name
+#  - intent: say_name
+#  - or:
+#    - slot_was_set:
+#      - phone_number: null
+#  - action: utter_ask_phone_Number
+#  - intent: say_phone_number
+#  - action: utter_ask_phone_Number2
+#  - intent: giving_other_phone_number
+#  - action: utter_ask_instrument_info
+#  - intent: describe_issues_in_instruments
+#  - active_loop: null
+#  - slot_was_set:
+#      - requested_slot: null
+#  - action: action_save_Report_phone
+#
+#- story: user put complain general-2
+#  steps:
+#  - checkpoint: ask_for_put_complain
+#  - action: utter_ask_for_put_complain
+#  - intent: affirm
+#  - or:
+#    - slot_was_set:
+#        - device: router
+#  - action: Form_Report_internet_Info
+#  - active_loop: Form_Report_internet_Info
+#  - or:
+#    - slot_was_set:
+#        - name: null
+#  - action: utter_ask_name
+#  - intent: say_name
+#  - slot_was_set:
+#    - phone_number: null
+#  - action: utter_ask_phone_Number
+#  - intent: say_phone_number
+#  - action: utter_ask_router_info
+#  - intent: describe_issues_in_wifi
+#  - action: utter_ask_phone_info
+#  - intent: describe_issues_in_phone
+#  - action: utter_ask_instrument_info
+#  - intent: describe_issues_in_instruments
+#  - active_loop: null
+#  - slot_was_set:
+#      - requested_slot: null
+#  - action: action_save_Report_internet
+#
+#- story: user put complain general-3
+#  steps:
+#  - checkpoint: ask_for_put_complain
+#  - action: utter_ask_for_put_complain
+#  - intent: affirm
+#  - or:
+#    - slot_was_set:
+#        - device: null
+#  - action: Form_Report_full_Info
+#  - active_loop: Form_Report_full_Info
+#  - slot_was_set:
+#      - name: null
+#  - action: utter_ask_name
+#  - intent: say_name
+#  - slot_was_set:
+#    - phone_number: null
+#  - action: utter_ask_phone_Number
+#  - intent: say_phone_number
+#  - action: utter_ask_phone_Number2
+#  - intent: giving_other_phone_number
+#  - action: utter_ask_router_info
+#  - intent: describe_issues_in_wifi
+#  - action: utter_ask_phone_info
+#  - intent: describe_issues_in_phone
+#  - action: utter_ask_instrument_info
+#  - intent: describe_issues_in_instruments
+#  - active_loop: null
+#  - slot_was_set:
+#      - requested_slot: null
+#  - action: action_save_Report_full
 
-- story: user put complain general
-  steps:
-  - checkpoint: ask_for_put_complain
-  - action: utter_ask_for_put_complain
-  - intent: affirm
-  - or:
-    - slot_was_set:
-        - device: phone
-  - action: Form_Report_phone_Info
-  - active_loop: Form_Report_phone_Info
-  - slot_was_set:
-      - name: null
-  - action: utter_ask_name
-  - intent: say_name
-  - or:
-    - slot_was_set:
-      - phone_number: null
-  - action: utter_ask_phone_Number
-  - intent: say_phone_number
-  - action: utter_ask_phone_Number2
-  - intent: giving_other_phone_number
-  - action: utter_ask_instrument_info
-  - intent: describe_issues_in_instruments
-  - active_loop: null
-  - slot_was_set:
-      - requested_slot: null
-  - action: action_save_Report_phone
-
-- story: user put complain general-2
-  steps:
-  - checkpoint: ask_for_put_complain
-  - action: utter_ask_for_put_complain
-  - intent: affirm
-  - or:
-    - slot_was_set:
-        - device: router
-  - action: Form_Report_internet_Info
-  - active_loop: Form_Report_internet_Info
-  - or:
-    - slot_was_set:
-        - name: null
-  - action: utter_ask_name
-  - intent: say_name
-  - slot_was_set:
-    - phone_number: null
-  - action: utter_ask_phone_Number
-  - intent: say_phone_number
-  - action: utter_ask_router_info
-  - intent: describe_issues_in_wifi
-  - action: utter_ask_phone_info
-  - intent: describe_issues_in_phone
-  - action: utter_ask_instrument_info
-  - intent: describe_issues_in_instruments
-  - active_loop: null
-  - slot_was_set:
-      - requested_slot: null
-  - action: action_save_Report_internet
-
-- story: user put complain general-3
-  steps:
-  - checkpoint: ask_for_put_complain
-  - action: utter_ask_for_put_complain
-  - intent: affirm
-  - or:
-    - slot_was_set:
-        - device: null
-  - action: Form_Report_full_Info
-  - active_loop: Form_Report_full_Info
-  - slot_was_set:
-      - name: null
-  - action: utter_ask_name
-  - intent: say_name
-  - slot_was_set:
-    - phone_number: null
-  - action: utter_ask_phone_Number
-  - intent: say_phone_number
-  - action: utter_ask_phone_Number2
-  - intent: giving_other_phone_number
-  - action: utter_ask_router_info
-  - intent: describe_issues_in_wifi
-  - action: utter_ask_phone_info
-  - intent: describe_issues_in_phone
-  - action: utter_ask_instrument_info
-  - intent: describe_issues_in_instruments
-  - active_loop: null
-  - slot_was_set:
-      - requested_slot: null
-  - action: action_save_Report_full
-
-- story: user put complain general-4
-  steps:
-  - checkpoint: ask_for_put_complain
-  - action: utter_ask_for_put_complain
-  - intent: deny
-  - action: utter_deny
-  - action: utter_ask_for_further_queries
-  - intent: deny
-  - action: action_utter_goodbye
-
-
+#- story: user put complain general-4
+#  steps:
+#  - checkpoint: ask_for_put_complain
+#  - action: utter_ask_for_put_complain
+#  - intent: deny
+#  - action: utter_deny
+#  - action: utter_ask_for_further_queries
+#  - intent: deny
+#  - action: action_utter_goodbye
 
 
-- story: put complain about phone-affirm
-  steps:
-  - intent: describe_issues_in_phone
-  - action: utter_ask_for_put_complain
-  - or:
-    - intent: affirm
-    - intent: thanks
-  - action: Form_Report_phone_Info
-  - active_loop: Form_Report_phone_Info
-  - active_loop: null
-  - slot_was_set:
-      - requested_slot: null
-  - action: action_save_Report_phone
-  - or:
-      - intent: affirm
-      - intent: thanks
-  - action: utter_ask_for_further_queries
-  - or:
-    - intent: affirm
-    - intent: thanks
-  - action: utter_dirct_to_an_agent
 
-- story: put complain about phone- deny and direct to an agent
-  steps:
-  - intent: describe_issues_in_phone
-  - action: utter_ask_for_put_complain
-  - intent: deny
-  - action: utter_ask_for_further_queries
-  - intent: affirm
-  - action: utter_dirct_to_an_agent
 
-- story: put complain about internet-affirm
-  steps:
-  - intent: describe_issues_in_wifi
-  - action: utter_ask_for_put_complain
-  - or:
-    - intent: affirm
-    - intent: thanks
-  - action: Form_Report_internet_Info
-  - active_loop: Form_Report_internet_Info
-  - active_loop: null
-  - slot_was_set:
-      - requested_slot: null
-  - action: action_save_Report_internet
-  - or:
-      - intent: affirm
-      - intent: thanks
-  - action: utter_ask_for_further_queries
-  - or:
-    - intent: affirm
-    - intent: thanks
-  - action: utter_dirct_to_an_agent
-
-- story: put complain about phone- deny and direct to an agent
-  steps:
-  - intent: describe_issues_in_wifi
-  - action: utter_ask_for_put_complain
-  - intent: deny
-  - action: utter_ask_for_further_queries
-  - intent: affirm
-  - action: utter_dirct_to_an_agent
-
-- story: User interrupts the form and doesn't want to continue-1
-  steps:
-  - intent: describe_issues_in_phone
-  - action: utter_ask_for_put_complain
-  - or:
-    - intent: affirm
-    - intent: thanks
-  - action: Form_Report_phone_Info
-  - active_loop: Form_Report_phone_Info
-  - intent: stop
-  - action: utter_ask_continue_complain
-  - intent: stop
-  - or:
-      - intent: stop
-      - intent: affirm
-  - action: utter_ask_for_further_queries
-  - active_loop: null
-  - intent: affirm
-  - action: utter_dirct_to_an_agent
-
-- story: User interrupts the form and doesn't want to continue-2
-  steps:
-  - intent: describe_issues_in_phone
-  - action: utter_ask_for_put_complain
-  - or:
-    - intent: affirm
-    - intent: thanks
-  - action: Form_Report_phone_Info
-  - active_loop: Form_Report_phone_Info
-  - intent: stop
-  - action: utter_ask_continue_complain
-  - intent: stop
-  - or:
-      - intent: stop
-      - intent: affirm
-  - action: utter_ask_for_further_queries
-  - active_loop: null
-  - intent: deny
-  - action: action_utter_goodbye
-
+#- story: put complain about phone-affirm
+#  steps:
+#  - intent: describe_issues_in_phone
+#  - action: utter_ask_for_put_complain
+#  - or:
+#    - intent: affirm
+#    - intent: thanks
+#  - action: Form_Report_phone_Info
+#  - active_loop: Form_Report_phone_Info
+#  - active_loop: null
+#  - slot_was_set:
+#      - requested_slot: null
+#  - action: action_save_Report_phone
+#  - or:
+#      - intent: affirm
+#      - intent: thanks
+#  - action: utter_ask_for_further_queries
+#  - or:
+#    - intent: affirm
+#    - intent: thanks
+#  - action: utter_dirct_to_an_agent
+#
+#- story: put complain about phone- deny and direct to an agent
+#  steps:
+#  - intent: describe_issues_in_phone
+#  - action: utter_ask_for_put_complain
+#  - intent: deny
+#  - action: utter_ask_for_further_queries
+#  - intent: affirm
+#  - action: utter_dirct_to_an_agent
+#
+#- story: put complain about internet-affirm
+#  steps:
+#  - intent: describe_issues_in_wifi
+#  - action: utter_ask_for_put_complain
+#  - or:
+#    - intent: affirm
+#    - intent: thanks
+#  - action: Form_Report_internet_Info
+#  - active_loop: Form_Report_internet_Info
+#  - active_loop: null
+#  - slot_was_set:
+#      - requested_slot: null
+#  - action: action_save_Report_internet
+#  - or:
+#      - intent: affirm
+#      - intent: thanks
+#  - action: utter_ask_for_further_queries
+#  - or:
+#    - intent: affirm
+#    - intent: thanks
+#  - action: utter_dirct_to_an_agent
+#
+#- story: put complain about phone- deny and direct to an agent
+#  steps:
+#  - intent: describe_issues_in_wifi
+#  - action: utter_ask_for_put_complain
+#  - intent: deny
+#  - action: utter_ask_for_further_queries
+#  - intent: affirm
+#  - action: utter_dirct_to_an_agent
+#
+#- story: User interrupts the form and doesn't want to continue-1
+#  steps:
+#  - intent: describe_issues_in_phone
+#  - action: utter_ask_for_put_complain
+#  - or:
+#    - intent: affirm
+#    - intent: thanks
+#  - action: Form_Report_phone_Info
+#  - active_loop: Form_Report_phone_Info
+#  - intent: stop
+#  - action: utter_ask_continue_complain
+#  - intent: stop
+#  - or:
+#      - intent: stop
+#      - intent: affirm
+#  - action: utter_ask_for_further_queries
+#  - active_loop: null
+#  - intent: affirm
+#  - action: utter_dirct_to_an_agent
+#
+#- story: User interrupts the form and doesn't want to continue-2
+#  steps:
+#  - intent: describe_issues_in_phone
+#  - action: utter_ask_for_put_complain
+#  - or:
+#    - intent: affirm
+#    - intent: thanks
+#  - action: Form_Report_phone_Info
+#  - active_loop: Form_Report_phone_Info
+#  - intent: stop
+#  - action: utter_ask_continue_complain
+#  - intent: stop
+#  - or:
+#      - intent: stop
+#      - intent: affirm
+#  - action: utter_ask_for_further_queries
+#  - active_loop: null
+#  - intent: deny
+#  - action: action_utter_goodbye
+#
 
 
 - story: User ask for wait
@@ -283,67 +292,6 @@ stories:
   steps:
   - intent: ask_bill_details
   - action: utter_provide_billing_details
-
-#- story: User asks about the latest bill and denies
-#  steps:
-#  - intent: ask_bill_details
-#  - action: utter_ask_for_billing_details
-#  - intent: affirm
-#  - action: utter_provide_billing_details
-#  - intent: deny
-#  - action: utter_deny
-#  - intent: goodbye
-#  - action: action_utter_goodbye
-#
-#- story: User asks about the latest bill-2
-#  steps:
-#  - intent: ask_bill_details
-#  - action: utter_ask_for_billing_details
-#  - action: utter_provide_billing_details
-#  - intent: affirm
-#  - action: utter_ask_for_further_queries
-#  - intent: goodbye
-#  - action: action_utter_goodbye
-#
-#- story: User asks about the latest bill and affirm
-#  steps:
-#  - intent: ask_bill_details
-#  - action: utter_provide_billing_details
-#  - or:
-#    - intent: affirm
-#    - intent: thanks
-#  - action: utter_ask_name
-#  - intent: say_name
-#  - action: utter_provide_billing_details
-#  - intent: goodbye
-#  - action: action_utter_goodbye
-#
-#- story: User asks about the latest bill and affirm
-#  steps:
-#  - intent: ask_bill_details
-#  - action: utter_provide_billing_details
-#  - or:
-#    - intent: affirm
-#    - intent: thanks
-##  - action: utter_ask_name
-##  - intent: say_name
-#  - action: utter_provide_billing_details
-#  - intent: goodbye
-#  - action: action_utter_goodbye
-#
-#- story: User asks about the latest bill and denies
-#  steps:
-#  - intent: ask_bill_details
-##  - slot_was_set:
-##      - name: null
-#  - action: utter_ask_for_billing_details
-##  - action: utter_ask_name
-##  - intent: say_name
-#  - intent: deny
-#  - action: utter_deny
-#  - intent: goodbye
-#  - action: action_utter_goodbye
-
 
 - story: interactive_story_1
   steps:
@@ -393,12 +341,59 @@ stories:
     - requested_slot: phone_number
   - intent: giving_other_phone_number
     entities:
-    - phone_number2: '0392324421'
+    - phone_number: '0392324421'
   - slot_was_set:
-    - phone_number2: '0392324421'
+    - phone_number: '0392324421'
   - action: Form_Report_full_Info
   - slot_was_set:
     - requested_slot: phone_number
   - intent: describe_issues_in_phone
   - slot_was_set:
     - phone_status: my phone is not working
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - intent: greet
+    entities:
+    - name: naddshani
+  - action: utter_greet
+  - intent: put_complain
+  - intent: ask_bill_details
+  - action: utter_provide_billing_details
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+    entities:
+    - name: dasun
+  - slot_was_set:
+    - name: dasun
+  - action: utter_greet
+  - intent: put_complain
+    entities:
+    - device: phone
+  - slot_was_set:
+    - device: phone
+  - action: utter_ask_for_put_complain
+  - intent: affirm
+  - action: Form_Report_full_Info
+  - action: utter_ask_phone_Number
+  - intent: say_phone_number
+    entities:
+    - phone_number: '0382250162'
+    - phone_number: '0382250162'
+  - slot_was_set:
+    - phone_number: '0382250162'
+  - intent: describe_issues_in_phone
+    entities:
+    - device: router
+  - slot_was_set:
+    - device: router
+  - slot_was_set:
+    - phone_status: my router is working properly
+  - intent: describe_issues_in_wifi
+    entities:
+    - device: router
+  - action: utter_ask_phone_info
+  - intent: nlu_fallback

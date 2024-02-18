@@ -10,29 +10,30 @@ nlu:
     - good afternoon
     - hi, good morning.
     - hello, my name is [justin martin](name)
-    - hello, I'm calling from [Bambalapitiya](place).
-    - hello, I'm [justin martin](name) and I'm calling from [panadura](place)
+    - hello, I'm calling from Bambalapitiya.
+    - hello, I'm [justin martin](name) and I'm calling from panadura
     - good morning, my name is [justin martin](name)
-    - good morning, I am [Manjula](name) calling from [Makale](place)
+    - good morning, I am [Manjula](name) calling from Makale
     - hi, good morning. I'm calling from [Beyond the Ocean Travels](name)
     - Yeah, my name is [Zumi](name). This is regarding my phone number [2875 436](phone_number).
     - good afternoon, my name is [justin martin](name)
-    - good afternoon, I am [Manjula](name) calling from [Makale](place)
+    - good afternoon, I am [Manjula](name) calling from Makale
     - good evening, my name is [justin martin](name)
     - hello my name is [chulanjana](name)
     - hello im [passan](name)
+    - hi im [naddshani](name)
+    - hi im [dasun](name)
 - intent: say_phone_number
   examples: |
     - Oh, yeah, [2875 436](phone_number)
     - This is regarding my phone number [2875 436](phone_number)
-- intent: giving_other_phone_number
-  examples: |
-    - my contact number is [077713424](phone_number2)
-    - I do is [0112540233](phone_number2)
-    - Phone number is [033 2222 157](phone_number2)
-    - [0752540233](phone_number2)
-    - okay, it's [0782540233](phone_number2)
-    - [0392324421](phone_number2)
+    - my contact number is [077713424](phone_number)
+    - I do is [0112540233](phone_number)
+    - Phone number is [033 2222 157](phone_number)
+    - [0752540233](phone_number)
+    - okay, it's [0782540233](phone_number)
+    - [0392324421](phone_number)
+    - my phone number is [0382250162](phone_number)
 - intent: say_name
   examples: |
     - Oh, yeah, [Lynn](name)
@@ -40,7 +41,6 @@ nlu:
     - [PYDD silver](name).
     - yeah its [zukzi sali](name)
     - I am [Manjula](name), my contact number is [077713424](phone_number)
-    - not under the company name
 - intent: put_complain
   examples: |
     - i want to add a complain about my [router](device)
@@ -52,7 +52,7 @@ nlu:
   examples: |
     - yesterday I made the complaint about my [telephone]{"entity": "device", "value": "phone"}
     - I made a few complaints last few days, but still no one attending to the resolved that issue
-    - Hello, I have made a complaint regarding the [picture not appearing on our TV](issue_type).
+    - I have made a complaint regarding the picture not appearing on our TV.
 - intent: wait_for_respond
   examples: |
     - Just give me a minute.
@@ -74,6 +74,7 @@ nlu:
     - I have a loss of signal blinking red lights on my [router](device)
     - the [Wi-Fi light]{"entity": "device", "value": "router"} is not lighting
     - there's nothing, but the only thing is that the four or five lights are lighting, but about two lights are not lighting
+    - my [router](device) is working properly
 - intent: describe_issues_in_phone
   examples: |
     - My [phone](device) is not working properly.
@@ -99,9 +100,9 @@ nlu:
     - my son did somthing last night, and the inter net is not working now.
 - intent: ask_bill_details
   examples: |
-    - Can you tell me my balance is there ?
     - Can you provide details of my latest bill?
     - Explain the charges on my last month.
+    - i want to know about my last bill
 - intent: goodbye
   examples: |
     - cu
@@ -156,28 +157,15 @@ nlu:
     - what?
     - aaahhhh
     - noooooooo
-- intent: mood_great
-  examples: |
-    - perfect
-    - great
-    - amazing
-    - feeling like a king
-    - wonderful
-    - I am feeling very good
-    - I am great
-    - I am amazing
-    - I am going to save the world
-    - super stoked
-    - extremely good
-    - so so perfect
-    - so good
-    - so perfect
 - intent: bot_challenge
   examples: |
     - are you a bot?
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+- intent: nlu_fallback
+  examples: |
+    - yes its working
 - synonym: phone
   examples: |
     - telephone
