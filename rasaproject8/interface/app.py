@@ -54,8 +54,7 @@ def chat():
                 # Append the bot's response to the conversation
                 old_conv['resp'].append(bot_response)
 
-
-                firebase_datastore('chuuuuuuuu', old_conv)
+                firebase_datastore('new chat1', old_conv)
 
             else:
                 bot_response = rasa_response[0]['text']
