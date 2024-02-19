@@ -7,6 +7,13 @@ from pyarrow import null
 import re
 
 
+def extract_number(string):
+    number_string = ''.join(filter(str.isdigit, string))
+    if number_string:
+        return int(number_string)
+    else:
+        return 0
+
 def datastore(name, phone_number, router_status=null, phone_status=null, Instrument_status=null):
     data = {
         "name": [name],
@@ -24,9 +31,10 @@ def datastore(name, phone_number, router_status=null, phone_status=null, Instrum
 
     df.to_excel("user_data.xlsx", index=False)
 
+
 # datastore("John", "1234567890", phone_number2="0987654321", router_status="Online", phone_status="Active", Instrument_status="Working")
 
-def firebase_datastore(username, convesation):
+def firebase_datastore(username, convesation, aggr_lvl):
     # Fetch the service account key JSON file contents
     cred = credentials.Certificate(cert={
         "type": "service_account",
@@ -45,26 +53,53 @@ def firebase_datastore(username, convesation):
     firebase_admin.initialize_app(cred, {
         'databaseURL': 'https://customerdialogue-31e3d-default-rtdb.asia-southeast1.firebasedatabase.app/'
     })
-    user_exist = False
 
-    if username in db.reference('users/').get():
-        user_exist = True
-    last_number = 0
-    if user_exist:
-        db_ref = db.reference("users/"+username+"/conversation").get()
+    db_reference = db.reference('users/')
+    db_get = db_reference.get()
 
-        last_number = int(re.search(r'\d+$', list(db_ref.keys())[-1]).group())
+    convesation["Aggresive Level"] = aggr_lvl
 
+    if username == "":
+        usernames = list(db_get.keys())
+        max_number = max(extract_number(un) for un in usernames if extract_number(un) > 0)
+        username = "unknown_"+str(max_number+1)
 
-    # firebase_admin.get_app("aggrodetectdb")
-    # As an admin, the app has access to read and write all data, regradless of Security Rules
-    ref = db.reference('users')
-    conv_no = 'conv_'+str(last_number+1)
-    child_name = username  # username
-    child_data = {
-        "conversation": {conv_no: convesation},
-        "aggresion_level": "Angry"
-    }
+        child_data = {
+            "conversation": {"conv_1": convesation}
+        }
+        db_reference.child(username).set(child_data)
+        print(f"'{username}' your conversation has been uploaded to database as a new user...")
+    else:
 
-    ref.child(child_name).set(child_data)
-    print("Saved to database")
+        if username in db_get: # Old user
+            db_ref = db_get[username]['conversation']
+            print("db_ref = ", db_ref, "type(db_ref) =", type(db_ref))
+            last_number = int(re.search(r'\d+$', list(db_ref.keys())[-1]).group())
+            conv_no = 'conv_' + str(last_number + 1)
+            # db_ref.append([{conv_no: convesation, "Aggressive Level": aggr_lvl}])
+            ref = db.reference('users')
+            db_ref[conv_no] = convesation
+            # child_data = {
+            #     conv_no: convesation,
+            #     "Aggressive Level": aggr_lvl
+            # }
+            ref.child(username).child("conversation").set(db_ref)
+            print(f"'{username}' your conversation updated in the database")
+        else: # New user
+
+            child_data = {
+                "conversation": {"conv_1": convesation}
+            }
+            db_reference.child(username).set(child_data)
+            print(f"'{username}' your conversation has been uploaded to database as a new user...")
+    # # firebase_admin.get_app("aggrodetectdb")
+    # # As an admin, the app has access to read and write all data, regradless of Security Rules
+    # ref = db.reference('users')
+    #
+    # child_name = username  # username
+    # child_data = {
+    #     "conversation": db_ref,
+    # }
+    #
+    # ref.child(child_name).set(child_data)
+
