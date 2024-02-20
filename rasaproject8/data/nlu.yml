@@ -23,6 +23,8 @@ nlu:
     - hello im [passan](name)
     - hi im [naddshani](name)
     - hi im [dasun](name)
+    - hi my name is [pasan](name)
+    - hello im [kalana](name)
 - intent: say_phone_number
   examples: |
     - Oh, yeah, [2875 436](phone_number)
@@ -34,6 +36,7 @@ nlu:
     - okay, it's [0782540233](phone_number)
     - [0392324421](phone_number)
     - my phone number is [0382250162](phone_number)
+    - ok its [29343232323](phone_number)
 - intent: say_name
   examples: |
     - Oh, yeah, [Lynn](name)
@@ -48,6 +51,7 @@ nlu:
     - i want to put a complain
     - i want to add a complain about my [phone](device)
     - i want to put a complain about my [phone](device)
+    - i want to put a complain about my [phone](device) is not working
 - intent: Report_complaints_again
   examples: |
     - yesterday I made the complaint about my [telephone]{"entity": "device", "value": "phone"}
@@ -83,12 +87,14 @@ nlu:
     - One is that this [phone](device) is very noisy
     - Only the [voice line]{"entity": "device", "value": "phone"} that's getting noisy
     - my phone is not working
+    - there is [no signal](issue_type)[signal](issue_type)
 - intent: describe_issues_in_instruments
   examples: |
     - Yes, still there are some noises coming from the phone, and the internet not working.
     - That's right, that got damaged.
     - you know that cable that goes from the set box to the router, that got damaged.
     - There are no damages.
+    - the are damaged
 - intent: describe_other_issues
   examples: |
     - we are not getting physical bills.
@@ -125,6 +131,7 @@ nlu:
     - that sounds good
     - correct
     - yes thank you
+    - ok [1232434355](phone_number)
 - intent: thanks
   examples: |
     - thank you.
@@ -151,6 +158,7 @@ nlu:
     - don't like that
     - no way
     - not really
+    - no,thanks
 - intent: unexpected
   examples: |
     - how?
@@ -163,9 +171,16 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
-- intent: nlu_fallback
+- intent: common_answer
   examples: |
     - yes its working
+    - it's fine
+    - working
+    - no,its working
+    - its also fine
+    - its fine
+    - its not working
+    - its hard to say
 - synonym: phone
   examples: |
     - telephone

@@ -21,10 +21,13 @@ class ActionSaveReportFull(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        datastore([tracker.get_slot("name"), tracker.get_slot("phone_number"), tracker.get_slot("router_status"), tracker.get_slot("phone_status"), tracker.get_slot("Instrument_status")])
+        datastore([tracker.get_slot("name"), tracker.get_slot("phone_number"), tracker.get_slot("router_status"),
+                   tracker.get_slot("phone_status"), tracker.get_slot("Instrument_status")])
         dispatcher.utter_message(text="your complain recorded successfully!")
 
         return []
+
+
 #
 # class ActionSaveReportPhone(Action):
 #

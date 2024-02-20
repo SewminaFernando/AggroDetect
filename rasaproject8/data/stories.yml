@@ -60,6 +60,16 @@ stories:
   - intent: affirm
   - action: utter_dirct_to_an_agent
 
+- story: User ask for wait
+  steps:
+  - intent: wait_for_respond
+  - action: utter_wait_for_respond
+
+- story: User asks about the latest bill details
+  steps:
+  - intent: ask_bill_details
+  - action: utter_provide_billing_details
+
 
 #- story: put complain general
 #  steps:
@@ -283,46 +293,73 @@ stories:
 #
 
 
-- story: User ask for wait
-  steps:
-  - intent: wait_for_respond
-  - action: utter_wait_for_respond
+#- story: interactive_story_3
+#  steps:
+#  - intent: greet
+#    entities:
+#    - name: passan
+#  - action: utter_greet
+#  - intent: put_complain
+#  - action: utter_ask_for_put_complain
+#  - intent: affirm
+#  - action: Form_Report_full_Info
+#  - active_loop: Form_Report_full_Info
+#  - slot_was_set:
+#    - requested_slot: name
+#  - action: utter_ask_name
+#  - intent: say_name
+#    entities:
+#    - name: chulanjana
+#  - slot_was_set:
+#    - name: chulanjana
+#  - slot_was_set:
+#    - requested_slot: phone_number
+#  - action: utter_ask_phone_Number
+#  - intent: say_phone_number
+#    entities:
+#    - phone_number: '0392324421'
+#  - slot_was_set:
+#    - phone_number: '0392324421'
+#
+#  - slot_was_set:
+#    - requested_slot: router_status
+#  - action: utter_ask_router_info
+#  - or:
+#    - intent: describe_issues_in_wifi
+#    - intent: common_answer
+#  - slot_was_set:
+#    - router_status: 'its working'
+#
+#  - slot_was_set:
+#    - requested_slot: phone_status
+#  - action: utter_ask_phone_info
+#  - or:
+#    - intent: describe_issues_in_phone
+#    - intent: common_answer
+#  - slot_was_set:
+#    - phone_status: 'no,its working'
+#
+#  - slot_was_set:
+#    - requested_slot: Instrument_status
+#  - action: utter_ask_instrument_info
+#  - or:
+#    - intent: describe_issues_in_instruments
+#    - intent: common_answer
+#  - slot_was_set:
+#    - Instrument_status: 'Yes, still there are some noises coming from the phone, and the internet not working.'
+#
+#  - action: Form_Report_full_Info
+#  - active_loop: null
+#  - slot_was_set:
+#      - requested_slot: null
+#  - action: action_save_Report_full
+#  - intent: goodbye
+#  - action: action_utter_goodbye
 
-- story: User asks about the latest bill details
-  steps:
-  - intent: ask_bill_details
-  - action: utter_provide_billing_details
 
-- story: interactive_story_1
+- story: interactive_story_3
   steps:
   - intent: greet
-    entities:
-    - name: chulanjana
-  - slot_was_set:
-    - name: chulanjana
-  - action: utter_greet
-  - intent: technical_support
-    entities:
-    - device: router
-  - slot_was_set:
-    - device: router
-  - action: utter_dirct_to_an_agent
-  - intent: goodbye
-  - action: action_utter_goodbye
-  - intent: stop
-  - action: utter_unexpected
-  - intent: nlu_fallback
-  - intent: unexpected
-  - action: utter_ask_to_direct_agent
-  - intent: affirm
-  - action: utter_dirct_to_an_agent
-
-- story: interactive_story_1
-  steps:
-  - intent: greet
-  - intent: greet
-    entities:
-    - name: passan
   - action: utter_greet
   - intent: put_complain
   - action: utter_ask_for_put_complain
@@ -331,69 +368,195 @@ stories:
   - active_loop: Form_Report_full_Info
   - slot_was_set:
     - requested_slot: name
-  - intent: greet
+    - requested_slot: phone_number
+  - intent: say_name
     entities:
     - name: chulanjana
   - slot_was_set:
     - name: chulanjana
-  - action: Form_Report_full_Info
-  - slot_was_set:
-    - requested_slot: phone_number
-  - intent: giving_other_phone_number
+
+  - intent: say_phone_number
     entities:
     - phone_number: '0392324421'
   - slot_was_set:
     - phone_number: '0392324421'
+
+  - slot_was_set:
+    - requested_slot: router_status
+  - or:
+    - intent: describe_issues_in_wifi
+    - intent: common_answer
+  - slot_was_set:
+    - router_status: 'its working'
+
+  - slot_was_set:
+    - requested_slot: phone_status
+  - or:
+    - intent: describe_issues_in_phone
+    - intent: common_answer
+  - slot_was_set:
+    - phone_status: 'no,its working'
+
+  - slot_was_set:
+    - requested_slot: Instrument_status
+  - action: utter_ask_instrument_info
+  - or:
+    - intent: describe_issues_in_instruments
+    - intent: common_answer
+  - slot_was_set:
+    - Instrument_status: 'Yes, still there are some noises coming from the phone, and the internet not working.'
+
   - action: Form_Report_full_Info
+  - active_loop: null
   - slot_was_set:
-    - requested_slot: phone_number
-  - intent: describe_issues_in_phone
-  - slot_was_set:
-    - phone_status: my phone is not working
+      - requested_slot: null
+  - action: action_save_Report_full
+  - intent: goodbye
+  - action: action_utter_goodbye
+
+
+
+
+
+#- story: interactive_story_2
+#  steps:
+#  - intent: greet
+#    entities:
+#    - name: chulanjana
+#  - slot_was_set:
+#    - name: chulanjana
+#  - action: utter_greet
+#  - intent: technical_support
+#    entities:
+#    - device: router
+#  - slot_was_set:
+#    - device: router
+#  - action: utter_dirct_to_an_agent
+#  - intent: goodbye
+#  - action: action_utter_goodbye
+#  - intent: stop
+#  - action: utter_unexpected
+#  - intent: nlu_fallback
+#  - intent: unexpected
+#  - action: utter_ask_to_direct_agent
+#  - intent: affirm
+#  - action: utter_dirct_to_an_agent
+#
+#- story: interactive_story_3
+#  steps:
+#  - intent: greet
+#    entities:
+#    - name: passan
+#  - action: utter_greet
+#  - intent: put_complain
+#  - action: utter_ask_for_put_complain
+#  - intent: affirm
+#  - action: Form_Report_full_Info
+#  - active_loop: Form_Report_full_Info
+#  - slot_was_set:
+#    - requested_slot: name
+#  - intent: greet
+#    entities:
+#    - name: chulanjana
+#  - slot_was_set:
+#    - name: chulanjana
+#  - action: Form_Report_full_Info
+#  - slot_was_set:
+#    - requested_slot: phone_number
+#  - intent: giving_other_phone_number
+#    entities:
+#    - phone_number: '0392324421'
+#  - slot_was_set:
+#    - phone_number: '0392324421'
+#  - action: Form_Report_full_Info
+#  - slot_was_set:
+#    - requested_slot: phone_number
+#  - intent: describe_issues_in_phone
+#  - slot_was_set:
+#    - phone_status: my phone is not working
+#
+#- story: interactive_story_1
+#  steps:
+#  - intent: greet
+#  - intent: greet
+#    entities:
+#    - name: naddshani
+#  - action: utter_greet
+#  - intent: put_complain
+#  - intent: ask_bill_details
+#  - action: utter_provide_billing_details
+#
+#
+#
+#- story: interactive_story_1
+#  steps:
+#  - intent: greet
+#    entities:
+#    - name: pasan
+#  - slot_was_set:
+#    - name: pasan
+#  - action: utter_greet
+#  - intent: put_complain
+#    entities:
+#    - device: phone
+#  - slot_was_set:
+#    - device: phone
+#  - action: utter_ask_for_put_complain
+#  - intent: affirm
+#  - action: Form_Report_full_Info
+#  - action: utter_ask_phone_Number
+#  - intent: say_phone_number
+#    entities:
+#    - phone_number: '29343232323'
+#  - slot_was_set:
+#    - phone_number: '29343232323'
+#  - action: utter_ask_router_info
+#  - intent: common_answer
+#  - action: utter_ask_phone_info
+#  - intent: describe_issues_in_wifi
+#    entities:
+#    - issue_type: no signal
+#    - issue_type: signal
+#  - intent: describe_issues_in_phone
+#    entities:
+#    - issue_type: no signal
+#    - issue_type: signal
+#  - action: utter_ask_instrument_info
+#  - intent: common_answer
+#  - action: action_save_Report_full
+#  - action: utter_ask_for_further_queries
+#  - intent: deny
+#  - action: utter_deny
+#  - intent: goodbye
+#  - action: action_utter_goodbye
 
 - story: interactive_story_1
   steps:
   - intent: greet
-  - intent: greet
     entities:
-    - name: naddshani
+    - name: kalana
+  - slot_was_set:
+    - name: kalana
   - action: utter_greet
   - intent: put_complain
-  - intent: ask_bill_details
-  - action: utter_provide_billing_details
-
-- story: interactive_story_1
-  steps:
-  - intent: greet
-    entities:
-    - name: dasun
-  - slot_was_set:
-    - name: dasun
-  - action: utter_greet
-  - intent: put_complain
-    entities:
-    - device: phone
-  - slot_was_set:
-    - device: phone
   - action: utter_ask_for_put_complain
   - intent: affirm
   - action: Form_Report_full_Info
+  - active_loop: Form_Report_full_Info
+  - slot_was_set:
+    - requested_slot: phone_number
   - action: utter_ask_phone_Number
-  - intent: say_phone_number
+  - intent: affirm
     entities:
-    - phone_number: '0382250162'
-    - phone_number: '0382250162'
+    - phone_number: '1232434355'
   - slot_was_set:
-    - phone_number: '0382250162'
-  - intent: describe_issues_in_phone
-    entities:
-    - device: router
-  - slot_was_set:
-    - device: router
-  - slot_was_set:
-    - phone_status: my router is working properly
-  - intent: describe_issues_in_wifi
-    entities:
-    - device: router
+    - phone_number: '1232434355'
+  - action: utter_ask_router_info
+  - intent: common_answer
   - action: utter_ask_phone_info
-  - intent: nlu_fallback
+  - intent: common_answer
+  - action: utter_ask_instrument_info
+  - intent: describe_issues_in_instruments
+  - action: action_save_Report_full
+  - intent: goodbye
+  - action: action_utter_goodbye

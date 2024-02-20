@@ -4,6 +4,7 @@ intents:
 - affirm
 - ask_bill_details
 - bot_challenge
+- common_answer
 - deny
 - describe_issues_in_instruments
 - describe_issues_in_phone
@@ -12,7 +13,6 @@ intents:
 - goodbye
 - greet
 - mood_great
-- nlu_fallback
 - put_complain
 - say_name
 - say_phone_number
@@ -22,30 +22,26 @@ intents:
 - unexpected
 - wait_for_respond
 entities:
-- name
 - phone_number
+- name
 - device
-- router_status
-- phone_status
-- Instrument_status
+- issue_type
 actions:
 - utter_greet
-- utter_ask_for_put_complain
-
-- utter_ask_name
-- utter_ask_phone_Number
-- utter_ask_router_info
 - utter_ask_phone_info
+- action_save_Report_full
+- action_utter_goodbye
 - utter_ask_instrument_info
-
+- utter_ask_router_info
+- utter_ask_for_put_complain
+- utter_ask_phone_Number
+- utter_ask_for_further_queries
+- utter_deny
+- utter_ask_name
 - utter_provide_billing_details
 - utter_unexpected
 - utter_dirct_to_an_agent
 - utter_ask_to_direct_agent
-- action_utter_goodbye
-- Form_Report_full_Info
-- action_save_Report_full
-
 forms:
   Form_Report_full_Info:
     required_slots:
@@ -76,17 +72,17 @@ slots:
     type: text
     mappings:
     - type: from_text
-      intent: describe_issues_in_wifi
+      intent: describe_issues_in_wifi, common_answer
   phone_status:
     type: text
     mappings:
     - type: from_text
-      intent: describe_issues_in_phone
+      intent: describe_issues_in_phone, common_answer
   Instrument_status:
     type: text
     mappings:
     - type: from_text
-      intent: describe_issues_in_instruments
+      intent: describe_issues_in_instruments, common_answer
 responses:
   utter_user_details:
   - custom:
@@ -124,6 +120,8 @@ responses:
   utter_dirct_to_an_agent:
   - text: Kindly allow me a moment to connect you, with the most suitable customer care agent. who will assist you with your concerns.
   utter_wait_for_respond:
+  - text: No problem! Take your time.
+  utter_say_thank_you:
   - text: No problem! Take your time.
 session_config:
   session_expiration_time: 60
