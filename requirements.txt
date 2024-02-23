@@ -1,3 +1,7 @@
 nlpaug
 seaborn
-skit-learn
+numpy
+pandas
+matplotlib
+nltk
+scikit-learn
