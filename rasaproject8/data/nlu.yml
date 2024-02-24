@@ -78,7 +78,6 @@ nlu:
     - sorry, I dont want to put a complain.
     - hold on a second, no now its fine.
     - stop
-    - i want to talk to an agent
 - intent: describe_issues
   examples: |
     - I can't get my Wi-Fi, my Wi-Fi is not working at all
@@ -154,6 +153,9 @@ nlu:
     - Change my subscription to a family plan.
     - What is the due date for my bill?
     - i need technicle support for my router
+    - i want to talk to an agent
+    - i want to talk to your agent because i have a problem with my internet connection
+    - i want to talk to customere care service officer can you direct me to one
 - intent: deny
   examples: |
     - no

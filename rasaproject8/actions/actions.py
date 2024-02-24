@@ -3,10 +3,13 @@
 #
 # See this guide on how to implement these action:
 # https://rasa.com/docs/rasa/custom-actions
-
+import os
+import subprocess
 # This is a simple example for a custom action which utters "Hello World!"
 
 from typing import Any, Text, Dict, List
+
+import requests
 from rasa.shared.core.trackers import DialogueStateTracker
 from rasa_sdk import Action, Tracker, FormValidationAction
 from rasa_sdk.executor import CollectingDispatcher
@@ -31,22 +34,6 @@ class ValidateReportFullInfoForm(FormValidationAction):
     def name(self) -> Text:
         return "validate_Report_full_Info_form"
 
-
-    # def extract_phone_status(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> \
-    #         List[Dict[Text, Any]]:
-    #     phone_status = tracker.latest_message.get("text")
-    #     if phone_status:
-    #         return {"phone_status": phone_status}
-    #     print(phone_status)
-    #     return {}
-    #
-    # def extract_Instrument_status(self, dispatcher: CollectingDispatcher, tracker: Tracker,
-    #                                     domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-    #     Instrument_status = tracker.latest_message.get("text")
-    #     if Instrument_status:
-    #         return {"Instrument_status": Instrument_status}
-    #     return {}
-
     def validate_name(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker,
                       domain: Dict[Text, Any]) -> Dict[Text, Any]:
         if not slot_value:
@@ -68,31 +55,7 @@ class ValidateReportFullInfoForm(FormValidationAction):
         return {"phoneNumber": slot_value}
 
 
-
-
-    # def validate_router_status(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker,
-    #                            domain: Dict[Text, Any]) -> Dict[Text, Any]:
-    #     if not slot_value:
-    #         dispatcher.utter_message(text="Please provide your router_status.")
-    #         return {"router_status": None}
-    #     return {"router_status": slot_value}
-    #
-    # def validate_phone_status(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker,
-    #                           domain: Dict[Text, Any]) -> Dict[Text, Any]:
-    #     if not slot_value:
-    #         dispatcher.utter_message(text="Please provide your phone_status.")
-    #         return {"phone_status": None}
-    #     return {"phone_status": slot_value}
-    #
-    # def validate_Instrument_status(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker,
-    #                                domain: Dict[Text, Any]) -> Dict[Text, Any]:
-    #     if not slot_value:
-    #         dispatcher.utter_message(text="Please provide your Instrument_status.")
-    #         return {"Instrument_status": None}
-    #     return {"Instrument_status": slot_value}
-
-
-class AskForissueAction(Action):
+class AskForIssueAction(Action):
     def name(self) -> Text:
         return "action_ask_issue"
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
@@ -112,4 +75,14 @@ class ActionUtterGoodbye(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         dispatcher.utter_message(template="utter_user_details",
                                  triggered=True)
+        return []
+
+class TerminateServerAction(Action):
+    def name(self) -> Text:
+        return "action_terminate_server"
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        # Terminate the Rasa chatbot
+        os._exit(0)
         return []

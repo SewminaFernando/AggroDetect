@@ -22,11 +22,13 @@ entities:
 - name
 - phoneNumber
 actions:
-- action_save_Report_full
+- utter_dirct_to_an_agent
+- action_check_and_start_action_server
+- action_terminate_server
 - action_utter_goodbye
+- action_save_Report_full
 - utter_ask_for_put_complain
 - utter_ask_for_further_queries
-- utter_dirct_to_an_agent
 - action_ask_issue
 - utter_greet
 - validate_Report_full_Info_form

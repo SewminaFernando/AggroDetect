@@ -7,13 +7,6 @@ from pyarrow import null
 import re
 
 
-def extract_number(string):
-    number_string = ''.join(filter(str.isdigit, string))
-    if number_string:
-        return int(number_string)
-    else:
-        return 0
-
 def datastore(name, phoneNumber, issue):
     data = {
         "name": [name],
@@ -30,6 +23,12 @@ def datastore(name, phoneNumber, issue):
 
     df.to_excel("user_data.xlsx", index=False)
 
+def extract_number(string):
+    number_string = ''.join(filter(str.isdigit, string))
+    if number_string:
+        return int(number_string)
+    else:
+        return 0
 
 
 def firebase_datastore(username, convesation, aggr_lvl):
@@ -90,14 +89,4 @@ def firebase_datastore(username, convesation, aggr_lvl):
             }
             db_reference.child(username).set(child_data)
             print(f"'{username}' your conversation has been uploaded to database as a new user...")
-    # # firebase_admin.get_app("aggrodetectdb")
-    # # As an admin, the app has access to read and write all data, regradless of Security Rules
-    # ref = db.reference('users')
-    #
-    # child_name = username  # username
-    # child_data = {
-    #     "conversation": db_ref,
-    # }
-    #
-    # ref.child(child_name).set(child_data)
 
