@@ -28,9 +28,7 @@ nlu:
     - hello im [chulanjana][{"entity": "name"}, {"entity": "name"}]
     - hello im [chanuka](name)
     - hi
-    - [chulanjana](name)
-    - [chamal](name)
-    - [kasun](name) [kalhara](name)
+
 - intent: say_phoneNumber
   examples: |
     - Oh, yeah, [2875 436](phoneNumber)
@@ -56,6 +54,9 @@ nlu:
     - yeah its [zukzi sali](name)
     - I am [Manjula](name), my contact number is [077713424](phoneNumber)
     - it registerd on my name, [kasun kalhara](name)
+    - [chulanjana](name)
+    - [chamal](name)
+    - [kasun kalhara](name)
 - intent: put_complain
   examples: |
     - i want to add a complain about my router
@@ -126,6 +127,7 @@ nlu:
     - see you around
     - bye bye
     - see you later
+
 - intent: affirm
   examples: |
     - yes
@@ -133,7 +135,7 @@ nlu:
     - y
     - indeed
     - of course
-    - that sounds good
+    - of course
     - correct
     - yes thank you
 - intent: thanks

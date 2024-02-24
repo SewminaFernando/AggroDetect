@@ -93,8 +93,6 @@ responses:
   - text: Kindly allow me a moment to connect you, with the most suitable customer care agent. who will assist you with your concerns.
   utter_wait_for_respond:
   - text: No problem! Take your time.
-  utter_say_thank_you:
-  - text: No problem! Take your time.
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
