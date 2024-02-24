@@ -4,52 +4,42 @@ intents:
 - affirm
 - ask_bill_details
 - bot_challenge
-- common_answer
 - deny
-- describe_issues_in_instruments
-- describe_issues_in_phone
-- describe_issues_in_wifi
+- describe_issues
 - describe_other_issues
 - goodbye
 - greet
 - mood_great
 - put_complain
 - say_name
-- say_phone_number
+- say_phoneNumber
 - stop
 - technical_support
 - thanks
 - unexpected
 - wait_for_respond
 entities:
-- phone_number
 - name
-- device
-- issue_type
+- phoneNumber
 actions:
-- utter_greet
-- utter_ask_phone_info
 - action_save_Report_full
 - action_utter_goodbye
-- utter_ask_instrument_info
-- utter_ask_router_info
 - utter_ask_for_put_complain
-- utter_ask_phone_Number
 - utter_ask_for_further_queries
+- utter_dirct_to_an_agent
+- action_ask_issue
+- utter_greet
+- validate_Report_full_Info_form
 - utter_deny
-- utter_ask_name
 - utter_provide_billing_details
 - utter_unexpected
-- utter_dirct_to_an_agent
 - utter_ask_to_direct_agent
 forms:
-  Form_Report_full_Info:
+  Report_full_Info_form:
     required_slots:
     - name
-    - phone_number
-    - router_status
-    - phone_status
-    - Instrument_status
+    - phoneNumber
+    - issue
 slots:
   name:
     type: text
@@ -57,32 +47,16 @@ slots:
     mappings:
     - type: from_entity
       entity: name
-  device:
-    type: text
-    influence_conversation: true
-    mappings:
-    - type: from_entity
-      entity: device
-  phone_number:
+  phoneNumber:
     type: text
     mappings:
     - type: from_entity
-      entity: phone_number
-  router_status:
+      entity: phoneNumber
+  issue:
     type: text
     mappings:
     - type: from_text
-      intent: describe_issues_in_wifi, common_answer
-  phone_status:
-    type: text
-    mappings:
-    - type: from_text
-      intent: describe_issues_in_phone, common_answer
-  Instrument_status:
-    type: text
-    mappings:
-    - type: from_text
-      intent: describe_issues_in_instruments, common_answer
+      intent: describe_issues
 responses:
   utter_user_details:
   - custom:
@@ -95,20 +69,16 @@ responses:
   - text: I am a bot, powered by Rasa, It's all about helping you!.
   utter_ask_name:
   - text: Can you confirm the owner's name please?
-  utter_ask_phone_Number:
+  utter_ask_phoneNumber:
   - text: Please give me phone number where I can reach you.
-  utter_ask_router_info:
-  - text: dou you have internet connection?, if you have Please tell me if your router is working properly, I mean, are all the blinking lights on as before?...Are there any blinking red lights?... If so, what are they?
-  utter_ask_phone_info:
-  - text: Again, Please tell me if your phone is working properly, is there any noise? When you pick up the phone, does it beep sound like before?
-  utter_ask_instrument_info:
-  - text: Can you see any cable damage or any instrument fault on your place sir?
+  utter_ask_issue:
+  - text: Could you please tell me your problem briefly?, then I can make a complaint for you. our technical teams will handle your issue as soon as possible, and let you know.
+  utter_ask_for_put_complain:
+  - text: We are deeply sorry for the inconvenience. May I make a complaint for you?
   utter_provide_billing_details:
   - text: here is the last billing details, Dear customer, you have 604.00 MB free Data, 478.59 MB Free Data, 18.99 MB free 1for1 DATA,Thank you!
   utter_deny:
   - text: No problem! If you change your mind, I'll be here to help.
-  utter_ask_for_put_complain:
-  - text: We are deeply sorry for the inconvenience. let me make a complaint for you.Could you please tell me your problem briefly?, then I can make a complaint for you. our technical teams will handle your issue as soon as possible, and let you know.
   utter_ask_continue_complain:
   - text: No problem! do you want to cancel the complain?
   utter_ask_for_further_queries:

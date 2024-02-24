@@ -14,13 +14,12 @@ def extract_number(string):
     else:
         return 0
 
-def datastore(name, phone_number, router_status=null, phone_status=null, Instrument_status=null):
+def datastore(name, phoneNumber, issue):
     data = {
         "name": [name],
-        "phone_number": [phone_number],
-        "router_status": [router_status],
-        "phone_status": [phone_status],
-        "Instrument_status": [Instrument_status]
+        "phoneNumber": [phoneNumber],
+        "issue": [issue],
+
     }
 
     if os.path.isfile("user_data.xlsx"):
@@ -32,7 +31,6 @@ def datastore(name, phone_number, router_status=null, phone_status=null, Instrum
     df.to_excel("user_data.xlsx", index=False)
 
 
-# datastore("John", "1234567890", phone_number2="0987654321", router_status="Online", phone_status="Active", Instrument_status="Working")
 
 def firebase_datastore(username, convesation, aggr_lvl):
     # Fetch the service account key JSON file contents

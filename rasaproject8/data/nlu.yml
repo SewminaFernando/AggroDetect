@@ -15,7 +15,7 @@ nlu:
     - good morning, my name is [justin martin](name)
     - good morning, I am [Manjula](name) calling from Makale
     - hi, good morning. I'm calling from [Beyond the Ocean Travels](name)
-    - Yeah, my name is [Zumi](name). This is regarding my phone number [2875 436](phone_number).
+    - Yeah, my name is [Zumi](name). This is regarding my phone number [2875 436](phoneNumber).
     - good afternoon, my name is [justin martin](name)
     - good afternoon, I am [Manjula](name) calling from Makale
     - good evening, my name is [justin martin](name)
@@ -25,36 +25,47 @@ nlu:
     - hi im [dasun](name)
     - hi my name is [pasan](name)
     - hello im [kalana](name)
-- intent: say_phone_number
+    - hello im [chulanjana][{"entity": "name"}, {"entity": "name"}]
+    - hello im [chanuka](name)
+    - hi
+    - [chulanjana](name)
+    - [chamal](name)
+    - [kasun](name) [kalhara](name)
+- intent: say_phoneNumber
   examples: |
-    - Oh, yeah, [2875 436](phone_number)
-    - This is regarding my phone number [2875 436](phone_number)
-    - my contact number is [077713424](phone_number)
-    - I do is [0112540233](phone_number)
-    - Phone number is [033 2222 157](phone_number)
-    - [0752540233](phone_number)
-    - okay, it's [0782540233](phone_number)
-    - [0392324421](phone_number)
-    - my phone number is [0382250162](phone_number)
-    - ok its [29343232323](phone_number)
+    - Oh, yeah, [2875 436](phoneNumber)
+    - This is regarding my phone number [2875 436](phoneNumber)
+    - my contact number is [077713424](phoneNumber)
+    - I do is [0112540233](phoneNumber)
+    - Phone number is [033 2222 157](phoneNumber)
+    - [0752540233](phoneNumber)
+    - okay, it's [0782540233](phoneNumber)
+    - [0392324421](phoneNumber)
+    - my phone number is [0382250162](phoneNumber)
+    - ok its [29343232323](phoneNumber)
+    - okey, [20012342345](phoneNumber)
+    - [234223231](phoneNumber)
+    - [38299482920388](phoneNumber)
+    - [674839530](phoneNumber)
+    - [0753999382](phoneNumber)
 - intent: say_name
   examples: |
     - Oh, yeah, [Lynn](name)
     - my name is [Hussain](name).
     - [PYDD silver](name).
     - yeah its [zukzi sali](name)
-    - I am [Manjula](name), my contact number is [077713424](phone_number)
+    - I am [Manjula](name), my contact number is [077713424](phoneNumber)
+    - it registerd on my name, [kasun kalhara](name)
 - intent: put_complain
   examples: |
-    - i want to add a complain about my [router](device)
-    - i want to put a complain about my [router](device)
+    - i want to add a complain about my router
     - i want to put a complain
-    - i want to add a complain about my [phone](device)
-    - i want to put a complain about my [phone](device)
-    - i want to put a complain about my [phone](device) is not working
+    - i want to add a complain about my phone
+    - i want to put a complain about my phone is not working
+    - i want to put a complain about my internet conection
 - intent: Report_complaints_again
   examples: |
-    - yesterday I made the complaint about my [telephone]{"entity": "device", "value": "phone"}
+    - yesterday I made the complaint about my telephone
     - I made a few complaints last few days, but still no one attending to the resolved that issue
     - I have made a complaint regarding the picture not appearing on our TV.
 - intent: wait_for_respond
@@ -68,33 +79,29 @@ nlu:
     - hold on a second, no now its fine.
     - stop
     - i want to talk to an agent
-- intent: describe_issues_in_wifi
+- intent: describe_issues
   examples: |
-    - I can't get my [Wi-Fi]{"entity": "device", "value": "router"}, my [Wi-Fi]{"entity": "device", "value": "router"} is not working at all
-    - I'm experiencing [network issues](issue_type) in my area.
-    - There is always [no signal](issue_type) at our house
-    - There is a problem with my [internet connection]{"entity": "device", "value": "router"}.
-    - I need technical support because my [router](device) has [no signal](issue_type)
-    - I have a loss of signal blinking red lights on my [router](device)
-    - the [Wi-Fi light]{"entity": "device", "value": "router"} is not lighting
+    - I can't get my Wi-Fi, my Wi-Fi is not working at all
+    - I'm experiencing network issues in my area.
+    - There is always no signal at our house
+    - There is a problem with my internet connection.
+    - I need technical support because my router has no signal
+    - I have a loss of signal blinking red lights on my router
+    - the Wi-Fi light is not lighting
     - there's nothing, but the only thing is that the four or five lights are lighting, but about two lights are not lighting
-    - my [router](device) is working properly
-- intent: describe_issues_in_phone
-  examples: |
-    - My [phone](device) is not working properly.
-    - This is regarding my phone number [2875 436](phone_number), it's not working.
-    - our [landline]{"entity": "device", "value": "phone"} is not working now, it's empty.
-    - One is that this [phone](device) is very noisy
-    - Only the [voice line]{"entity": "device", "value": "phone"} that's getting noisy
+    - my router is working properly
+    - My phone is not working properly.
+    - This is regarding my phone number [2875 436](phoneNumber), it's not working.
+    - our landline is not working now, it's empty.
+    - One is that this phone is very noisy
+    - Only the voice line that's getting noisy
     - my phone is not working
-    - there is [no signal](issue_type)[signal](issue_type)
-- intent: describe_issues_in_instruments
-  examples: |
+    - there is no signal
     - Yes, still there are some noises coming from the phone, and the internet not working.
     - That's right, that got damaged.
     - you know that cable that goes from the set box to the router, that got damaged.
-    - There are no damages.
-    - the are damaged
+    - my phone is broken
+    - my phone hase no signal at all,and router also not working there is a blinking red lite on los
 - intent: describe_other_issues
   examples: |
     - we are not getting physical bills.
@@ -111,7 +118,6 @@ nlu:
     - i want to know about my last bill
 - intent: goodbye
   examples: |
-    - cu
     - good by
     - cee you later
     - good night
@@ -131,7 +137,6 @@ nlu:
     - that sounds good
     - correct
     - yes thank you
-    - ok [1232434355](phone_number)
 - intent: thanks
   examples: |
     - thank you.
@@ -148,7 +153,7 @@ nlu:
     - How can I downgrade to a basic plan?
     - Change my subscription to a family plan.
     - What is the due date for my bill?
-    - i need technicle support for my [router](device)
+    - i need technicle support for my router
 - intent: deny
   examples: |
     - no
@@ -171,16 +176,6 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
-- intent: common_answer
-  examples: |
-    - yes its working
-    - it's fine
-    - working
-    - no,its working
-    - its also fine
-    - its fine
-    - its not working
-    - its hard to say
 - synonym: phone
   examples: |
     - telephone

@@ -181,28 +181,28 @@ rules:
   steps:
   - action: utter_ask_for_put_complain
   - intent: affirm
-  - action: Form_Report_full_Info
-  - active_loop: Form_Report_full_Info
+  - action: Report_full_Info_form
+  - active_loop: Report_full_Info_form
 
 
-- rule: submit the full complain
-  condition:
-  - active_loop: Form_Report_full_Info
-  steps:
-  - action: Form_Report_full_Info
-  - active_loop: null
-  - slot_was_set:
-      - requested_slot: null
-  - action: action_save_Report_full
-
-- rule: interruption_put a full complain
-  condition:
-  - active_loop: Form_Report_full_Info
-  steps:
-  - intent: bot_challenge
-  - action: utter_iamabot
-  - action: Form_Report_full_Info
-  - active_loop: Form_Report_full_Info
+#- rule: submit the full complain
+#  condition:
+#  - active_loop: Form_Report_full_Info
+#  steps:
+#  - action: Form_Report_full_Info
+#  - active_loop: null
+#  - slot_was_set:
+#      - requested_slot: null
+#  - action: action_save_Report_full
+#
+#- rule: interruption_put a full complain
+#  condition:
+#  - active_loop: Form_Report_full_Info
+#  steps:
+#  - intent: bot_challenge
+#  - action: utter_iamabot
+#  - action: Form_Report_full_Info
+#  - active_loop: Form_Report_full_Info
 
 
 #- rule: submit the phone_Info complain
@@ -222,15 +222,16 @@ rules:
 #  - intent: bot_challenge
 #  - action: utter_iamabot
 
-#- rule: submit the internet_Info complain
-#  condition:
-#    - active_loop: Form_Report_internet_Info
-#  steps:
-#    - action: Form_Report_internet_Info
-#    - active_loop: null
-#    - slot_was_set:
-#        - requested_slot: null
-#    - action: action_save_Report_internet
+- rule: submit the Report_full_Info_form complain
+  condition:
+    - active_loop: Report_full_Info_form
+  steps:
+    - action: Report_full_Info_form
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - action: action_save_Report_full
+    - action: utter_ask_for_further_queries
 
 #- rule: interruption_put an internet_Info complain
 #  condition:
