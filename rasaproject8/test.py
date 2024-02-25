@@ -1,18 +1,14 @@
-MyList = [('one', [1,2,3,4,5,5]),('one', [1,2,3,4,5,5]), ('two', 2), ('three', 3)]
-MyDict = dict(MyList)
-print(MyDict)
 
 
 
+slot_value="1211011111"
 
+if not slot_value:
+    print("none")
+elif (len(slot_value) == 10 or len(slot_value) == 12):
+    print(slot_value)
+if (len(slot_value) == 10 or len(slot_value) == 12):
+    print(slot_value, "=", len(slot_value))
 
-# flag = dict_to_pickle()
-        # if flag:
-        #     with open('interface\old_conv.pkl', 'rb') as f:
-        #         # Load the data from the file
-        #         old_conv = pickle.load(f)
-        #
-        with open("interface/old_conv.pkl", "rb") as f:
-            old_conv = pickle.load(f)
+print(len(slot_value) == 10 or len(slot_value) == 12)
 
-        print(f"old conversation: {old_conv}")

@@ -44,22 +44,25 @@ class ValidateReportFullInfoForm(FormValidationAction):
         return {"name": slot_value}
 
     def validate_phoneNumber(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker,
-                              domain: Dict[Text, Any]) -> Dict[Text, Any]:
+                             domain: Dict[Text, Any]) -> Dict[Text, Any]:
         if not slot_value:
             dispatcher.utter_message(text="Please provide your phone_number.")
             return {"phoneNumber": None}
-        if len(slot_value)!=10 | len(slot_value) != 12:
-            dispatcher.utter_message(text="Please provide your valid phone number.")
-            return {"phoneNumber": None}
-        print(slot_value,"=",len(slot_value))
-        return {"phoneNumber": slot_value}
-
+        if (len(slot_value) == 10 or len(slot_value) == 12):
+            print(slot_value, "=", len(slot_value))
+            return {"phoneNumber": slot_value}
+        dispatcher.utter_message(text="Please provide your valid phone number.")
+        return {"phoneNumber": None}
 
 class AskForIssueAction(Action):
     def name(self) -> Text:
         return "action_ask_issue"
+
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
             domain: Dict[Text, Any]) -> dict[str, Any] | dict[str, None]:
+        dispatcher.utter_message(text="Could you please tell me your problem briefly?, then I can make a complaint "
+                                      "for you. our technical teams will handle your issue as soon as possible, "
+                                      "and let you know.")
         issue = tracker.latest_message.get("text")
         if issue:
             return {"issue": issue}
@@ -77,9 +80,11 @@ class ActionUtterGoodbye(Action):
                                  triggered=True)
         return []
 
+
 class TerminateServerAction(Action):
     def name(self) -> Text:
         return "action_terminate_server"
+
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:

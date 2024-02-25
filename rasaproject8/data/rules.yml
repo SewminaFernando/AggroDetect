@@ -8,6 +8,11 @@ rules:
   - intent: goodbye
   - action: action_utter_goodbye
 
+- rule: Say goodbye after directing user to an agent
+  steps:
+  - action: actionutter_dirct_to_an_agent
+  - action: action_utter_goodbye
+
 - rule: wait for respond
   steps:
   - intent: wait_for_respond
@@ -18,16 +23,10 @@ rules:
   - intent: bot_challenge
   - action: utter_iamabot
 
-#- rule: Terminate server-1
-#  steps:
-#  - action: utter_dirct_to_an_agent
-
-#- rule: restart action server-1
-#  steps:
-#  - action: action_terminate_server
-#  - intent: greet
-#  - action: action_check_and_start_action_server
-#  - action: utter_greet
+- rule: greeting
+  steps:
+  - intent: greet
+  - action: utter_greet
 
 - rule: Activate the full complain
   steps:

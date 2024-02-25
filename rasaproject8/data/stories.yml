@@ -21,7 +21,7 @@ stories:
   - action: utter_ask_to_direct_agent
   - intent: affirm
   - action: utter_dirct_to_an_agent
-
+  - action: action_utter_goodbye
 
 - story: unexpected-deny
   steps:
@@ -50,7 +50,7 @@ stories:
     - intent: describe_other_issues
     - intent: technical_support
   - action: utter_dirct_to_an_agent
-
+  - action: action_utter_goodbye
 
 
 
@@ -70,7 +70,7 @@ stories:
   - action: utter_ask_for_further_queries
   - intent: affirm
   - action: utter_dirct_to_an_agent
-
+  - action: action_utter_goodbye
 
 
 - story: User ask for wait
@@ -238,7 +238,7 @@ stories:
   - action: utter_ask_for_further_queries
   - intent: affirm
   - action: utter_dirct_to_an_agent
-
+  - action: action_utter_goodbye
 
 
 
@@ -246,6 +246,185 @@ stories:
   steps:
   - intent: technical_support
   - action: utter_dirct_to_an_agent
+  - action: action_utter_goodbye
 
 
+- story: interactive_story_5
+  steps:
+  - intent: put_complain
+    entities:
+    - name: chulanjana
+  - slot_was_set:
+    - name: chulanjana
+  - action: utter_ask_for_put_complain
+  - intent: affirm
+  - action: Report_full_Info_form
+  - active_loop: Report_full_Info_form
+  - slot_was_set:
+    - name: chulanjana
+  - slot_was_set:
+    - requested_slot: phoneNumber
+  - intent: say_phoneNumber
+    entities:
+    - phoneNumber: '0782343434'
+  - slot_was_set:
+    - phoneNumber: '0782343434'
+  - action: Report_full_Info_form
+  - slot_was_set:
+    - phoneNumber: '0782343434'
+  - slot_was_set:
+    - requested_slot: issue
+  - intent: describe_issues
+  - slot_was_set:
+    - issue: your service is poor, about our area has no signal. and my internet connection is very slow
+  - action: Report_full_Info_form
+  - slot_was_set:
+    - issue: your service is poor, about our area has no signal. and my internet connection is very slow
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_save_Report_full
+  - action: utter_ask_for_further_queries
+  - intent: affirm
+  - action: utter_dirct_to_an_agent
+  - action: action_utter_goodbye
 
+- story: interactive_story_6
+  steps:
+  - intent: put_complain
+  - action: utter_ask_for_put_complain
+  - intent: affirm
+  - action: Report_full_Info_form
+  - active_loop: Report_full_Info_form
+  - slot_was_set:
+    - requested_slot: name
+  - intent: say_name
+    entities:
+    - name: gihan bandara
+  - slot_was_set:
+    - name: gihan bandara
+  - action: Report_full_Info_form
+  - slot_was_set:
+    - name: gihan bandara
+  - slot_was_set:
+    - requested_slot: phoneNumber
+  - intent: wait_for_respond
+  - action: utter_wait_for_respond
+  - intent: thanks
+  - action: Report_full_Info_form
+  - slot_was_set:
+    - requested_slot: phoneNumber
+  - intent: say_phoneNumber
+    entities:
+    - phoneNumber: '2001103127'
+  - slot_was_set:
+    - phoneNumber: '2001103127'
+  - action: Report_full_Info_form
+  - slot_was_set:
+    - phoneNumber: '2001103127'
+  - slot_was_set:
+    - requested_slot: issue
+  - intent: describe_issues
+  - slot_was_set:
+    - issue: you guys came to our place last week an fix my router issue. but again I'm facing the same issue can you please take action for it
+  - action: Report_full_Info_form
+  - slot_was_set:
+    - issue: you guys came to our place last week an fix my router issue. but again I'm facing the same issue can you please take action for it
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_save_Report_full
+  - action: utter_ask_for_further_queries
+  - intent: affirm
+  - action: utter_dirct_to_an_agent
+  - action: action_utter_goodbye
+
+- story: interactive_story_7
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: unexpected
+  - intent: bot_challenge
+  - action: utter_iamabot
+  - intent: describe_other_issues
+  - action: utter_dirct_to_an_agent
+  - action: action_utter_goodbye
+
+- story: interactive_story_8
+  steps:
+  - intent: describe_other_issues
+  - action: utter_dirct_to_an_agent
+  - action: action_utter_goodbye
+
+- story: interactive_story_9
+  steps:
+  - intent: put_complain
+  - action: utter_ask_for_put_complain
+  - intent: affirm
+  - action: Report_full_Info_form
+  - active_loop: Report_full_Info_form
+  - slot_was_set:
+    - requested_slot: name
+  - intent: say_name
+    entities:
+    - name: dissanayeka
+  - slot_was_set:
+    - name: dissanayeka
+  - intent: say_name
+    entities:
+    - name: navam dissanayeka
+  - action: Report_full_Info_form
+  - slot_was_set:
+    - requested_slot: name
+  - intent: say_name
+    entities:
+    - name: navam
+    - name: dissanayeka
+  - slot_was_set:
+    - name: dissanayeka
+  - intent: say_name
+    entities:
+    - name: navam dissanayeka
+  - action: Report_full_Info_form
+  - slot_was_set:
+    - requested_slot: name
+  - intent: say_name
+    entities:
+    - name: Chulanjana jayasinghe
+  - action: Report_full_Info_form
+  - slot_was_set:
+    - requested_slot: name
+  - intent: say_name
+    entities:
+    - name: padmasumane
+  - slot_was_set:
+    - name: padmasumane
+  - action: Report_full_Info_form
+  - slot_was_set:
+    - name: padmasumane
+  - slot_was_set:
+    - requested_slot: phoneNumber
+  - intent: say_phoneNumber
+    entities:
+    - phoneNumber: '66666666666666666666666666666666666666'
+  - slot_was_set:
+    - phoneNumber: '66666666666666666666666666666666666666'
+  - action: Report_full_Info_form
+  - slot_was_set:
+    - phoneNumber: null
+  - slot_was_set:
+    - requested_slot: phoneNumber
+  - intent: say_phoneNumber
+    entities:
+    - phoneNumber: '2991123453'
+  - slot_was_set:
+    - phoneNumber: '2991123453'
+  - action: Report_full_Info_form
+  - slot_was_set:
+    - phoneNumber: '2991123453'
+  - slot_was_set:
+    - requested_slot: issue
+  - intent: technical_support
+  - action: utter_disturb_direct_agent
+  - action: utter_dirct_to_an_agent
+  - action: action_utter_goodbye

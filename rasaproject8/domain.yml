@@ -22,15 +22,17 @@ entities:
 - name
 - phoneNumber
 actions:
+- utter_ask_for_put_complain
+- action_utter_goodbye
 - utter_dirct_to_an_agent
+- utter_greet
+- utter_iamabot
+- action_save_Report_full
+- utter_ask_for_further_queries
+- utter_wait_for_respond
 - action_check_and_start_action_server
 - action_terminate_server
-- action_utter_goodbye
-- action_save_Report_full
-- utter_ask_for_put_complain
-- utter_ask_for_further_queries
 - action_ask_issue
-- utter_greet
 - validate_Report_full_Info_form
 - utter_deny
 - utter_provide_billing_details
@@ -59,6 +61,7 @@ slots:
     mappings:
     - type: from_text
       intent: describe_issues
+      not_intent: greet
 responses:
   utter_user_details:
   - custom:
@@ -93,6 +96,10 @@ responses:
   - text: Kindly allow me a moment to connect you, with the most suitable customer care agent. who will assist you with your concerns.
   utter_wait_for_respond:
   - text: No problem! Take your time.
+  utter_thanks:
+  - text: No problem! Take your time.
+  utter_disturb_direct_agent:
+  - text: Your issue will not be recorded.
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

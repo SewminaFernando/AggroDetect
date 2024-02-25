@@ -25,10 +25,8 @@ nlu:
     - hi im [dasun](name)
     - hi my name is [pasan](name)
     - hello im [kalana](name)
-    - hello im [chulanjana][{"entity": "name"}, {"entity": "name"}]
     - hello im [chanuka](name)
     - hi
-
 - intent: say_phoneNumber
   examples: |
     - Oh, yeah, [2875 436](phoneNumber)
@@ -46,17 +44,26 @@ nlu:
     - [38299482920388](phoneNumber)
     - [674839530](phoneNumber)
     - [0753999382](phoneNumber)
+    - my phone number is [0782343434](phoneNumber)
+    - [200110312](phoneNumber)
+    - [66666666666666666666666666666666666666](phoneNumber)
+    - [2991123453](phoneNumber)
 - intent: say_name
   examples: |
     - Oh, yeah, [Lynn](name)
     - my name is [Hussain](name).
     - [PYDD silver](name).
     - yeah its [zukzi sali](name)
-    - I am [Manjula](name), my contact number is [077713424](phoneNumber)
+    - I am [Manjula disanayeke](name), my contact number is [077713424](phoneNumber)
     - it registerd on my name, [kasun kalhara](name)
     - [chulanjana](name)
     - [chamal](name)
     - [kasun kalhara](name)
+    - my name [gihan bandara](name)
+    - my name is [navam dissanayeka](name)
+    - [navam dissanayeka](name)
+    - my name is [Chulanjana jayasinghe](name)
+    - [padmasumane](name)
 - intent: put_complain
   examples: |
     - i want to add a complain about my router
@@ -64,6 +71,9 @@ nlu:
     - i want to add a complain about my phone
     - i want to put a complain about my phone is not working
     - i want to put a complain about my internet conection
+    - i'm [chulanjana](name), i want to put a complain
+    - hello i want to put a compalin
+    - your serevice is so poor i want to put a complaint
 - intent: Report_complaints_again
   examples: |
     - yesterday I made the complaint about my telephone
@@ -74,6 +84,7 @@ nlu:
     - Just give me a minute.
     - hold on a second.
     - Just give me a moment.
+    - wait
 - intent: stop
   examples: |
     - sorry, I dont want to put a complain.
@@ -102,6 +113,8 @@ nlu:
     - you know that cable that goes from the set box to the router, that got damaged.
     - my phone is broken
     - my phone hase no signal at all,and router also not working there is a blinking red lite on los
+    - your service is poor, about our area has no signal. and my internet connection is very slow
+    - you guys came to our place last week an fix my router issue. but again I'm facing the same issue can you please take action for it
 - intent: describe_other_issues
   examples: |
     - we are not getting physical bills.
@@ -111,6 +124,10 @@ nlu:
     - can i know how much is the minimum that i should pay to get back my connection
     - Can you tell me how much GB I've used during peak hours?
     - my son did somthing last night, and the inter net is not working now.
+    - I want to know if my last bill payment was done or not.
+    - hello, i want to know how to fix my router
+    - one of your agents blamed to me
+
 - intent: ask_bill_details
   examples: |
     - Can you provide details of my latest bill?
@@ -127,7 +144,6 @@ nlu:
     - see you around
     - bye bye
     - see you later
-
 - intent: affirm
   examples: |
     - yes
@@ -135,14 +151,15 @@ nlu:
     - y
     - indeed
     - of course
-    - of course
     - correct
     - yes thank you
+    - yes of cause
 - intent: thanks
   examples: |
     - thank you.
     - oh! that's great thank you so much.
     - thanks
+    - thank you for waiting
 - intent: technical_support
   examples: |
     - I want to know some some details about my data package.
@@ -180,6 +197,7 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+    - who are you
 - synonym: phone
   examples: |
     - telephone
