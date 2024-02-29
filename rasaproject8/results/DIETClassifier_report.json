@@ -1,0 +1,35 @@
+{
+  "phoneNumber": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 28,
+    "confused_with": {}
+  },
+  "name": {
+    "precision": 1.0,
+    "recall": 0.9795918367346939,
+    "f1-score": 0.9896907216494846,
+    "support": 49,
+    "confused_with": {}
+  },
+  "micro avg": {
+    "precision": 1.0,
+    "recall": 0.987012987012987,
+    "f1-score": 0.9934640522875817,
+    "support": 77
+  },
+  "macro avg": {
+    "precision": 1.0,
+    "recall": 0.9897959183673469,
+    "f1-score": 0.9948453608247423,
+    "support": 77
+  },
+  "weighted avg": {
+    "precision": 1.0,
+    "recall": 0.987012987012987,
+    "f1-score": 0.993439550140581,
+    "support": 77
+  },
+  "accuracy": 0.9990749306197965
+}
