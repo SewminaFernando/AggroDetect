@@ -161,7 +161,7 @@ header{
     transition: 0.3s;
 }
 .details{
-    color: #fff;
+    color: black;
     text-align: justify;
     padding: 10px 10px 10px 10px;
 }
@@ -180,6 +180,6 @@ header{
     font-weight: 600;
     text-transform: uppercase;
     margin-bottom: 8px;
-    color: #fff;
+    color: black;
 }
 
