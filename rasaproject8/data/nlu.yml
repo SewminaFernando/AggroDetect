@@ -97,7 +97,7 @@ nlu:
     - my phone is broken
     - my phone hase no signal at all,and router also not working there is a blinking red lite on los
     - your service is poor, about our area has no signal. and my internet connection is very slow
-    - you guys came to our place last week an fix my router issue. but again I'm facing the same issue can you please take action for it
+    - your guys came to our place last week an fix my router issue. but again I'm facing the same issue can you please take action for it
 - intent: describe_other_issues
   examples: |
     - we are not getting physical bills.
