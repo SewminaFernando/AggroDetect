@@ -23,12 +23,12 @@ entities:
 - name
 - phoneNumber
 actions:
-- action_save_Report_full
 - action_utter_goodbye
 - utter_dirct_to_an_agent
-- utter_unexpected
-- utter_ask_for_put_complain
 - utter_greet
+- action_save_Report_full
+- utter_ask_for_put_complain
+- utter_unexpected
 - utter_iamabot
 - utter_ask_for_further_queries
 - utter_wait_for_respond
@@ -101,6 +101,8 @@ responses:
   - text: No problem! Take your time.
   utter_disturb_direct_agent:
   - text: Your issue will not be recorded.
+  utter_wrong_complain:
+  - text: we are sorry sir, we record only technical issues here, I will direct you to a suitable agent to handle your problem.
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

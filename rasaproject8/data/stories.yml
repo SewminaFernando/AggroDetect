@@ -385,11 +385,12 @@ stories:
   - slot_was_set:
     - requested_slot: issue
   - intent: technical_support
+  - active_loop: null
   - action: utter_disturb_direct_agent
   - action: utter_dirct_to_an_agent
   - action: action_utter_goodbye
 
-- story: interactive_story_1
+- story: interactive_story_10
   steps:
   - intent: describe_issues
   - slot_was_set:
@@ -405,5 +406,54 @@ stories:
   - action: action_save_Report_full
   - action: utter_unexpected
   - intent: technical_support
+  - action: utter_dirct_to_an_agent
+  - action: action_utter_goodbye
+
+
+
+- story: interactive_story_11
+  steps:
+  - intent: blame
+  - action: utter_ask_for_put_complain
+  - intent: affirm
+  - action: Report_full_Info_form
+  - active_loop: Report_full_Info_form
+  - slot_was_set:
+    - requested_slot: name
+  - intent: say_name
+    entities:
+    - name: pamuditha dissanayaka
+  - slot_was_set:
+    - name: pamuditha dissanayaka
+  - action: Report_full_Info_form
+  - slot_was_set:
+    - name: pamuditha dissanayaka
+  - slot_was_set:
+    - requested_slot: phoneNumber
+  - intent: say_phoneNumber
+    entities:
+    - phoneNumber: '0392257324'
+  - slot_was_set:
+    - phoneNumber: '0392257324'
+  - action: Report_full_Info_form
+  - slot_was_set:
+    - phoneNumber: '0392257324'
+  - slot_was_set:
+    - requested_slot: issue
+  - intent: blame
+  - action: Report_full_Info_form
+  - slot_was_set:
+    - requested_slot: issue
+  - intent: describe_other_issues
+  - action: utter_wrong_complain
+  - active_loop: null
+  - action: action_utter_goodbye
+  - intent: greet
+  - action: utter_greet
+
+- story: interactive_story_12
+  steps:
+  - intent: describe_other_issues
+  - intent: Report_complaints_again
   - action: utter_dirct_to_an_agent
   - action: action_utter_goodbye

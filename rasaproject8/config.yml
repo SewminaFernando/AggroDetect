@@ -21,7 +21,6 @@ pipeline:
 - name: "SklearnIntentClassifier"
 - name: LexicalSyntacticFeaturizer
 - name: CountVectorsFeaturizer
-- name: CountVectorsFeaturizer
   analyzer: char_wb
   min_ngram: 1
   max_ngram: 4
@@ -34,6 +33,7 @@ pipeline:
 - name: FallbackClassifier
   threshold: 0.3
   ambiguity_threshold: 0.1
+
 # Configuration for Rasa Core.
 # https://rasa.com/docs/rasa/core/policies/
 policies:

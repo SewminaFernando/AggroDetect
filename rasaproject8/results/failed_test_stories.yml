@@ -4,14 +4,14 @@ stories:
   steps:
   - intent: greet
   - action: utter_greet
-  - intent: mood_great  # predicted: affirm: amazing
-  - action: utter_happy  # predicted: action_default_fallback
+  - intent: mood_great  # predicted: greet: amazing
+  - action: utter_happy  # predicted: utter_ask_for_put_complain
 - story: happy path 2 (.\.venv\Lib\site-packages\rasa\cli\initial_project\tests\test_stories.yml)
   steps:
   - intent: greet
   - action: utter_greet
-  - intent: mood_great  # predicted: affirm: amazing
-  - action: utter_happy  # predicted: action_default_fallback
+  - intent: mood_great  # predicted: greet: amazing
+  - action: utter_happy  # predicted: utter_ask_for_put_complain
   - intent: goodbye
   - action: utter_goodbye  # predicted: action_utter_goodbye
 - story: sad path 1 (.\.venv\Lib\site-packages\rasa\cli\initial_project\tests\test_stories.yml)
@@ -19,16 +19,16 @@ stories:
   - intent: greet
   - action: utter_greet
   - intent: mood_unhappy  # predicted: deny: not good
-  - action: utter_cheer_up  # predicted: utter_dirct_to_an_agent
+  - action: utter_cheer_up  # predicted: utter_ask_for_put_complain
   - action: utter_did_that_help  # predicted: action_listen
   - intent: affirm
-  - action: utter_happy  # predicted: utter_dirct_to_an_agent
+  - action: utter_happy  # predicted: utter_dirct_to_an_agent after action_unlikely_intent
 - story: sad path 2 (.\.venv\Lib\site-packages\rasa\cli\initial_project\tests\test_stories.yml)
   steps:
   - intent: greet
   - action: utter_greet
   - intent: mood_unhappy  # predicted: deny: not good
-  - action: utter_cheer_up  # predicted: utter_dirct_to_an_agent
+  - action: utter_cheer_up  # predicted: utter_ask_for_put_complain
   - action: utter_did_that_help  # predicted: action_listen
   - intent: deny
   - action: utter_goodbye  # predicted: utter_unexpected
@@ -36,8 +36,8 @@ stories:
   steps:
   - intent: greet
   - action: utter_greet
-  - intent: mood_unhappy  # predicted: nlu_fallback: very terrible
-  - action: utter_cheer_up  # predicted: utter_dirct_to_an_agent
+  - intent: mood_unhappy  # predicted: goodbye: very terrible
+  - action: utter_cheer_up  # predicted: utter_ask_for_put_complain
   - action: utter_did_that_help  # predicted: action_listen
   - intent: deny
   - action: utter_goodbye  # predicted: utter_unexpected

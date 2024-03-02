@@ -14,7 +14,7 @@
         "entity": "name",
         "start": 35,
         "end": 41,
-        "confidence_entity": 0.8882437944412231,
+        "confidence_entity": 0.7605032324790955,
         "value": "Beyond",
         "extractor": "DIETClassifier"
       },
@@ -22,7 +22,7 @@
         "entity": "name",
         "start": 46,
         "end": 59,
-        "confidence_entity": 0.9210351705551147,
+        "confidence_entity": 0.929252028465271,
         "value": "Ocean Travels",
         "extractor": "DIETClassifier"
       }

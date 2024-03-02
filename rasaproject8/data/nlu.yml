@@ -46,9 +46,9 @@ nlu:
     - yeah its [zukzi sali](name)
     - I am [Manjula disanayeke](name), my contact number is [077713424](phoneNumber)
     - it registerd on my name, [kasun kalhara](name)
-    - [kasun kalhara](name)
     - my name [gihan bandara](name)
     - my name is [navam dissanayeka](name)
+    - [pamuditha dissanayaka](name)
 - intent: put_complain
   examples: |
     - i want to add a complain about my router
@@ -61,7 +61,7 @@ nlu:
   examples: |
     - yesterday I made the complaint about my telephone
     - I made a few complaints last few days, but still no one attending to the resolved that issue
-    - I have made a complaint regarding the picture not appearing on our TV.
+    - my internet connection is very slow last time I blamed your bloody agents. and he told me to fix it but still it same
 - intent: wait_for_respond
   examples: |
     - Just give me a minute.
@@ -110,6 +110,7 @@ nlu:
     - I want to know if my last bill payment was done or not.
     - hello, i want to know how to fix my router
     - one of your agents blamed to me
+    - as i told you before please train your agents and technicians properly.they don't know how to handel our problems
 - intent: ask_bill_details
   examples: |
     - Can you provide details of my latest bill?
@@ -183,6 +184,8 @@ nlu:
     - your bloody service agent did do his job well
     - Your employees are very irresponsible people
     - your technicians are useless they can't even fix my router properly
+    - I'm seriously frustrated and angry with your service, just look at the waiting time for this call.
+    - please train your agents properly
 - intent: bot_challenge
   examples: |
     - are you a bot?
