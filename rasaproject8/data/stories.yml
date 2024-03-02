@@ -134,14 +134,14 @@ stories:
 
 - story: interactive_story_3
   steps:
-  - intent: put_complain
+  - intent: blame
   - action: utter_ask_for_put_complain
   - intent: affirm
   - action: Report_full_Info_form
   - active_loop: Report_full_Info_form
   - slot_was_set:
     - requested_slot: name
-  - intent: greet
+  - intent: say_name
     entities:
     - name: chamal
   - slot_was_set:
@@ -190,27 +190,12 @@ stories:
     - issue: my phone hase no signal at all,and router also not working there is a blinking red lite on los
   - slot_was_set:
     - requested_slot: name
-  - intent: nlu_fallback
-    entities:
-    - name: kasun
-    - name: kalhara
-  - slot_was_set:
-    - name: kalhara
   - intent: say_name
     entities:
     - name: kasun kalhara
   - action: Report_full_Info_form
   - slot_was_set:
-    - requested_slot: name
-  - intent: greet
-    entities:
-    - name: kasun
-    - name: kalhara
-  - slot_was_set:
-    - name: kalhara
-  - action: Report_full_Info_form
-  - slot_was_set:
-    - name: kalhara
+    - name: kasun kalhara
   - slot_was_set:
     - requested_slot: phoneNumber
   - intent: say_phoneNumber
@@ -367,41 +352,16 @@ stories:
     - requested_slot: name
   - intent: say_name
     entities:
-    - name: dissanayeka
-  - slot_was_set:
-    - name: dissanayeka
-  - intent: say_name
-    entities:
     - name: navam dissanayeka
   - action: Report_full_Info_form
   - slot_was_set:
     - requested_slot: name
   - intent: say_name
     entities:
-    - name: navam
-    - name: dissanayeka
-  - slot_was_set:
-    - name: dissanayeka
-  - intent: say_name
-    entities:
     - name: navam dissanayeka
   - action: Report_full_Info_form
   - slot_was_set:
-    - requested_slot: name
-  - intent: say_name
-    entities:
-    - name: Chulanjana jayasinghe
-  - action: Report_full_Info_form
-  - slot_was_set:
-    - requested_slot: name
-  - intent: say_name
-    entities:
-    - name: padmasumane
-  - slot_was_set:
-    - name: padmasumane
-  - action: Report_full_Info_form
-  - slot_was_set:
-    - name: padmasumane
+    - name: navam dissanayeka
   - slot_was_set:
     - requested_slot: phoneNumber
   - intent: say_phoneNumber
@@ -426,5 +386,24 @@ stories:
     - requested_slot: issue
   - intent: technical_support
   - action: utter_disturb_direct_agent
+  - action: utter_dirct_to_an_agent
+  - action: action_utter_goodbye
+
+- story: interactive_story_1
+  steps:
+  - intent: describe_issues
+  - slot_was_set:
+    - issue: your technicians are useless they can't even fix my router properly
+  - intent: blame
+  - action: utter_ask_for_put_complain
+  - intent: affirm
+  - action: Report_full_Info_form
+  - active_loop: Report_full_Info_form
+  - slot_was_set:
+    - requested_slot: name
+  - intent: deny
+  - action: action_save_Report_full
+  - action: utter_unexpected
+  - intent: technical_support
   - action: utter_dirct_to_an_agent
   - action: action_utter_goodbye

@@ -3,6 +3,7 @@ intents:
 - Report_complaints_again
 - affirm
 - ask_bill_details
+- blame
 - bot_challenge
 - deny
 - describe_issues
@@ -22,12 +23,13 @@ entities:
 - name
 - phoneNumber
 actions:
-- utter_ask_for_put_complain
+- action_save_Report_full
 - action_utter_goodbye
 - utter_dirct_to_an_agent
+- utter_unexpected
+- utter_ask_for_put_complain
 - utter_greet
 - utter_iamabot
-- action_save_Report_full
 - utter_ask_for_further_queries
 - utter_wait_for_respond
 - action_check_and_start_action_server
@@ -36,7 +38,6 @@ actions:
 - validate_Report_full_Info_form
 - utter_deny
 - utter_provide_billing_details
-- utter_unexpected
 - utter_ask_to_direct_agent
 forms:
   Report_full_Info_form:
@@ -61,7 +62,7 @@ slots:
     mappings:
     - type: from_text
       intent: describe_issues
-      not_intent: greet
+      not_intent: greet, blame
 responses:
   utter_user_details:
   - custom:

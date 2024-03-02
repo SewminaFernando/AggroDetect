@@ -20,12 +20,10 @@ nlu:
     - good afternoon, I am [Manjula](name) calling from Makale
     - good evening, my name is [justin martin](name)
     - hello my name is [chulanjana](name)
-    - hello im [passan](name)
-    - hi im [naddshani](name)
-    - hi im [dasun](name)
-    - hi my name is [pasan](name)
-    - hello im [kalana](name)
-    - hello im [chanuka](name)
+    - hello im [passan perera](name)
+    - hi im [naddshani premachandra](name)
+    - hi my name is [pasan maheema](name)
+    - hello im [chanuka goonathilaka](name)
     - hi
 - intent: say_phoneNumber
   examples: |
@@ -34,41 +32,26 @@ nlu:
     - my contact number is [077713424](phoneNumber)
     - I do is [0112540233](phoneNumber)
     - Phone number is [033 2222 157](phoneNumber)
-    - [0752540233](phoneNumber)
     - okay, it's [0782540233](phoneNumber)
-    - [0392324421](phoneNumber)
     - my phone number is [0382250162](phoneNumber)
     - ok its [29343232323](phoneNumber)
     - okey, [20012342345](phoneNumber)
     - [234223231](phoneNumber)
     - [38299482920388](phoneNumber)
-    - [674839530](phoneNumber)
-    - [0753999382](phoneNumber)
     - my phone number is [0782343434](phoneNumber)
-    - [200110312](phoneNumber)
-    - [66666666666666666666666666666666666666](phoneNumber)
-    - [2991123453](phoneNumber)
 - intent: say_name
   examples: |
     - Oh, yeah, [Lynn](name)
-    - my name is [Hussain](name).
     - [PYDD silver](name).
     - yeah its [zukzi sali](name)
     - I am [Manjula disanayeke](name), my contact number is [077713424](phoneNumber)
     - it registerd on my name, [kasun kalhara](name)
-    - [chulanjana](name)
-    - [chamal](name)
     - [kasun kalhara](name)
     - my name [gihan bandara](name)
     - my name is [navam dissanayeka](name)
-    - [navam dissanayeka](name)
-    - my name is [Chulanjana jayasinghe](name)
-    - [padmasumane](name)
 - intent: put_complain
   examples: |
     - i want to add a complain about my router
-    - i want to put a complain
-    - i want to add a complain about my phone
     - i want to put a complain about my phone is not working
     - i want to put a complain about my internet conection
     - i'm [chulanjana](name), i want to put a complain
@@ -127,7 +110,6 @@ nlu:
     - I want to know if my last bill payment was done or not.
     - hello, i want to know how to fix my router
     - one of your agents blamed to me
-
 - intent: ask_bill_details
   examples: |
     - Can you provide details of my latest bill?
@@ -154,6 +136,7 @@ nlu:
     - correct
     - yes thank you
     - yes of cause
+    - yes, please
 - intent: thanks
   examples: |
     - thank you.
@@ -175,6 +158,7 @@ nlu:
     - i want to talk to an agent
     - i want to talk to your agent because i have a problem with my internet connection
     - i want to talk to customere care service officer can you direct me to one
+    - i want to talk to your agent
 - intent: deny
   examples: |
     - no
@@ -185,12 +169,20 @@ nlu:
     - no way
     - not really
     - no,thanks
+    - i dont want to say my name
 - intent: unexpected
   examples: |
     - how?
     - what?
     - aaahhhh
     - noooooooo
+- intent: blame
+  examples: |
+    - I hate your fucking service
+    - your bloody agent cut my call
+    - your bloody service agent did do his job well
+    - Your employees are very irresponsible people
+    - your technicians are useless they can't even fix my router properly
 - intent: bot_challenge
   examples: |
     - are you a bot?
