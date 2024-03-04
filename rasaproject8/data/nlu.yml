@@ -21,10 +21,11 @@ nlu:
     - good evening, my name is [justin martin](name)
     - hello my name is [chulanjana](name)
     - hello im [passan perera](name)
-    - hi im [naddshani premachandra](name)
+    - hi im [kamal premachandra](name)
     - hi my name is [pasan maheema](name)
     - hello im [chanuka goonathilaka](name)
     - hi
+    - hi my name is [chulanjana jayasinghe](name)
 - intent: say_phoneNumber
   examples: |
     - Oh, yeah, [2875 436](phoneNumber)
@@ -37,26 +38,28 @@ nlu:
     - ok its [29343232323](phoneNumber)
     - okey, [20012342345](phoneNumber)
     - [234223231](phoneNumber)
-    - [38299482920388](phoneNumber)
-    - my phone number is [0782343434](phoneNumber)
+    - [38299482920388](phoneNumber)   
+    - my phone number is [20220465](phoneNumber)
+    - sorry its [0382250162](phoneNumber)
 - intent: say_name
   examples: |
+    - okay, i'll tell you my name. its [chulanjana pabasara](name)
     - Oh, yeah, [Lynn](name)
     - [PYDD silver](name).
     - yeah its [zukzi sali](name)
     - I am [Manjula disanayeke](name), my contact number is [077713424](phoneNumber)
     - it registerd on my name, [kasun kalhara](name)
     - my name [gihan bandara](name)
-    - my name is [navam dissanayeka](name)
-    - [pamuditha dissanayaka](name)
+    - [sumathipala de soiza](name)
+    - my name is [supun dissanayaka soiza](name)
 - intent: put_complain
   examples: |
     - i want to add a complain about my router
     - i want to put a complain about my phone is not working
-    - i want to put a complain about my internet conection
     - i'm [chulanjana](name), i want to put a complain
     - hello i want to put a compalin
     - your serevice is so poor i want to put a complaint
+    - yeah, i want to put a complain about my connection
 - intent: Report_complaints_again
   examples: |
     - yesterday I made the complaint about my telephone
@@ -98,6 +101,7 @@ nlu:
     - my phone hase no signal at all,and router also not working there is a blinking red lite on los
     - your service is poor, about our area has no signal. and my internet connection is very slow
     - your guys came to our place last week an fix my router issue. but again I'm facing the same issue can you please take action for it
+    - my router is not working properly there is red light blinking on los bulb
 - intent: describe_other_issues
   examples: |
     - we are not getting physical bills.
@@ -111,6 +115,7 @@ nlu:
     - hello, i want to know how to fix my router
     - one of your agents blamed to me
     - as i told you before please train your agents and technicians properly.they don't know how to handel our problems
+    - please train your agents properly they dont know how to talk to a customer
 - intent: ask_bill_details
   examples: |
     - Can you provide details of my latest bill?
@@ -138,6 +143,7 @@ nlu:
     - yes thank you
     - yes of cause
     - yes, please
+    - yeah, thats what i want
 - intent: thanks
   examples: |
     - thank you.
@@ -170,13 +176,21 @@ nlu:
     - no way
     - not really
     - no,thanks
-    - i dont want to say my name
+    - i can't tell my phone nuber
+    - i told you once i can't provide my number
+    - no i cant tell my phone nuber
+    - no i cant give you it
+    - i toled you onece i cant tell you my name
+    - no i cant provide my name
+    - no thats it
 - intent: unexpected
   examples: |
     - how?
     - what?
     - aaahhhh
     - noooooooo
+    - jhsbcauweb23423234234324y23
+    - 234423244ferfer34535
 - intent: blame
   examples: |
     - I hate your fucking service
@@ -186,6 +200,12 @@ nlu:
     - your technicians are useless they can't even fix my router properly
     - I'm seriously frustrated and angry with your service, just look at the waiting time for this call.
     - please train your agents properly
+    - your bloody agent rude to me
+    - as i told you before your bloody agent was rude to me
+    - your fuking agents are not trained well they was rude to me
+    - your bloody agent was rude to me in last call and he cut the call before the conversation over
+    - i hate your fucking service
+    - your fuking agent was rude to me
 - intent: bot_challenge
   examples: |
     - are you a bot?

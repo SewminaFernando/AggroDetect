@@ -20,25 +20,27 @@ intents:
 - unexpected
 - wait_for_respond
 entities:
-- name
 - phoneNumber
+- name
 actions:
-- action_utter_goodbye
-- utter_dirct_to_an_agent
-- utter_greet
 - action_save_Report_full
+- action_utter_goodbye
+- utter_disturb_form
+- utter_dirct_to_an_agent
+- utter_deny
+- utter_ask_for_further_queries
 - utter_ask_for_put_complain
+- utter_wait_for_respond
+- utter_greet
+- utter_ask_to_direct_agent
+- utter_wrong_complain
 - utter_unexpected
 - utter_iamabot
-- utter_ask_for_further_queries
-- utter_wait_for_respond
 - action_check_and_start_action_server
 - action_terminate_server
 - action_ask_issue
 - validate_Report_full_Info_form
-- utter_deny
 - utter_provide_billing_details
-- utter_ask_to_direct_agent
 forms:
   Report_full_Info_form:
     required_slots:
@@ -52,6 +54,7 @@ slots:
     mappings:
     - type: from_entity
       entity: name
+      not_intent: unexpected
   phoneNumber:
     type: text
     mappings:
@@ -99,7 +102,7 @@ responses:
   - text: No problem! Take your time.
   utter_thanks:
   - text: No problem! Take your time.
-  utter_disturb_direct_agent:
+  utter_disturb_form:
   - text: Your issue will not be recorded.
   utter_wrong_complain:
   - text: we are sorry sir, we record only technical issues here, I will direct you to a suitable agent to handle your problem.

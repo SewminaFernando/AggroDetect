@@ -385,30 +385,13 @@ stories:
   - slot_was_set:
     - requested_slot: issue
   - intent: technical_support
+  - action: action_deactivate_loop
   - active_loop: null
-  - action: utter_disturb_direct_agent
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_disturb_form
   - action: utter_dirct_to_an_agent
   - action: action_utter_goodbye
-
-- story: interactive_story_10
-  steps:
-  - intent: describe_issues
-  - slot_was_set:
-    - issue: your technicians are useless they can't even fix my router properly
-  - intent: blame
-  - action: utter_ask_for_put_complain
-  - intent: affirm
-  - action: Report_full_Info_form
-  - active_loop: Report_full_Info_form
-  - slot_was_set:
-    - requested_slot: name
-  - intent: deny
-  - action: action_save_Report_full
-  - action: utter_unexpected
-  - intent: technical_support
-  - action: utter_dirct_to_an_agent
-  - action: action_utter_goodbye
-
 
 
 - story: interactive_story_11
@@ -446,14 +429,233 @@ stories:
     - requested_slot: issue
   - intent: describe_other_issues
   - action: utter_wrong_complain
+  - action: action_deactivate_loop
   - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
   - action: action_utter_goodbye
   - intent: greet
   - action: utter_greet
 
 - story: interactive_story_12
   steps:
-  - intent: describe_other_issues
-  - intent: Report_complaints_again
+  - or:
+    - intent: describe_other_issues
+    - intent: Report_complaints_again
   - action: utter_dirct_to_an_agent
+  - action: action_utter_goodbye
+
+- story: interactive_story_13
+  steps:
+  - intent: blame
+  - action: utter_ask_for_put_complain
+  - intent: affirm
+  - action: Report_full_Info_form
+  - active_loop: Report_full_Info_form
+  - slot_was_set:
+    - requested_slot: name
+  - intent: say_name
+    entities:
+    - name: sumathipala de soiza
+  - slot_was_set:
+    - name: sumathipala de soiza
+  - action: Report_full_Info_form
+  - slot_was_set:
+    - name: sumathipala de soiza
+  - slot_was_set:
+    - requested_slot: phoneNumber
+  - intent: unexpected
+  - action: Report_full_Info_form
+  - slot_was_set:
+    - requested_slot: phoneNumber
+  - intent: unexpected
+  - action: Report_full_Info_form
+  - slot_was_set:
+    - requested_slot: phoneNumber
+  - intent: say_phoneNumber
+    entities:
+    - phoneNumber: '03345663434232424355534'
+  - slot_was_set:
+    - phoneNumber: '03345663434232424355534'
+  - action: Report_full_Info_form
+  - slot_was_set:
+    - phoneNumber: null
+  - slot_was_set:
+    - requested_slot: phoneNumber
+  - intent: say_phoneNumber
+    entities:
+    - phoneNumber: '0382250162'
+  - slot_was_set:
+    - phoneNumber: '0382250162'
+  - action: Report_full_Info_form
+  - slot_was_set:
+    - phoneNumber: '0382250162'
+  - slot_was_set:
+    - requested_slot: issue
+  - or:
+    - intent: unexpected
+    - intent: blame
+    - intent: describe_other_issues
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_wrong_complain
+  - action: utter_disturb_form
+
+  - action: action_utter_goodbye
+
+- story: interactive_story_14
+  steps:
+  - intent: blame
+  - action: utter_ask_for_put_complain
+  - intent: affirm
+  - action: Report_full_Info_form
+  - active_loop: Report_full_Info_form
+  - slot_was_set:
+    - requested_slot: name
+  - intent: say_name
+    entities:
+    - name: chulanjana pabasara
+  - slot_was_set:
+    - name: chulanjana pabasara
+  - action: Report_full_Info_form
+  - slot_was_set:
+    - name: chulanjana pabasara
+  - slot_was_set:
+    - requested_slot: phoneNumber
+  - intent: deny
+  - action: utter_unexpected
+  - intent: deny
+  - action: utter_ask_to_direct_agent
+  - intent: affirm
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_wrong_complain
+  - action: utter_disturb_form
+  - action: utter_dirct_to_an_agent
+  - action: action_utter_goodbye
+
+- story: interactive_story_15
+  steps:
+  - intent: greet
+    entities:
+    - name: chulanjana jayasinghe
+  - slot_was_set:
+    - name: chulanjana jayasinghe
+  - action: utter_greet
+  - intent: blame
+  - action: utter_ask_for_put_complain
+  - intent: affirm
+  - action: Report_full_Info_form
+  - active_loop: Report_full_Info_form
+  - slot_was_set:
+    - name: chulanjana jayasinghe
+  - slot_was_set:
+    - requested_slot: phoneNumber
+  - intent: deny
+  - action: utter_ask_to_direct_agent
+  - intent: affirm
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_disturb_form
+  - action: utter_dirct_to_an_agent
+  - action: action_utter_goodbye
+
+- story: interactive_story_16
+  steps:
+  - intent: blame
+  - action: utter_ask_for_put_complain
+  - intent: affirm
+  - action: Report_full_Info_form
+  - active_loop: Report_full_Info_form
+  - slot_was_set:
+    - requested_slot: name
+  - intent: deny
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_disturb_form
+  - action: utter_dirct_to_an_agent
+  - action: action_utter_goodbye
+
+- story: interactive_story_1
+  steps:
+  - intent: blame
+  - action: utter_ask_for_put_complain
+  - intent: affirm
+  - action: Report_full_Info_form
+  - active_loop: Report_full_Info_form
+  - slot_was_set:
+    - requested_slot: name
+  - intent: deny
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_disturb_form
+  - action: utter_dirct_to_an_agent
+  - action: action_utter_goodbye
+  - intent: greet
+  - action: utter_greet
+  - intent: put_complain
+  - action: utter_ask_for_put_complain
+  - intent: nlu_fallback
+  - intent: affirm
+  - action: Report_full_Info_form
+  - active_loop: Report_full_Info_form
+  - slot_was_set:
+    - requested_slot: name
+  - intent: say_name
+    entities:
+    - name: supun dissanayaka
+  - slot_was_set:
+    - name: supun dissanayaka
+  - action: Report_full_Info_form
+  - slot_was_set:
+    - name: supun dissanayaka
+  - slot_was_set:
+    - requested_slot: phoneNumber
+  - intent: wait_for_respond
+  - action: utter_wait_for_respond
+  - intent: say_phoneNumber
+    entities:
+    - phoneNumber: '20220465'
+  - slot_was_set:
+    - phoneNumber: '20220465'
+  - action: Report_full_Info_form
+  - slot_was_set:
+    - phoneNumber: null
+  - slot_was_set:
+    - requested_slot: phoneNumber
+  - intent: unexpected
+  - action: action_default_fallback
+  - intent: say_phoneNumber
+    entities:
+    - phoneNumber: '0382250162'
+  - slot_was_set:
+    - phoneNumber: '0382250162'
+  - action: Report_full_Info_form
+  - slot_was_set:
+    - phoneNumber: '0382250162'
+  - slot_was_set:
+    - requested_slot: issue
+  - intent: describe_issues
+  - slot_was_set:
+    - issue: my router is not working properly there is red light blinking on los bulb
+  - action: Report_full_Info_form
+  - slot_was_set:
+    - issue: my router is not working properly there is red light blinking on los bulb
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_save_Report_full
+  - action: utter_ask_for_further_queries
+  - intent: deny
+  - action: utter_deny
   - action: action_utter_goodbye

@@ -61,8 +61,7 @@ class AskForIssueAction(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
             domain: Dict[Text, Any]) -> dict[str, Any] | dict[str, None]:
         dispatcher.utter_message(text="Could you please tell me your problem briefly?, then I can make a complaint "
-                                      "for you. our technical teams will handle your issue as soon as possible, "
-                                      "and let you know.")
+                                      "for you.")
         issue = tracker.latest_message.get("text")
         if issue:
             return {"issue": issue}
