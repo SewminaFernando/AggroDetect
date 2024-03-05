@@ -1,0 +1,17 @@
+2024-02-08 12:04:54,430 [INFO ]  Starting Rasa server on http://0.0.0.0:5005
+2024-02-08 12:04:54,919 [INFO ]  Loading model models\20240208-120002-mechanical-object.tar.gz...
+2024-02-08 12:05:37,391 [WARNI]  The UnexpecTED Intent Policy is currently experimental and might change or be removed in the future 🔬 Please share your feedback on it in the forum (https://forum.rasa.com) to help us make this feature ready for production.
+2024-02-08 12:05:49,097 [INFO ]  Rasa server is up and running.
+2024-02-08 12:05:49,097 [ERROR]  Unable to start server
+Traceback (most recent call last):
+  File "D:\Anaconda 3\envs\installingrasa\lib\site-packages\sanic\server\runners.py", line 133, in serve
+    http_server = loop.run_until_complete(server_coroutine)
+  File "D:\Anaconda 3\envs\installingrasa\lib\asyncio\base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "D:\Anaconda 3\envs\installingrasa\lib\asyncio\base_events.py", line 1519, in create_server
+    raise OSError(err.errno, 'error while attempting '
+OSError: [Errno 10048] error while attempting to bind on address ('0.0.0.0', 5005): only one usage of each socket address (protocol/network address/port) is normally permitted
+2024-02-08 12:06:46,491 [INFO ]  Starting Rasa server on http://0.0.0.0:5005
+2024-02-08 12:06:46,982 [INFO ]  Loading model models\20240208-120002-mechanical-object.tar.gz...
+2024-02-08 12:07:29,124 [WARNI]  The UnexpecTED Intent Policy is currently experimental and might change or be removed in the future 🔬 Please share your feedback on it in the forum (https://forum.rasa.com) to help us make this feature ready for production.
+2024-02-08 12:07:40,792 [INFO ]  Rasa server is up and running.

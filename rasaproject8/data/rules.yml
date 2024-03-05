@@ -1,0 +1,48 @@
+
+version: "3.1"
+
+rules:
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: action_utter_goodbye
+
+- rule: Say goodbye after directing user to an agent
+  steps:
+  - action: actionutter_dirct_to_an_agent
+  - action: action_utter_goodbye
+
+- rule: wait for respond
+  steps:
+  - intent: wait_for_respond
+  - action: utter_wait_for_respond
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+- rule: greeting
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- rule: Activate the full complain
+  steps:
+  - action: utter_ask_for_put_complain
+  - intent: affirm
+  - action: Report_full_Info_form
+  - active_loop: Report_full_Info_form
+
+- rule: submit the Report_full_Info_form complain
+  condition:
+    - active_loop: Report_full_Info_form
+  steps:
+    - action: Report_full_Info_form
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - action: action_save_Report_full
+    - action: utter_ask_for_further_queries
+

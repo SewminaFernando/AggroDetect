@@ -1,0 +1,227 @@
+version: "3.1"
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hello, im [chualanjana](name)
+    - good morning
+    - good evening
+    - good afternoon
+    - hi, good morning.
+    - hello, my name is [justin martin](name)
+    - hello, I'm calling from Bambalapitiya.
+    - hello, I'm [justin martin](name) and I'm calling from panadura
+    - good morning, my name is [justin martin](name)
+    - good morning, I am [Manjula](name) calling from Makale
+    - hi, good morning. I'm calling from [Beyond the Ocean Travels](name)
+    - Yeah, my name is [Zumi](name). This is regarding my phone number [2875 436](phoneNumber).
+    - good afternoon, my name is [justin martin](name)
+    - good afternoon, I am [Manjula](name) calling from Makale
+    - good evening, my name is [justin martin](name)
+    - hello my name is [chulanjana](name)
+    - hello im [passan perera](name)
+    - hi im [kamal premachandra](name)
+    - hi my name is [pasan maheema](name)
+    - hello im [chanuka goonathilaka](name)
+    - hi
+    - hi my name is [chulanjana jayasinghe](name)
+- intent: say_phoneNumber
+  examples: |
+    - Oh, yeah, [2875 436](phoneNumber)
+    - This is regarding my phone number [2875 436](phoneNumber)
+    - my contact number is [077713424](phoneNumber)
+    - I do is [0112540233](phoneNumber)
+    - Phone number is [033 2222 157](phoneNumber)
+    - okay, it's [0782540233](phoneNumber)
+    - my phone number is [0382250162](phoneNumber)
+    - ok its [29343232323](phoneNumber)
+    - okey, [20012342345](phoneNumber)
+    - [234223231](phoneNumber)
+    - [38299482920388](phoneNumber)   
+    - my phone number is [20220465](phoneNumber)
+    - sorry its [0382250162](phoneNumber)
+- intent: say_name
+  examples: |
+    - okay, i'll tell you my name. its [chulanjana pabasara](name)
+    - Oh, yeah, [Lynn](name)
+    - [PYDD silver](name).
+    - yeah its [zukzi sali](name)
+    - I am [Manjula disanayeke](name), my contact number is [077713424](phoneNumber)
+    - it registerd on my name, [kasun kalhara](name)
+    - my name [gihan bandara](name)
+    - [sumathipala de soiza](name)
+    - my name is [supun dissanayaka soiza](name)
+- intent: put_complain
+  examples: |
+    - i want to add a complain about my router
+    - i want to put a complain about my phone is not working
+    - i'm [chulanjana](name), i want to put a complain
+    - hello i want to put a compalin
+    - your serevice is so poor i want to put a complaint
+    - yeah, i want to put a complain about my connection
+- intent: Report_complaints_again
+  examples: |
+    - yesterday I made the complaint about my telephone
+    - I made a few complaints last few days, but still no one attending to the resolved that issue
+    - my internet connection is very slow last time I blamed your bloody agents. and he told me to fix it but still it same
+- intent: wait_for_respond
+  examples: |
+    - Just give me a minute.
+    - hold on a second.
+    - Just give me a moment.
+    - wait
+- intent: stop
+  examples: |
+    - sorry, I dont want to put a complain.
+    - hold on a second, no now its fine.
+    - stop
+- intent: describe_issues
+  examples: |
+    - I can't get my Wi-Fi, my Wi-Fi is not working at all
+    - I'm experiencing network issues in my area.
+    - There is always no signal at our house
+    - There is a problem with my internet connection.
+    - I need technical support because my router has no signal
+    - I have a loss of signal blinking red lights on my router
+    - the Wi-Fi light is not lighting
+    - there's nothing, but the only thing is that the four or five lights are lighting, but about two lights are not lighting
+    - my router is working properly
+    - My phone is not working properly.
+    - This is regarding my phone number [2875 436](phoneNumber), it's not working.
+    - our landline is not working now, it's empty.
+    - One is that this phone is very noisy
+    - Only the voice line that's getting noisy
+    - my phone is not working
+    - there is no signal
+    - Yes, still there are some noises coming from the phone, and the internet not working.
+    - That's right, that got damaged.
+    - you know that cable that goes from the set box to the router, that got damaged.
+    - my phone is broken
+    - my phone hase no signal at all,and router also not working there is a blinking red lite on los
+    - your service is poor, about our area has no signal. and my internet connection is very slow
+    - your guys came to our place last week an fix my router issue. but again I'm facing the same issue can you please take action for it
+    - my router is not working properly there is red light blinking on los bulb
+- intent: describe_other_issues
+  examples: |
+    - we are not getting physical bills.
+    - We have two numbers for which we are not getting physical bills.
+    - we got our line when we shifted we shifted house here to Colombo and we got our telephone line wild above
+    - I want to know why the Wi-Fi is not working
+    - can i know how much is the minimum that i should pay to get back my connection
+    - Can you tell me how much GB I've used during peak hours?
+    - my son did somthing last night, and the inter net is not working now.
+    - I want to know if my last bill payment was done or not.
+    - hello, i want to know how to fix my router
+    - one of your agents blamed to me
+    - as i told you before please train your agents and technicians properly.they don't know how to handel our problems
+    - please train your agents properly they dont know how to talk to a customer
+- intent: ask_bill_details
+  examples: |
+    - Can you provide details of my latest bill?
+    - Explain the charges on my last month.
+    - i want to know about my last bill
+- intent: goodbye
+  examples: |
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+- intent: affirm
+  examples: |
+    - yes
+    - ok
+    - y
+    - indeed
+    - of course
+    - correct
+    - yes thank you
+    - yes of cause
+    - yes, please
+    - yeah, thats what i want
+- intent: thanks
+  examples: |
+    - thank you.
+    - oh! that's great thank you so much.
+    - thanks
+    - thank you for waiting
+- intent: technical_support
+  examples: |
+    - I want to know some some details about my data package.
+    - I need technical support for my router
+    - My phone is not connecting to the network.
+    - Provide assistance with troubleshooting my internet connection.
+    - I want to change my current data package.
+    - I want to upgrade my current data plan.
+    - How can I downgrade to a basic plan?
+    - Change my subscription to a family plan.
+    - What is the due date for my bill?
+    - i need technicle support for my router
+    - i want to talk to an agent
+    - i want to talk to your agent because i have a problem with my internet connection
+    - i want to talk to customere care service officer can you direct me to one
+    - i want to talk to your agent
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+    - no,thanks
+    - i can't tell my phone nuber
+    - i told you once i can't provide my number
+    - no i cant tell my phone nuber
+    - no i cant give you it
+    - i toled you onece i cant tell you my name
+    - no i cant provide my name
+    - no thats it
+- intent: unexpected
+  examples: |
+    - how?
+    - what?
+    - aaahhhh
+    - noooooooo
+    - jhsbcauweb23423234234324y23
+    - 234423244ferfer34535
+- intent: blame
+  examples: |
+    - I hate your fucking service
+    - your bloody agent cut my call
+    - your bloody service agent did do his job well
+    - Your employees are very irresponsible people
+    - your technicians are useless they can't even fix my router properly
+    - I'm seriously frustrated and angry with your service, just look at the waiting time for this call.
+    - please train your agents properly
+    - your bloody agent rude to me
+    - as i told you before your bloody agent was rude to me
+    - your fuking agents are not trained well they was rude to me
+    - your bloody agent was rude to me in last call and he cut the call before the conversation over
+    - i hate your fucking service
+    - your fuking agent was rude to me
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+    - who are you
+- synonym: phone
+  examples: |
+    - telephone
+    - landline
+    - voice line
+- synonym: router
+  examples: |
+    - Wi-Fi
+    - internet connection
+    - Wi-Fi light
+    - wi-fi device
+    - wi-fi connection

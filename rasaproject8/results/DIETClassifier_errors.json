@@ -1,0 +1,31 @@
+[
+  {
+    "text": "hi, good morning. I'm calling from Beyond the Ocean Travels",
+    "entities": [
+      {
+        "start": 35,
+        "end": 59,
+        "value": "Beyond the Ocean Travels",
+        "entity": "name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "name",
+        "start": 35,
+        "end": 41,
+        "confidence_entity": 0.7605032324790955,
+        "value": "Beyond",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "name",
+        "start": 46,
+        "end": 59,
+        "confidence_entity": 0.929252028465271,
+        "value": "Ocean Travels",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  }
+]

@@ -1,0 +1,111 @@
+version: '3.1'
+intents:
+- Report_complaints_again
+- affirm
+- ask_bill_details
+- blame
+- bot_challenge
+- deny
+- describe_issues
+- describe_other_issues
+- goodbye
+- greet
+- mood_great
+- put_complain
+- say_name
+- say_phoneNumber
+- stop
+- technical_support
+- thanks
+- unexpected
+- wait_for_respond
+entities:
+- phoneNumber
+- name
+actions:
+- action_save_Report_full
+- action_utter_goodbye
+- utter_disturb_form
+- utter_dirct_to_an_agent
+- utter_deny
+- utter_ask_for_further_queries
+- utter_ask_for_put_complain
+- utter_wait_for_respond
+- utter_greet
+- utter_ask_to_direct_agent
+- utter_wrong_complain
+- utter_unexpected
+- utter_iamabot
+- action_check_and_start_action_server
+- action_terminate_server
+- action_ask_issue
+- validate_Report_full_Info_form
+- utter_provide_billing_details
+forms:
+  Report_full_Info_form:
+    required_slots:
+    - name
+    - phoneNumber
+    - issue
+slots:
+  name:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: name
+      not_intent: unexpected
+  phoneNumber:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: phoneNumber
+  issue:
+    type: text
+    mappings:
+    - type: from_text
+      intent: describe_issues
+      not_intent: greet, blame
+responses:
+  utter_user_details:
+  - custom:
+      text: Thank you Have a nice day.
+      triggered: '{triggered}'
+  utter_greet:
+  - text: Hello {name}! how can I help you?
+  - text: Hello there! how can I guide you today?
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa, It's all about helping you!.
+  utter_ask_name:
+  - text: Can you confirm the owner's name please?
+  utter_ask_phoneNumber:
+  - text: Please give me phone number where I can reach you.
+  utter_ask_issue:
+  - text: Could you please tell me your problem briefly?, then I can make a complaint for you. our technical teams will handle your issue as soon as possible, and let you know.
+  utter_ask_for_put_complain:
+  - text: We are deeply sorry for the inconvenience. May I make a complaint for you?
+  utter_provide_billing_details:
+  - text: here is the last billing details, Dear customer, you have 604.00 MB free Data, 478.59 MB Free Data, 18.99 MB free 1for1 DATA,Thank you!
+  utter_deny:
+  - text: No problem! If you change your mind, I'll be here to help.
+  utter_ask_continue_complain:
+  - text: No problem! do you want to cancel the complain?
+  utter_ask_for_further_queries:
+  - text: do you have any further queries? or, Would you like to speak with a customer care agent?
+  utter_unexpected:
+  - text: I'm sorry, I didn't quite understand what you were saying. Could you please repeat your problem to me?
+  utter_ask_to_direct_agent:
+  - text: Would you like to speak with a customer care agent?
+  utter_dirct_to_an_agent:
+  - text: Kindly allow me a moment to connect you, with the most suitable customer care agent. who will assist you with your concerns.
+  utter_wait_for_respond:
+  - text: No problem! Take your time.
+  utter_thanks:
+  - text: No problem! Take your time.
+  utter_disturb_form:
+  - text: Your issue will not be recorded.
+  utter_wrong_complain:
+  - text: we are sorry sir, we record only technical issues here, I will direct you to a suitable agent to handle your problem.
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
