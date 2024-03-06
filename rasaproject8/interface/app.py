@@ -1,5 +1,3 @@
-# 3rd code
-# input:user massage()
 from flask import Flask, render_template, request
 import requests
 import pyttsx3
@@ -10,7 +8,6 @@ app = Flask(__name__)
 rasa_server_url = "http://localhost:5005/webhooks/rest/webhook"  # Adjust the URL as needed
 welcome_message_spoken = False
 
-# def conversation(user_messagee,resp):
 
 
 old_conv = {
@@ -78,8 +75,6 @@ def chat():
     # Render the chat interface template for initial load
     return render_template('index.html')
 def send_message_to_rasa(message):
-    # print("2")
-    # print(old_conv)
     payload = {
         "message": message,
     }
@@ -88,10 +83,6 @@ def send_message_to_rasa(message):
         return response.json()
     else:
         return {"error": "Failed to send message to Rasa."}
-# def dict_to_pickle():
-#     with open('interface\old_conv.pkl','wb') as data:
-#         pickle.dump(old_conv, data)
-#         return True
 
 if __name__ == '__main__':
     app.run(debug=True)
