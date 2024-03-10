@@ -1,0 +1,101 @@
+  * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+		h2{
+		   font-size:35px;
+		   text-align:Center;
+		   margin-top:20px;
+		   }
+		h1{
+		   color:black;
+		  
+		   }
+		h4{ color:#3944BC;
+            font-size:25px;
+			}		
+
+        body {
+            font-family:Comic Sans MS, Comic Sans, cursive;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color:#97B4D7;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .dashboard-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .Chart {
+            background-color: white;
+            color: white;
+            width: 1300px; 
+            height: 380px; 
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            min-width: 200px;
+        }
+
+        .Agg, .Non {
+            width: 44%; 
+            height: 240px; 
+            background-color: #97B4D7;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+			transition: transform 0.3s; 
+			
+        }
+		#callCenterChart {
+            width: 100%;
+            height: 100%;
+            margin-top: -20px; 
+        }
+		
+		
+		.Agg:hover,.Non:hover {
+    transform: scale(1.03); 
+    cursor: pointer; 
+}
+        img {
+            width: 140px; 
+            height: auto; 
+
+			
+        }
+		.Agg p, .Non p {
+            font-size: 70px;
+            color: black;
+			text-align:Center;
+			margin-top:-35px;
+		
+        }
+	
+
+        @media (max-width: 768px) {
+            .Agg, .Non {
+                width: 100%;
+            }
+			
+			
+			
+        }
+   
