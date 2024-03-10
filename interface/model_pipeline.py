@@ -30,7 +30,7 @@ def record_and_transcribe():
         print(f"Error: {e}")
 
 def agg_by_voice(wav_file, threshold=0.737163):
-    model = tf.keras.models.load_model('Models//cnn_model_4(pro).h5')
+    model = tf.keras.models.load_model('..//Models//agg_cnn_model.h5')
 
     # Load audio file using librosa
     signal,sr = librosa.load(wav_file, offset=0.5, res_type='kaiser_fast', sr=22050)
