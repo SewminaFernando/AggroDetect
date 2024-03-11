@@ -29,7 +29,7 @@ def record_and_transcribe():
     except sr.RequestError as e:
         print(f"Error: {e}")
 
-def agg_by_voice(wav_file, threshold=0.737163):
+def agg_by_voice(wav_file, threshold=0.734734):
     model = tf.keras.models.load_model('..//Models//agg_cnn_model.h5')
 
     # Load audio file using librosa
@@ -54,7 +54,7 @@ def agg_by_voice(wav_file, threshold=0.737163):
 
     if binary_predictions.count(1) == binary_predictions.count(0):
         prediction = np.mean(predictions)
-        return ['Aggressive' if prediction > threshold else 'Non-Aggressive'][0],len(predictions)
+        return ['Aggressive' if prediction > threshold else 'Non-Aggressive'][0]
     else:
         if binary_predictions.count(1) > binary_predictions.count(0):
             prediction = "Aggressive"
