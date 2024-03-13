@@ -7,6 +7,14 @@ stories:
   - intent: greet
   - action: utter_greet
 
+- story: say data pakages
+  steps:
+  - intent: dataPackagers
+  - action: utter_dataPackagers
+  - intent: thanks
+  - action: utter_thanks
+  - action: utter_ask_for_further_queries
+
 - story: unexpected-affirm
   steps:
   - or:
@@ -36,8 +44,6 @@ stories:
     - intent: unexpected
   - action: utter_ask_to_direct_agent
   - intent: deny
-  - action: utter_deny
-  - intent: goodbye
   - action: action_utter_goodbye
 
 
@@ -58,9 +64,8 @@ stories:
   steps:
   - action: utter_ask_for_further_queries
   - intent: deny
-  - action: utter_deny
-  - intent: goodbye
   - action: action_utter_goodbye
+
 
 
 
@@ -605,7 +610,6 @@ stories:
   - action: utter_greet
   - intent: put_complain
   - action: utter_ask_for_put_complain
-  - intent: nlu_fallback
   - intent: affirm
   - action: Report_full_Info_form
   - active_loop: Report_full_Info_form
@@ -657,5 +661,4 @@ stories:
   - action: action_save_Report_full
   - action: utter_ask_for_further_queries
   - intent: deny
-  - action: utter_deny
   - action: action_utter_goodbye

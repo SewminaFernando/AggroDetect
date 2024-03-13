@@ -152,7 +152,6 @@ nlu:
     - thank you for waiting
 - intent: technical_support
   examples: |
-    - I want to know some some details about my data package.
     - I need technical support for my router
     - My phone is not connecting to the network.
     - Provide assistance with troubleshooting my internet connection.
@@ -213,6 +212,14 @@ nlu:
     - am I talking to a bot?
     - am I talking to a human?
     - who are you
+
+- intent: dataPackagers
+  examples: |
+    - how about the other data plans.
+    - can i know about data pakages.
+    - what are your data plans?
+    - I want to know some some details about my data package.
+
 - synonym: phone
   examples: |
     - telephone
