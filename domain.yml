@@ -102,7 +102,7 @@ responses:
   utter_disturb_form:
   - text: Your issue will not be recorded.
   utter_wrong_complain:
-  - text: we are sorry sir, we record only technical issues here, I will direct you to a suitable agent to handle your problem.
+  - text: we are sorry, we record only technical issues here, I will direct you to a suitable agent to handle your problem.
   utter_dataPackagers:
   - text: " here are the package details... 4G prepaid packages.. 7 days of 5 GB of anytime data for Rs. 155 package, 14 days of anytime data for Rs. 295 package, and 30 days of 20 GB of anytime data for Rs. 535 package... Broadband packages.. Trio Pet, Trio Vibe, and Trio Vibe Plus, which offer 12 GB, 40 GB, and 40 GB of anytime data, respectively... Meet Data Bundles.. Meet Lite, which offers 30 GB of data for Rs. 195, and Meet Max, which offers 100 GB of data for Rs. 490"
 session_config:

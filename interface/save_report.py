@@ -31,7 +31,7 @@ def extract_number(string):
         return 0
 
 
-def firebase_datastore(username, convesation, aggr_lvl):
+def firebase_datastore(username, convesation, department):
     # Fetch the service account key JSON file contents
     cred = credentials.Certificate(cert={
         "type": "service_account",
@@ -54,7 +54,7 @@ def firebase_datastore(username, convesation, aggr_lvl):
     db_reference = db.reference('users/')
     db_get = db_reference.get()
 
-    convesation["Aggresive Level"] = aggr_lvl
+    convesation["Department"] = department
 
     if username == "":
         usernames = list(db_get.keys())
@@ -73,17 +73,12 @@ def firebase_datastore(username, convesation, aggr_lvl):
             print("db_ref = ", db_ref, "type(db_ref) =", type(db_ref))
             last_number = int(re.search(r'\d+$', list(db_ref.keys())[-1]).group())
             conv_no = 'conv_' + str(last_number + 1)
-            # db_ref.append([{conv_no: convesation, "Aggressive Level": aggr_lvl}])
             ref = db.reference('users')
             db_ref[conv_no] = convesation
-            # child_data = {
-            #     conv_no: convesation,
-            #     "Aggressive Level": aggr_lvl
-            # }
+
             ref.child(username).child("conversation").set(db_ref)
             print(f"'{username}' your conversation updated in the database")
         else: # New user
-
             child_data = {
                 "conversation": {"conv_1": convesation}
             }
