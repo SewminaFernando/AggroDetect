@@ -2,9 +2,17 @@ import librosa
 import tensorflow as tf
 import pickle
 import numpy as np
+import re
+import nltk
+from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer
+nltk.download('punkt')
+nltk.download('stopwords')
+import warnings
+warnings.filterwarnings("ignore")
 
 def audio_feature_extraction(segment, sr=22050):
-    with open('Models//scaler_4(pro).pickle', 'rb') as f:
+    with open('..//Models//scaler_4(pro).pickle', 'rb') as f:
         sc = pickle.load(f)
 
     features = []
@@ -21,3 +29,27 @@ def audio_feature_extraction(segment, sr=22050):
     features = np.expand_dims(features, axis=2)
 
     return features
+
+def dep_preprocess_text(text):
+    stemmer = PorterStemmer()
+    stop_words = set(stopwords.words('english'))
+    
+    text = re.sub(r'\d{10}', '', text)  # Remove contact numbers
+    tokens = nltk.word_tokenize(text)  # Use NLTK tokenizer for better tokenization
+    tokens = [word for word in tokens if len(word) > 2]  # Remove short words (length <= 2)
+    tokens = [word.lower() for word in tokens if word.isalnum()]  # Tokenization, lowercase
+    tokens = [stemmer.stem(word) for word in tokens if word not in stop_words]  # Stemming, remove stopwords
+
+    return ' '.join(tokens)
+
+def agg_preprocess_text(text):
+    stop_words = set(stopwords.words('english'))
+
+    text = re.sub(r'\d{10}', '', text)  # Remove contact numbers
+    text = re.sub(r'\d{1,2}[-/]\d{1,2}[-/]\d{2,4}', '', text)  # Remove dates
+    tokens = text.split()
+    tokens = [word for word in tokens if len(word) > 2]  # Remove short words (length <= 2)
+    tokens = [word.lower() for word in tokens if word.isalnum()]  # Tokenization, lowercase
+    tokens = [word for word in tokens if word not in stop_words] #removing stopwords
+
+    return ' '.join(tokens)
