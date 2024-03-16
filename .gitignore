@@ -165,3 +165,4 @@ rasa.log
 user_data.xlsx
 story_graph.dot
 tests/
+train_test_split/
