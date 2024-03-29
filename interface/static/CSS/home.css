@@ -74,7 +74,7 @@ header{
 .bg-image {
     position: relative;
     filter: blur(2px);
-    background-image: url('call agents.png'); 
+    background-image: url('../Images/call agents.png'); 
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
