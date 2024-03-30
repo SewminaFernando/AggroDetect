@@ -198,17 +198,11 @@ body{
 /* ======================= Cards ====================== */
 .cardBox {
     position: relative;
-    padding: 20px;
     display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 30px;
+    grid-template-columns: auto;
     margin-left: 400px ;
-    margin-right: 30px;
-    gap:50px;
     z-index: 1;
-    width: 1000px;
-    padding-top: 20px;
-    
+    width: 500px;
   }
   
   .cardBox .card {
@@ -240,6 +234,106 @@ body{
     font-size: 3rem;
     color: #000;
   }
-  
+/* Chatbot Button */
+.chatbotButton {
+  position: fixed;
+  bottom: 30px;
+  right: 50px;
+  width: 50px;
+  height: 50px;
+  background-color: #164267;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 9999;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.chatbotButton i{
+  color: #fff;
+  font-size: 1.5rem;
+}
+.chat-container {
+  display: none;
+  position: fixed;
+  max-width: 600px;
+  height: 550px;
+  margin: 20px auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  overflow: hidden;
+  right: 50px;
+  top: 40px;
+}
+
+.chat-header {
+  padding: 10px;
+  width: 500px;
+  border-bottom: 1px solid #ddd;
+  background-color: #f1f1f1;
+  border-radius: 8px 8px 0 0;
+  text-align: center; /* Center align the text */
+}
+
+.chat-header h2 {
+  margin: 0;
+}
+
+.chat-box {
+  padding: 20px;
+  overflow-y: scroll;
+  height: 450px;
+  flex-grow: 1; /* Allow the chat box to grow and occupy remaining space */
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-box .message {
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  max-width: 80%; /* Limit the message width to 80% of the chat box */
+}
+
+.chat-box .message.sender {
+  background-color: #f1f0f0;
+  align-self: flex-end;
+  position: relative; /* Position relative for absolute positioning of agg elements */
+}
+
+.chat-box .message.receiver {
+  background-color: #e2f9ff;
+  align-self: flex-start;
+}
+
+.agg-text,
+.agg-voice {
+  font-size: 0.8em;
+  color: #666;
+  margin-top: 4px;
+}
+
+.record-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  background-color: #164267;
+  color: #fff;
+  cursor: pointer;
+}
+.record-button i{
+  font-size: 1.5rem;
+  padding-bottom: 2px
+}
+
+.record-button:hover {
+  background-color: #3f6792;
+}
+.record-button.pressed {
+  background-color: #000000;
+}
   
   

@@ -8,6 +8,7 @@
     <title>Dashboard</title>
     <!-- CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS/dashboard.css') }}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
      <!-- icons -->
      <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
      <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
@@ -92,27 +93,6 @@
         <div class="card">
             <div>
                 <div class="numbers"></div>
-                <div class="cardName">Aggressive/Non-aggressive</div>
-            </div>
-            <div class="iconBx">
-                <ion-icon name="heart-half"></ion-icon>
-            </div>
-            
-        </div>
-        <div class="card">
-            <div>
-                <div class="numbers"></div>
-                <div class="cardName">Customer Details</div>
-            </div>
-            
-            <div class="iconBx">
-                <ion-icon name="people-outline"></ion-icon>
-            </div>
-        </div>
-
-        <div class="card">
-            <div>
-                <div class="numbers"></div>
                 <div class="cardName">Department</div>
             </div>
             
@@ -120,19 +100,155 @@
                 <ion-icon name="business"></ion-icon>
             </div>
         </div>
-
         <div class="card">
             <div>
                 <div class="numbers"></div>
-                <div class="cardName">Complaint</div>
+                <div class="cardName">Aggressive/Non-aggressive</div>
             </div>
-
             <div class="iconBx">
-                <ion-icon name="chatbubbles-outline"></ion-icon>
+                <ion-icon name="heart-half"></ion-icon>
             </div>
         </div>
+        <div class="card">
+            <div>
+                <div class="numbers"></div>
+                <div class="cardName">Agent Details</div>
+            </div>
+            
+            <div class="iconBx">
+                <ion-icon name="people-outline"></ion-icon>
+            </div>
         </div>
     </div>
+
+    <div id="department" style="text-align: center;"></div>
+    <div class="chat-container" id="chatContainer">
+        <div class="chat-header">
+            <h2>Customer</h2>
+        </div>
+        <div class="chat-box" id="chat-box">
+        </div>
+        <div class="record-button" id="record-btn">
+            <i class='bx bx-microphone'></i>
+        </div>
+    </div>
+    <!-- <div id="transcript"></div> -->
+    <audio autoplay id="audioPlayer"></audio>
+    <!-- <button id="record-btn">Record</button> -->
+    <!-- <p id="recording-status"></p> -->
+    <script>
+        const recordBtn = document.getElementById('record-btn');
+        // const recordingStatus = document.getElementById('recording-status');
+
+        let mediaRecorder;
+        let audioChunks = [];
+
+        recordBtn.addEventListener('mousedown', startRecording);
+        recordBtn.addEventListener('mouseup', stopRecording);
+
+        function startRecording() {
+        // recordingStatus.textContent = 'Recording...';
+
+        navigator.mediaDevices.getUserMedia({ audio: true })
+            .then(stream => {
+            mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm' });
+            mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
+            mediaRecorder.start();
+            })
+            .catch(err => console.error(err));
+        }
+
+        function stopRecording() {
+        if (mediaRecorder) {
+            mediaRecorder.stop();
+            // recordingStatus.textContent = 'Processing...';
+
+            mediaRecorder.onstop = () => {
+            const blob = new Blob(audioChunks, { type: mediaRecorder.mimeType });
+            sendAudioToFlask(blob);
+            audioChunks = []; // Reset for next recording
+            // recordingStatus.textContent = 'Ready to record.';
+            };
+        }
+        }
+
+        function sendAudioToFlask(blob) {
+        const formData = new FormData();
+        formData.append('audio', blob, 'audio.webm');
+
+        fetch('/your-flask-endpoint', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json(); // Parse response as JSON
+            } else {
+                console.error('Error sending audio:', response.statusText);
+            }
+        })
+        .then(data => {
+        // const transcriptDiv = document.getElementById('transcript');
+        // transcriptDiv.innerHTML = '';
+
+        // Parse transcript as an array of objects
+        const output = data.transcript.map(item => {
+            return {
+                user_messagee: item.user_messagee,
+                agg_voice: item.agg_voice,
+                agg_text: item.agg_text,
+                resp: item.resp
+            };
+        });
+
+        const chatBox = document.getElementById('chat-box');
+        chatBox.innerHTML = '';
+
+        // Update transcript content
+        output.forEach((item, index) => {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', 'receiver');
+
+            const userMessageElement = document.createElement('div');
+            userMessageElement.classList.add('user-message');
+            userMessageElement.textContent = item.user_messagee;
+            messageElement.appendChild(userMessageElement);
+
+            const aggTextElement = document.createElement('div');
+            aggTextElement.classList.add('agg-text');
+            aggTextElement.textContent = `Agg Text: ${item.agg_text}`;
+
+            const aggVoiceElement = document.createElement('div');
+            aggVoiceElement.classList.add('agg-voice');
+            aggVoiceElement.textContent = `Agg Voice: ${item.agg_voice}`;
+
+            chatBox.appendChild(messageElement);
+            chatBox.appendChild(aggTextElement);
+            chatBox.appendChild(aggVoiceElement);
+
+            const botMessageElement = document.createElement('div');
+            botMessageElement.classList.add('message', 'sender');
+            botMessageElement.textContent = item.resp;
+            chatBox.appendChild(botMessageElement);
+        });
+
+        // Update department content
+        document.getElementById('department').textContent = `Department: ${data.dep}`;
+
+        // Set source path for audio
+        const audioPlayer = document.getElementById('audioPlayer');
+        const audioSource = document.getElementById('audioSource');
+        audioPlayer.src = `${data.audio_path}`;
+    })
+    .catch(err => console.error('Error sending audio:', err));
+    }
+    </script>
+
+    <!-- Chatbot Button -->
+    <div class="chatbotButton" id="chatbotButton">
+        <i class='bx bx-phone'></i>
+    </div>
+
     <!-- =========== Scripts =========  -->
     <script src="{{ url_for('static', filename='Js/main.js') }}"></script>
 </body>
