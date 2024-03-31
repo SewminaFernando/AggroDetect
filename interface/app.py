@@ -1,15 +1,37 @@
-from flask import Flask, render_template, request, redirect, url_for
-import requests
-from save_report import firebase_datastore
-from model_pipeline import record_and_transcribe, agg_by_voice, agg_by_text, department_by_text
-import subprocess
-import time
+from flask import Flask, render_template, request, redirect, url_for, send_from_directory, jsonify
+from model_pipeline import agg_by_voice, agg_by_text, department_by_text, text_to_speech, transcribe_audio, chat
 import sqlite3
+import os
 
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = 'uploads'
 
-rasa_server_url = "http://localhost:5005/webhooks/rest/webhook"  # Adjust the URL as needed
-welcome_message_spoken = False
+first_time = True
+
+# Create a list to store the conversation
+old_conv = []
+department = ""
+
+def overall_sentiment():
+    global old_conv
+    text_agg_count = 0
+    voice_agg_count = 0
+    for conv in old_conv:
+        if conv['agg_text'] == 'Aggressive':
+            text_agg_count += 1
+        elif conv['agg_text'] == 'Aggressive':
+            voice_agg_count += 1
+
+    if text_agg_count > voice_agg_count:
+        return 'Aggressive'
+    elif voice_agg_count > text_agg_count:
+        return 'Aggressive'
+    else:
+        return 'Neutral'
+    
+def agent_name():
+    # Get the agent name from the database
+    pass
 
 @app.route('/')
 def home():
@@ -44,99 +66,64 @@ def login():
 def dashboard():
     return render_template('dashboard.html')
 
-# rasa_shell_process = subprocess.Popen(["rasa", "run"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+@app.route('/end-conversation' , methods=['POST'])
+def end_conversation():
+    # clear all files in the uploads folder
+    for file in os.listdir('uploads'):
+        os.remove(os.path.join('uploads', file))
+    agent_name = "Agent 1"
+    overall_sentiment = "Neutral"
+    # Save the conversation to the database
+    # Clear the conversation list
+    return jsonify({'agent_name': agent_name, 'overall_sentiment': overall_sentiment})
+    
+@app.route('/uploads/<path:filename>')
+def download_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename, as_attachment=False)
 
-# # Wait for the Rasa shell to start up
-# time.sleep(45)
+@app.route('/record', methods=['POST','GET'])
+def receive_audio():
+    global first_time
+    global old_conv
+    global department
+    if 'audio' not in request.files:
+        return jsonify({'error': 'No file part'}), 400
+    
+    audio_file = request.files['audio']
+    
+    if audio_file.filename == '':
+        return jsonify({'error': 'No selected file'}), 400
+    
+    try:
+        # if uploads folder does not exist, create it
+        if not os.path.exists('uploads'):
+            os.makedirs('uploads')
+        audio_file.save('uploads/recorded_audio.webm')
+    except Exception as e:
+        return jsonify({'error': f'Error saving audio: {str(e)}'}), 500
+    
+    transcript = transcribe_audio("uploads/recorded_audio.webm")
+    voice_agg = agg_by_voice("uploads/n_audio.wav")
+    text_agg = agg_by_text(transcript)
+    if first_time:
+        dep_text = department_by_text(transcript)
+        department = dep_text
+        first_time = False
+    response = chat(transcript)
+    audio_path="../"+text_to_speech(response)
 
+    # create a dictionary to store the conversation
+    dictionary = {
+        "user_messagee": transcript,
+        "agg_voice": voice_agg,
+        "agg_text": text_agg,
+        "resp": response
+    }
+    
+    # append the dictionary to the list
+    old_conv.append(dictionary)
 
-old_conv = {
-    "user_messagee": [],
-    "resp": []
-}
-
-
-# def add_welcome_message():
-#     global welcome_message_spoken
-#     message = "Thank you for calling us, How can I help you?"
-#     if not welcome_message_spoken:
-#         text_speech = pyttsx3.init()
-#         text_speech.say(message)
-#         text_speech.runAndWait()
-#         old_conv['user_messagee'].append("_")
-#         old_conv['resp'].append(message)
-#         welcome_message_spoken = True
-
-
-# @app.route('/', methods=['GET', 'POST'])
-# def chat():
-#     add_welcome_message()
-#     audio, user_message = record_and_transcribe()
-#     agg_voice = agg_by_voice(audio)
-#     agg_text = agg_by_text(user_message)
-#     dep_text = department_by_text(user_message)
-#     print("User Message:", user_message, "\nEmotion audio:", agg_voice, "\nEmotion text:", agg_text, "\nDepartment:",
-#           dep_text)
-#     old_conv['user_message'].append((user_message, "(aggressive level by voice: non angry)", "(aggressive level by "
-#                                                                                              "text:non angry)"))
-#     rasa_response = send_message_to_rasa(user_message)
-
-#     # Check if the response from Rasa is not empty and contains 'text'
-#     if rasa_response and isinstance(rasa_response, list):
-#         if 'custom' in rasa_response[0]:
-
-#             bot_response = rasa_response[0]['custom']['text']
-
-#             # Text-to-speech conversion using pyttsx3
-#             text_speech = pyttsx3.init()
-#             text_speech.say(bot_response)
-#             text_speech.runAndWait()
-#             print(bot_response)
-
-#             # Append the bot's response to the conversation
-#             old_conv['resp'].append(bot_response)
-
-#             firebase_datastore('unknown', old_conv, department="department")  # put here department
-#             # render_template('index.html', user_message=(user_message, "(aggressive level by voice: non angry)", "(aggressive level by text:non angry)"), bot_response=bot_response,
-#             #                 old_conv=old_conv, size=len(old_conv["user_messagee"]))
-
-#         else:
-#             bot_response = rasa_response[0]['text']
-#             # Text-to-speech conversion using pyttsx3
-#             text_speech = pyttsx3.init()
-#             text_speech.say(bot_response)
-#             text_speech.runAndWait()
-#             # Append the bot's response to the conversation
-#             old_conv['resp'].append(bot_response)
-#             # render_template('index.html', user_message=(user_message, "(aggressive level by voice: non angry)", "(aggressive level by text:non angry)"), bot_response=bot_response,
-#             #                 old_conv=old_conv, size=len(old_conv["user_messagee"]))
-#             print(bot_response)
-#             chat()
-
-
-#     else:
-#         bot_response="sorry, I didn't get that. Can you please repeat?"
-#         old_conv['resp'].append(bot_response)
-#         text_speech = pyttsx3.init()
-#         text_speech.say(bot_response)
-#         text_speech.runAndWait()
-#         # render_template('index.html', user_message=user_message, bot_response="No Response",
-#         #                         old_conv=old_conv, size=len(old_conv["user_messagee"]))
-#         print(bot_response)
-#         chat()
-
-
-# def send_message_to_rasa(message):
-#     payload = {
-#         "message": message,
-#     }
-#     response = requests.post(rasa_server_url, json=payload)
-#     if response.status_code == 200:
-#         predicted_intent = response.json()[0].get('metadeta', {}).get('response_name')
-#         return response.json(), predicted_intent
-#     else:
-#         return {"error": "Failed to send message to Rasa."}
-
+    return jsonify({'transcript': old_conv, 'audio_path': audio_path, "dep":department})
 
 if __name__ == '__main__':
     app.run(debug=True)
