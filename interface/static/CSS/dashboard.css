@@ -235,7 +235,7 @@ body{
     color: #000;
   }
 /* Chatbot Button */
-.chatbotButton {
+.startConvButton {
   position: fixed;
   bottom: 30px;
   right: 50px;
@@ -251,10 +251,32 @@ body{
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.chatbotButton i{
+.endConvButton {
+  position: fixed;
+  bottom: 30px;
+  right: 50px;
+  width: 50px;
+  height: 50px;
+  background-color: #164267;
+  border-radius: 50%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 9999;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.startConvButton i{
   color: #fff;
   font-size: 1.5rem;
 }
+
+.endConvButton i{
+  color: #fff;
+  font-size: 1.5rem;
+}
+
 .chat-container {
   display: none;
   position: fixed;
