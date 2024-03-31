@@ -316,7 +316,7 @@ body{
   padding: 8px 12px;
   border-radius: 4px;
   margin-bottom: 8px;
-  max-width: 80%; /* Limit the message width to 80% of the chat box */
+  max-width: 70%; /* Limit the message width to 70% of the chat box */
 }
 
 .chat-box .message.sender {
