@@ -4,38 +4,17 @@ import numpy as np
 from preprocessing import audio_feature_extraction, dep_preprocess_text, agg_preprocess_text
 import speech_recognition as sr
 import pickle
+import os
+from pydub import AudioSegment
+import pyttsx3
+import noisereduce as nr
+import soundfile as sf
+import requests
 import warnings
 warnings.filterwarnings("ignore")
 
-def record_and_transcribe():
-    # Create a recognizer object
-    r = sr.Recognizer()
-
-    # Use the default microphone as the audio source
-    with sr.Microphone() as source:
-        print("Listening...")
-
-        # Adjust for ambient noise before recording
-        r.adjust_for_ambient_noise(source, duration=0.5)
-
-        # Record audio
-        audio = r.listen(source)
-        
-        # Save the recorded audio as a wav file
-        wav = "audio.wav"
-        with open(wav, "wb") as f:
-            f.write(audio.get_wav_data())
-
-        print("Processing...")
-
-    # Transcribe the recorded audio to text
-    try:
-        transcript = r.recognize_whisper(audio)
-        return wav,transcript
-    except sr.UnknownValueError:
-        print("Unable to transcribe audio")
-    except sr.RequestError as e:
-        print(f"Error: {e}")
+count = 0
+rasa_server_url = "http://localhost:5005/webhooks/rest/webhook"
 
 def agg_by_voice(wav_file, threshold=0.737163):
     model = tf.keras.models.load_model('..//Models//agg_cnn_model.h5')
@@ -62,7 +41,7 @@ def agg_by_voice(wav_file, threshold=0.737163):
 
     if binary_predictions.count(1) == binary_predictions.count(0):
         prediction = np.mean(predictions)
-        return ['Aggressive' if prediction > threshold else 'Non-Aggressive'][0],len(predictions)
+        return ['Aggressive' if prediction > threshold else 'Non-Aggressive'][0]
     else:
         if binary_predictions.count(1) > binary_predictions.count(0):
             prediction = "Aggressive"
@@ -100,3 +79,84 @@ def department_by_text(text):
     # Predict the emotion
     prediction = model.predict(v_text)
     return prediction[0]
+
+# Writting a function to noice reduction
+def apply_noise_reduction(input_path, output_path):
+    # Load the audio file
+    audio, _ = librosa.load(input_path, sr=22050)
+
+    # Perform noise reduction
+    reduced_audio = nr.reduce_noise(audio, sr=22050)
+
+    # Save the denoised audio
+    sf.write(output_path, reduced_audio,22050)
+
+def convert_webm_to_wav(input_file):
+
+    audio = AudioSegment.from_file(input_file, format="webm")
+    audio.export("uploads\\audio.wav", format="wav")
+    # Noice reduction
+    apply_noise_reduction("uploads\\audio.wav", "uploads\\n_audio.wav")
+
+
+def transcribe_audio(audio_file):
+    # Convert webm to wav
+    convert_webm_to_wav(audio_file)
+    # Initialize recognizer
+    recog = sr.Recognizer()
+
+    # Load audio file
+    with sr.AudioFile("uploads\\n_audio.wav") as source:
+        audio = recog.record(source)
+
+    transcript = recog.recognize_whisper(audio)
+
+    return transcript
+
+def text_to_speech(text):
+    global count
+    engine = pyttsx3.init()
+    # speed
+    engine.setProperty('rate', 150)
+    # set directory
+    directory = 'uploads\\output'+str(count)+'.mp3'
+    # save to file
+    engine.save_to_file(text, directory)
+    engine.runAndWait()
+
+    if count >= 1:
+        os.remove('uploads\\output'+str(count-1)+'.mp3')
+
+    count += 1
+
+    return directory
+
+def chat(user_message):
+    rasa_response = send_message_to_rasa(user_message)
+    # Check if the response from Rasa is not empty and contains 'text'
+    if rasa_response and isinstance(rasa_response, list):
+        if 'custom' in rasa_response[0]:
+            bot_response = rasa_response[0]['custom']['text']
+
+            return bot_response
+
+        else:
+            bot_response = rasa_response[0]['text']
+
+            return bot_response
+        
+    else:
+        bot_response="sorry, I didn't get that. Can you please repeat?"
+
+        return bot_response
+    
+
+def send_message_to_rasa(message):
+    payload = {
+        "message": message,
+    }
+    response = requests.post(rasa_server_url, json=payload)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return {"error": "Failed to send message to Rasa."}

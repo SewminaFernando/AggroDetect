@@ -1,13 +1,14 @@
 import librosa
-import tensorflow as tf
 import pickle
 import numpy as np
 import re
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
-nltk.download('punkt')
-nltk.download('stopwords')
+from nltk.stem import WordNetLemmatizer
+# nltk.download('punkt')
+# nltk.download('stopwords')
+# nltk.download('wordnet')
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -44,12 +45,17 @@ def dep_preprocess_text(text):
 
 def agg_preprocess_text(text):
     stop_words = set(stopwords.words('english'))
+    lemmatizer = WordNetLemmatizer()
 
-    text = re.sub(r'\d{10}', '', text)  # Remove contact numbers
-    text = re.sub(r'\d{1,2}[-/]\d{1,2}[-/]\d{2,4}', '', text)  # Remove dates
-    tokens = text.split()
-    tokens = [word for word in tokens if len(word) > 2]  # Remove short words (length <= 2)
+    # Convert non-string inputs to string
+    text = str(text)
+    text = re.sub(r'\d+', '', text)
+    # Remove punctuation
+    text = re.sub(r'[^\w\s!?.,]', '', text)
+    
+    tokens = nltk.word_tokenize(text)
     tokens = [word.lower() for word in tokens if word.isalnum()]  # Tokenization, lowercase
-    tokens = [word for word in tokens if word not in stop_words] #removing stopwords
-
+    tokens = [lemmatizer.lemmatize(word) for word in tokens]  # Lemmatization
+    tokens = [word for word in tokens if word not in stop_words] # Remove stopwords
+    
     return ' '.join(tokens)
