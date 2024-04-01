@@ -305,11 +305,17 @@ body{
 
 .chat-box {
   padding: 20px;
-  overflow-y: scroll;
+  overflow-y: auto;
   height: 450px;
-  flex-grow: 1; /* Allow the chat box to grow and occupy remaining space */
+  width: 500px;
+  scroll-behavior: smooth;
+  /* flex-grow: 1; Allow the chat box to grow and occupy remaining space */
   display: flex;
   flex-direction: column;
+}
+
+.chat-box::-webkit-scrollbar {
+  display: none;
 }
 
 .chat-box .message {
@@ -354,7 +360,7 @@ body{
 .record-button:hover {
   background-color: #3f6792;
 }
-.record-button.pressed {
+.record-button:active {
   background-color: #000000;
 }
   
