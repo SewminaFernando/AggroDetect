@@ -75,6 +75,7 @@ def end_conversation():
     overall_sentiment = "Neutral"
     # Save the conversation to the database
     # Clear the conversation list
+    old_conv.clear()
     return jsonify({'agent_name': agent_name, 'overall_sentiment': overall_sentiment})
     
 @app.route('/uploads/<path:filename>')
