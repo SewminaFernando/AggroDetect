@@ -87,6 +87,9 @@ if (mediaRecorder) {
       chatBox.appendChild(botMessageElement);
   });
 
+  // Scroll to the bottom of the chat box
+  chatBox.scrollTop = chatBox.scrollHeight;
+
   // Update department content
   document.getElementById('department').textContent = data.dep;
 

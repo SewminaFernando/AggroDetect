@@ -10,6 +10,7 @@ import pyttsx3
 import noisereduce as nr
 import soundfile as sf
 import requests
+from openai import OpenAI
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -105,11 +106,28 @@ def transcribe_audio(audio_file):
     # Initialize recognizer
     recog = sr.Recognizer()
 
-    # Load audio file
-    with sr.AudioFile("uploads\\n_audio.wav") as source:
-        audio = recog.record(source)
+    try:
+        # Use OpenAI client if API key is working
+        # Define the OpenAI client
+        client = OpenAI(
+                    api_key=os.environ.get("OPENAI_API_KEY"),
+                    organization=os.environ.get("WHISPER_ORG")
+                )
 
-    transcript = recog.recognize_whisper(audio)
+        audio = open("uploads\\recorded_audio.webm", "rb")
+
+        transcript = client.audio.transcriptions.create(
+            model="whisper-1", 
+            file = audio,
+            language="en",
+            response_format="text")
+        
+    except Exception as e:
+        # Load audio file
+        with sr.AudioFile("uploads\\n_audio.wav") as source:
+            audio = recog.record(source)
+        # Use default speech recognition if API key is not working
+        transcript = recog.recognize_whisper(audio)
 
     return transcript
 
