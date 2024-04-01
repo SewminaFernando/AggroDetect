@@ -45,6 +45,9 @@ def login_page():
 def sign_out():
     return redirect(url_for('login_page'))
 
+@app.route('/analytics')
+def analytics():
+    return render_template('analytics.html')
 
 @app.route('/login', methods=['POST'])
 def login():
