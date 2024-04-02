@@ -30,10 +30,8 @@ def extract_number(string):
     else:
         return 0
 
-
-def firebase_datastore(username, convesation, department):
-    # Fetch the service account key JSON file contents
-    cred = credentials.Certificate(cert={
+# Fetch the service account key JSON file contents
+cred = credentials.Certificate(cert={
         "type": "service_account",
         "project_id": "customerdialogue-31e3d",
         "private_key_id": "0866c8bc00bf0c672009cb86d97680ab87c8496a",
@@ -46,10 +44,14 @@ def firebase_datastore(username, convesation, department):
         "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-y801i%40customerdialogue-31e3d.iam.gserviceaccount.com",
         "universe_domain": "googleapis.com"
     })
-    # Initialize the app with a service account, granting admin privileges
-    firebase_admin.initialize_app(cred, {
-        'databaseURL': 'https://customerdialogue-31e3d-default-rtdb.asia-southeast1.firebasedatabase.app/'
-    })
+
+# Initialize the app with a service account, granting admin privileges
+firebase_admin.initialize_app(cred, {
+    'databaseURL': 'https://customerdialogue-31e3d-default-rtdb.asia-southeast1.firebasedatabase.app/'
+})
+
+
+def firebase_datastore(username, convesation, department):
 
     db_reference = db.reference('users/')
     db_get = db_reference.get()
@@ -85,3 +87,63 @@ def firebase_datastore(username, convesation, department):
             db_reference.child(username).set(child_data)
             print(f"'{username}' your conversation has been uploaded to database as a new user...")
 
+def read_users_data_from_firebase():
+    users_ref = db.reference('users')
+
+    # Get all users' data from the database
+    users_data = users_ref.get()
+
+    # Dictionary to store all users' data
+    all_users_data = {}
+    all_users_ids = []
+
+    # Iterate over each user and their data
+    for user_id, user_data in users_data.items():
+        all_users_ids.append(user_id)
+        # Store user data in the dictionary
+        all_users_data[user_id] = user_data
+
+    return all_users_data, all_users_ids
+
+
+def separate_aggressive_levels(sentence):
+    # Define the pattern to match the aggressive levels
+    pattern = r'\(aggressive level by voice: (\w+)\) \(aggressive level by text: (\w+)\)'
+
+    # Find all matches of the pattern in the sentence
+    matches = re.findall(pattern, sentence)
+
+    # If matches are found, separate the aggressive levels and the remaining sentence
+    if matches:
+        remaining_sentence = re.sub(pattern, '', sentence)
+        return remaining_sentence.strip(), matches
+    else:
+        return sentence.strip(), []
+
+
+# Function to convert the dictionary into the desired format
+def convert_to_conversation_dict(original_dict):
+    conversation_dict = {}
+    for key, value in original_dict.items():
+        print(value["Department"])
+        var = {"department": value["Department"].lower(), "department_text": value["Department"] + " Department"}
+        sender = "Chatbot"
+        conversation = []
+        for i in range(len(value["resp"])):
+            if i < len(value["user_message"]):
+                if i != 0:
+                    remaining_sentence, aggressive_levels = separate_aggressive_levels(value["user_message"][i])
+                    agg_levels = f"(aggressive level by voice: {aggressive_levels[0][0]}) \n(aggressive level by text: {aggressive_levels[0][1]})"
+                    conversation.append({
+                        "sender": "User",
+                        "message": remaining_sentence,
+                        "time": agg_levels
+                    })
+            conversation.append({
+                "sender": sender,
+                "message": value["resp"][i],
+                "time": ""
+            })
+
+        conversation_dict[key] = var, conversation
+    return conversation_dict
