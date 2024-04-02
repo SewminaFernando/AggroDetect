@@ -4,139 +4,126 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="CSS/test.css">
+      <!-- CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/dashboard.css') }}">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/test.css') }}">
+   <!-- icons -->
+   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   <title>ChatBot</title>
 </head>
 <body>
-  <div class="background"></div>
+    <!-- Navigation -->
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="title">AggroDetect</span>
+                    </a>
+                </li>
 
+                <li>
+                    <a href="{{ url_for('dashboard') }}">
+                        <span class="icon">
+                            <ion-icon name="home-outline"></ion-icon>
+                        </span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="chatbubble-outline"></ion-icon>
+                        </span>
+                        <span class="title">Chat History</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('analytics') }}">
+                        <span class="icon">
+                            <ion-icon name="analytics"></ion-icon>
+                        </span>
+                        <span class="title">Analytics</span>
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="settings-outline"></ion-icon>
+                        </span>
+                        <span class="title">Settings</span>
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="{{ url_for('sign_out') }}">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                        <span class="title">Sign Out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
   <div class="main-container">
     <div class="left-container">
-      <!-- Inside main-container -->
       <div class="vertical-line"></div>
-
-      <!--header -->
       <div class="header">
         <div class="user-img">
           <img class="dp" src="Images/Chat.webp" alt="">
         </div>
         <h4>Chatbot</h4>
       </div>
-      <!--chats -->
+
       <div class="chat-list">
-        <div class="chat-box">
+        {% for name, messages in conversation_dict.items() %}
+        <div class="chat-box" onclick="showConversation('{{ name }}')">
           <div class="chat-details">
             <div class="text-head">
-              <h4>Nimal Fernando</h4>
-              <p class="time">11:49</p>
+              <h4>{{ name }}</h4>
             </div>
+            <div><h6>{{ messages[0].department_text }}</h6></div>
           </div>
         </div>
-        <div class="chat-box">
-          <div class="chat-details">
-            <div class="text-head">
-              <h4>Rohan Perera</h4>
-              <p class="time">10:49</p>
-            </div>
-          </div>
-        </div>
-        <div class="chat-box">
-          <div class="chat-details">
-            <div class="text-head">
-              <h4>Zoya Alwis</h4>
-              <p class="time">09:49</p>
-            </div>
-          </div>
-        </div>
-        <div class="chat-box">
-          <div class="chat-details">
-            <div class="text-head">
-              <h4>Lisa Gamage</h4>
-              <p class="time">08:49</p>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
     </div>
 
     <div class="right-container">
-      <!--header -->
       <div class="header">
-        <div class="img-text">
-          <div class="user-img">
-            <img class="dp" src="Images/Chat.webp" alt="">
-          </div>
-          <h4>Nimal Fernando</h4>
-        </div>
         <div class="nav-icons">
           <li><i class="fa-solid fa-magnifying-glass"></i></li>
           <li><i class="fa-solid fa-ellipsis-vertical"></i></li>
         </div>
       </div>
 
-      <!--chat-container -->
-      <div class="chat-container">
-        <script>
-          // Conversation dictionary
-          const conversationDictionary = {
-            'Nimal Fernando': [
-              { sender: 'Chatbot', message: 'Hello! How can I assist you today?', time: '07:43' },
-              { sender: 'Nimal Fernando', message: 'Hi, can I know how much is the minimum amount that I should pay to get back my connection?', time: '07:45' },
-              { sender: 'Chatbot', message: 'Yeah sure, can you confirm the owner\'s name of this connection, please?', time: '07:45' },
-              { sender: 'Nimal Fernando', message: 'It\'s Nimal Fernando', time: '07:45' },
-              { sender: 'Chatbot', message: 'According to my system, we generated bills up to 30th of November for this connection. Your total outstanding is Rs.11663', time: '07:46' },
-              { sender: 'Chatbot', message: 'If you pay Rs.6700 as the minimum payment, you can get the connection back', time: '07:46' },
-              { sender: 'Nimal Fernando', message: 'Alright, thank you', time: '07:48' },
-              { sender: 'Chatbot', message: 'Thank you for chatting with us! If you have any more questions or need assistance in the future, feel free to reach out. Have a great day!', time: '07:48' },
-            ],
-			'Rohan Perera': [
-              { sender: 'Chatbot', message: 'Hello Rohan! How can I assist you today?', time: '10:00' },
-              { sender: 'Rohan Perera', message: 'Hi, I have a billing inquiry. Can you help me with that?', time: '10:05' },
-              { sender: 'Chatbot', message: 'Of course! Please provide me with your account details or any relevant information regarding your inquiry.', time: '10:05' },
-              { sender: 'Rohan Perera', message: 'Sure, my account number is 90743-2345-2020.', time: '10:10' },
-              { sender: 'Chatbot', message: 'Thank you for providing the information. Let me check your billing details.', time: '10:10' },
-              { sender: 'Chatbot', message: 'I found that your current outstanding balance is Rs. 7500. The due date for the payment is the 25th of this month.', time: '10:15' },
-              { sender: 'Rohan Perera', message: 'Got it. I will make the payment before the due date. Thank you!', time: '10:20' },
-              { sender: 'Chatbot', message: 'You\'re welcome! If you have any more questions or need assistance, feel free to ask. Have a great day!', time: '10:20' },
-            ],
-            
-          };
-
-          document.addEventListener("DOMContentLoaded", function() {
-            // all chat boxes
-            const chatBoxes = document.querySelectorAll('.chat-list .chat-box');
-
-            // Add click event listener to each chat box
-            chatBoxes.forEach(chatBox => {
-              chatBox.addEventListener("click", function() {
-                // Get the name of the clicked chat box
-                const clickedName = chatBox.querySelector('.text-head h4').textContent;
-
-                // Update the right container name
-                const rightContainerName = document.querySelector('.right-container .header .img-text h4');
-                rightContainerName.textContent = clickedName;
-
-                // Get the conversation for the clicked user
-                const conversation = conversationDictionary[clickedName];
-
-                // Update the chat-container with the conversation
-                const chatContainer = document.querySelector('.chat-container');
-                chatContainer.innerHTML = ''; // Clear previous messages
-
-                // Add messages to the chat-container
-                conversation.forEach(message => {
-                  const messageBox = document.createElement('div');
-                  messageBox.className = message.sender === 'Chatbot' ? 'message-box my-message' : 'message-box friend-message';
-                  messageBox.innerHTML = `<p>${message.message}<br><span>${message.time}</span></p>`;
-                  chatContainer.appendChild(messageBox);
-                });
-              });
-            });
-          });
-        </script>
+      <div class="chat-container" id="chat-container">
       </div>
     </div>
   </div>
+  <script>
+    const conversationDictionary = {{ conversation_dict | safe }};
 
+    function showConversation(name) {
+      const conversation = conversationDictionary[name];
+      const chatContainer = document.getElementById('chat-container');
+      chatContainer.innerHTML = ''; // Clear previous messages
+
+      conversation.forEach(message => {
+        const messageBox = document.createElement('div');
+        messageBox.className = message.sender === 'Chatbot' ? 'message-box my-message' : 'message-box friend-message';
+        messageBox.innerHTML = `<p>${message.message}<br><span>${message.time}</span></p>`;
+        chatContainer.appendChild(messageBox);
+      });
+    }
+  </script>
 </body>
 </html>
