@@ -155,19 +155,18 @@ def chat(user_message):
     if rasa_response and isinstance(rasa_response, list):
         if 'custom' in rasa_response[0]:
             bot_response = rasa_response[0]['custom']['text']
-
-            return bot_response
+            return bot_response, True
 
         else:
             bot_response = rasa_response[0]['text']
 
-            return bot_response
-        
-    else:
-        bot_response="sorry, I didn't get that. Can you please repeat?"
+            return bot_response, False
 
-        return bot_response
-    
+    else:
+        bot_response = "sorry, I didn't get that. Can you please repeat?"
+
+        return bot_response, False
+
 
 def send_message_to_rasa(message):
     payload = {

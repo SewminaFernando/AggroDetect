@@ -1,5 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory, jsonify
-from model_pipeline import agg_by_voice, agg_by_text, department_by_text, text_to_speech, transcribe_audio, chat
+
+from interface.save_report import firebase_datastore, read_users_data_from_firebase, convert_to_conversation_dict
+from model_pipeline import agg_by_voice, agg_by_text, department_by_text, text_to_speech, transcribe_audio, chat, \
+    send_message_to_rasa
 import sqlite3
 import os
 
@@ -32,6 +35,20 @@ def overall_sentiment():
 def agent_name():
     # Get the agent name from the database
     pass
+
+def set_firebase_dictionary():
+    global old_conv
+
+    new_conv = {
+    "user_message": ["-"],
+    "resp": ["Thank you for calling us. How can I help you?"]
+    }
+    for i in range(len(old_conv)):
+        new_conv["user_message"].append(f"{old_conv[i]['user_messagee']} (Aggressiveness by text: {old_conv[i]['agg_text']}) (Aggressiveness by voice: {old_conv[i]['agg_voice']})")
+        new_conv["resp"].append(old_conv[i]["resp"])
+
+    return new_conv
+
 
 @app.route('/')
 def home():
@@ -113,7 +130,8 @@ def receive_audio():
         dep_text = department_by_text(transcript)
         department = dep_text
         first_time = False
-    response = chat(transcript)
+    response, end_converastion = chat(transcript)
+
     audio_path="../"+text_to_speech(response)
 
     # create a dictionary to store the conversation
@@ -127,7 +145,21 @@ def receive_audio():
     # append the dictionary to the list
     old_conv.append(dictionary)
 
+    if end_conversation:
+        firebase_datastore('', set_firebase_dictionary(), department=department)
+
     return jsonify({'transcript': old_conv, 'audio_path': audio_path, "dep":department})
+
+@app.route('/chat_history')
+def index():
+    # Read data from Firebase
+    users_data, _ = read_users_data_from_firebase()
+    print(users_data)
+    # Convert data to conversation format
+    conversation_dict = convert_to_conversation_dict(users_data)
+    print(conversation_dict)
+    # Pass conversation_dict to the HTML template
+    return render_template('interface.html', conversation_dict = (conversation_dict))
 
 if __name__ == '__main__':
     app.run(debug=True)
