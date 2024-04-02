@@ -62,7 +62,7 @@ def firebase_datastore(username, convesation, department):
     if username == "":
         usernames = list(db_get.keys())
         max_number = max(extract_number(un) for un in usernames if extract_number(un) > 0)
-        username = "unknown_"+str(max_number+1)
+        username = "Customer_"+str(max_number+1)
 
         db_reference.child(username).set(convesation)
         print(f"'{username}' your conversation has been uploaded to database as a new user...")
@@ -88,17 +88,19 @@ def read_users_data_from_firebase():
 
 def separate_aggressive_levels(sentence):
     # Define the pattern to match the aggressive levels
-    pattern = r'\(aggressive level by voice: (\w+)\) \(aggressive level by text: (\w+)\)'
+    pattern = r"\(Aggressiveness by text: (.+?)\) \(Aggressiveness by voice: (.+?)\)$"
 
     # Find all matches of the pattern in the sentence
     matches = re.findall(pattern, sentence)
 
     # If matches are found, separate the aggressive levels and the remaining sentence
     if matches:
-        remaining_sentence = re.sub(pattern, '', sentence)
-        return remaining_sentence.strip(), matches
+        aggressive_level_text, aggressive_level_voice = matches[0]  # Extract aggressive levels
+        remaining_sentence = re.sub(pattern, '', sentence).strip()  # Extract remaining sentence
+        return remaining_sentence, (aggressive_level_text, aggressive_level_voice)
     else:
-        return sentence.strip(), []
+        # If no matches found, return the original sentence and an empty tuple
+        return sentence.strip(), ()
 
 
 # Function to convert the dictionary into the desired format
@@ -112,7 +114,7 @@ def convert_to_conversation_dict(original_dict):
             if i < len(value["user_message"]):
                 if i != 0:
                     remaining_sentence, aggressive_levels = separate_aggressive_levels(value["user_message"][i])
-                    agg_levels = f"(aggressive level by voice: {aggressive_levels[0][0]}) \n(aggressive level by text: {aggressive_levels[0][1]})"
+                    agg_levels = f"(Aggressiveness by text: {aggressive_levels[0]}) \n(Aggressiveness by voice: {aggressive_levels[1]})"
                     conversation.append({
                         "sender": "User",
                         "message": remaining_sentence,
