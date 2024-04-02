@@ -30,6 +30,7 @@ def extract_number(string):
     else:
         return 0
 
+
 # Fetch the service account key JSON file contents
 cred = credentials.Certificate(cert={
         "type": "service_account",
@@ -63,29 +64,8 @@ def firebase_datastore(username, convesation, department):
         max_number = max(extract_number(un) for un in usernames if extract_number(un) > 0)
         username = "unknown_"+str(max_number+1)
 
-        child_data = {
-            "conversation": {"conv_1": convesation}
-        }
-        db_reference.child(username).set(child_data)
+        db_reference.child(username).set(convesation)
         print(f"'{username}' your conversation has been uploaded to database as a new user...")
-    else:
-
-        if username in db_get: # Old user
-            db_ref = db_get[username]['conversation']
-            print("db_ref = ", db_ref, "type(db_ref) =", type(db_ref))
-            last_number = int(re.search(r'\d+$', list(db_ref.keys())[-1]).group())
-            conv_no = 'conv_' + str(last_number + 1)
-            ref = db.reference('users')
-            db_ref[conv_no] = convesation
-
-            ref.child(username).child("conversation").set(db_ref)
-            print(f"'{username}' your conversation updated in the database")
-        else: # New user
-            child_data = {
-                "conversation": {"conv_1": convesation}
-            }
-            db_reference.child(username).set(child_data)
-            print(f"'{username}' your conversation has been uploaded to database as a new user...")
 
 def read_users_data_from_firebase():
     users_ref = db.reference('users')
@@ -125,7 +105,6 @@ def separate_aggressive_levels(sentence):
 def convert_to_conversation_dict(original_dict):
     conversation_dict = {}
     for key, value in original_dict.items():
-        print(value["Department"])
         var = {"department": value["Department"].lower(), "department_text": value["Department"] + " Department"}
         sender = "Chatbot"
         conversation = []

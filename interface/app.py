@@ -1,8 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory, jsonify
 
-from interface.save_report import firebase_datastore, read_users_data_from_firebase, convert_to_conversation_dict
-from model_pipeline import agg_by_voice, agg_by_text, department_by_text, text_to_speech, transcribe_audio, chat, \
-    send_message_to_rasa
+from save_report import firebase_datastore, read_users_data_from_firebase, convert_to_conversation_dict
+from model_pipeline import agg_by_voice, agg_by_text, department_by_text, text_to_speech, transcribe_audio, chat
 import sqlite3
 import os
 
@@ -130,7 +129,7 @@ def receive_audio():
         dep_text = department_by_text(transcript)
         department = dep_text
         first_time = False
-    response, end_converastion = chat(transcript)
+    response, end_conv = chat(transcript)
 
     audio_path="../"+text_to_speech(response)
 
@@ -145,7 +144,7 @@ def receive_audio():
     # append the dictionary to the list
     old_conv.append(dictionary)
 
-    if end_conversation:
+    if end_conv:
         firebase_datastore('', set_firebase_dictionary(), department=department)
 
     return jsonify({'transcript': old_conv, 'audio_path': audio_path, "dep":department})
@@ -154,10 +153,8 @@ def receive_audio():
 def index():
     # Read data from Firebase
     users_data, _ = read_users_data_from_firebase()
-    print(users_data)
     # Convert data to conversation format
     conversation_dict = convert_to_conversation_dict(users_data)
-    print(conversation_dict)
     # Pass conversation_dict to the HTML template
     return render_template('interface.html', conversation_dict = (conversation_dict))
 
