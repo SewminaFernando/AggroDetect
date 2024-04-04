@@ -68,8 +68,7 @@ class ActionUtterGoodbye(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: DialogueStateTracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        dispatcher.utter_message(template="utter_user_details",
-                                 triggered=True)
+        dispatcher.utter_message(template="utter_user_details")
         return []
 
 

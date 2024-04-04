@@ -153,10 +153,13 @@ def chat(user_message):
     rasa_response = send_message_to_rasa(user_message)
     # Check if the response from Rasa is not empty and contains 'text'
     if rasa_response and isinstance(rasa_response, list):
-        if 'custom' in rasa_response[0]:
+        if 'False' in rasa_response[0]['custom']['triggered']:
             bot_response = rasa_response[0]['custom']['text']
             return bot_response, True
-
+        if 'True' in rasa_response[0]['custom']['triggered']:
+            bot_response = rasa_response[0]['custom']['text']
+            print("HI")  # put here agent routing code or call the method
+            return bot_response, True
         else:
             bot_response = rasa_response[0]['text']
 

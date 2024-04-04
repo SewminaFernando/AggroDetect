@@ -70,7 +70,7 @@ responses:
   utter_user_details:
   - custom:
       text: Thank you Have a nice day.
-      triggered: '{triggered}'
+      triggered: 'False'
   utter_greet:
   - text: Hello there! how can I guide you today?
   utter_iamabot:
@@ -94,7 +94,9 @@ responses:
   utter_ask_to_direct_agent:
   - text: Would you like to speak with a customer care agent?
   utter_dirct_to_an_agent:
-  - text: Kindly allow me a moment to connect you, with the most suitable customer care agent. who will assist you with your concerns.
+  - custom:
+      text: Kindly allow me a moment to connect you, with the most suitable customer care agent. who will assist you with your concerns.
+      triggered: 'True'
   utter_wait_for_respond:
   - text: No problem! Take your time.
   utter_thanks:
