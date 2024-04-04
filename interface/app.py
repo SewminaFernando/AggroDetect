@@ -10,6 +10,45 @@ app.config['UPLOAD_FOLDER'] = 'uploads'
 
 first_time = True
 
+@app.route('/')
+def home():
+    return render_template('home.html')
+
+@app.route('/login')
+def login_page():
+    return render_template('login.html')
+
+@app.route('/sign-out')
+def sign_out():
+    return redirect(url_for('home'))
+
+@app.route('/analytics')
+def analytics():
+    return render_template('analytics.html')
+
+@app.route('/login', methods=['POST'])
+def login():
+    login_username = "admin"
+    login_password = "admin234"
+    username = request.form['username']
+    password = request.form['password']
+    
+    if username == login_username and password == login_password:
+        return redirect(url_for('dashboard'))
+    elif username == login_username and password != login_password:
+        error_message = 'Incorrect password.'
+        return render_template('login.html', error_message=error_message)
+    elif username != login_username:
+        error_message = 'Incorrect username.'
+        return render_template('login.html', error_message=error_message)
+    else:
+        error_message = 'Login failed.'
+        return render_template('login.html', error_message=error_message)
+
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboard.html')
+
 # Create a list to store the conversation
 old_conv = []
 department = ""
@@ -47,43 +86,6 @@ def set_firebase_dictionary():
         new_conv["resp"].append(old_conv[i]["resp"])
 
     return new_conv
-
-
-@app.route('/')
-def home():
-    return render_template('home.html')
-
-@app.route('/login')
-def login_page():
-    return render_template('login.html')
-
-@app.route('/sign-out')
-def sign_out():
-    return redirect(url_for('login_page'))
-
-@app.route('/analytics')
-def analytics():
-    return render_template('analytics.html')
-
-@app.route('/login', methods=['POST'])
-def login():
-    username = request.form['username']
-    password = request.form['password']
-    
-    conn = sqlite3.connect('Database/Agents.db')
-    c = conn.cursor()
-    c.execute('SELECT * FROM agentLogIn WHERE userName = ? AND password = ?', (username, password))
-    result = c.fetchone()
-    conn.close()
-    
-    if result:
-        return redirect(url_for('dashboard'))
-    else:
-        return 'Login failed. Please check your username and password.'
-
-@app.route('/dashboard')
-def dashboard():
-    return render_template('dashboard.html')
 
 @app.route('/end-conversation' , methods=['POST'])
 def end_conversation():

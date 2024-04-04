@@ -27,7 +27,11 @@
     <!-- Login Box -->
     <div class="wrapper">
         <form action="/login" method="post">
-            <h1>Login</h1>
+            <div>
+                <h1>Login</h1>
+                <p class="error-message">{{ error_message }}</p>
+            </div>
+           
             <div class="input-box">
                 <input type="text" name="username" placeholder="Username" required>
                 <i class="bx bx-user"></i>
@@ -45,6 +49,6 @@
             </div>
             <button type="submit" class="btn">Login</button>
         </form>
-    </div>
+    </div>  
 </body>
 </html>
