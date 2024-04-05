@@ -22,7 +22,7 @@
       top: 0;
       left:99%;
     }
-    .main-container .left-container {
+    .left-container {
       position:relative;
       width: 30%;
       height:100%;
@@ -71,7 +71,10 @@
       overflow-y: auto; /* Enable vertical scrolling */
       scroll-behavior: smooth;
       overflow-x: hidden;
-      height: 500px; /* Set a fixed height for the chat list */
+      height: 90%; /* Set a fixed height for the chat list */
+    }
+    .chat-list::-webkit-scrollbar {
+      display: none;
     }
     
     .chat-list .chat-box {
@@ -208,8 +211,11 @@
       position: relative;
       width: 100%;
       list-style: none;
-      border-top-left-radius: 50px;
-      border-bottom-left-radius: 50px;
+      border-top-left-radius: 30px;
+      border-bottom-left-radius: 30px;
+      margin-bottom: 20px;
+      padding-top: 5px;
+      padding-bottom: 5px;
     }
     .navigation ul li:hover,
     .navigation ul li.hovered {
@@ -242,7 +248,16 @@
     .navigation ul li a .icon ion-icon {
       font-size: 1.75rem;
     }
-
+    .navigation ul li a .logo {
+      position: relative;
+      padding: 0 10px;
+      height: 60px;
+      line-height: 60px;
+      text-align: center;
+      white-space: nowrap;
+      margin-left: 50px;
+      font-size: x-large;
+    }
     .navigation ul li a .title {
       position: relative;
       display: block;
