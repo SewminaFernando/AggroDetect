@@ -2,11 +2,6 @@
 version: "3.1"
 
 stories:
-- story: greet
-  steps:
-  - intent: greet
-  - action: utter_greet
-
 - story: say data pakages
   steps:
   - intent: dataPackagers
@@ -29,7 +24,6 @@ stories:
   - action: utter_ask_to_direct_agent
   - intent: affirm
   - action: utter_dirct_to_an_agent
-  - action: action_utter_goodbye
 
 - story: unexpected-deny
   steps:
@@ -47,16 +41,16 @@ stories:
   - action: action_utter_goodbye
 
 
-- story: User dirct to an agent
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - or:
-    - intent: Report_complaints_again
-    - intent: describe_other_issues
-    - intent: technical_support
-  - action: utter_dirct_to_an_agent
-  - action: action_utter_goodbye
+# - story: User dirct to an agent
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - or:
+#     - intent: Report_complaints_again
+#     - intent: describe_other_issues
+#     - intent: technical_support
+#   - action: utter_dirct_to_an_agent
+#   - action: action_utter_goodbye
 
 
 
@@ -67,15 +61,11 @@ stories:
   - action: action_utter_goodbye
 
 
-
-
-
 - story: dirct to an agent- affirm
   steps:
   - action: utter_ask_for_further_queries
   - intent: affirm
   - action: utter_dirct_to_an_agent
-  - action: action_utter_goodbye
 
 
 - story: User ask for wait
@@ -98,8 +88,6 @@ stories:
 
 - story: interactive_story_4
   steps:
-  - intent: greet
-  - action: utter_greet
   - intent: put_complain
   - action: utter_ask_for_put_complain
   - intent: affirm
@@ -228,7 +216,6 @@ stories:
   - action: utter_ask_for_further_queries
   - intent: affirm
   - action: utter_dirct_to_an_agent
-  - action: action_utter_goodbye
 
 
 
@@ -236,7 +223,6 @@ stories:
   steps:
   - intent: technical_support
   - action: utter_dirct_to_an_agent
-  - action: action_utter_goodbye
 
 
 - story: interactive_story_5
@@ -277,7 +263,6 @@ stories:
   - action: utter_ask_for_further_queries
   - intent: affirm
   - action: utter_dirct_to_an_agent
-  - action: action_utter_goodbye
 
 - story: interactive_story_6
   steps:
@@ -327,24 +312,19 @@ stories:
   - action: utter_ask_for_further_queries
   - intent: affirm
   - action: utter_dirct_to_an_agent
-  - action: action_utter_goodbye
 
 - story: interactive_story_7
   steps:
-  - intent: greet
-  - action: utter_greet
   - intent: unexpected
   - intent: bot_challenge
   - action: utter_iamabot
   - intent: describe_other_issues
   - action: utter_dirct_to_an_agent
-  - action: action_utter_goodbye
 
 - story: interactive_story_8
   steps:
   - intent: describe_other_issues
   - action: utter_dirct_to_an_agent
-  - action: action_utter_goodbye
 
 - story: interactive_story_9
   steps:
@@ -396,7 +376,6 @@ stories:
     - requested_slot: null
   - action: utter_disturb_form
   - action: utter_dirct_to_an_agent
-  - action: action_utter_goodbye
 
 
 - story: interactive_story_11
@@ -438,9 +417,7 @@ stories:
   - active_loop: null
   - slot_was_set:
     - requested_slot: null
-  - action: action_utter_goodbye
-  - intent: greet
-  - action: utter_greet
+
 
 - story: interactive_story_12
   steps:
@@ -448,7 +425,6 @@ stories:
     - intent: describe_other_issues
     - intent: Report_complaints_again
   - action: utter_dirct_to_an_agent
-  - action: action_utter_goodbye
 
 - story: interactive_story_13
   steps:
@@ -508,7 +484,6 @@ stories:
   - action: utter_wrong_complain
   - action: utter_disturb_form
 
-  - action: action_utter_goodbye
 
 - story: interactive_story_14
   steps:
@@ -541,16 +516,9 @@ stories:
   - action: utter_wrong_complain
   - action: utter_disturb_form
   - action: utter_dirct_to_an_agent
-  - action: action_utter_goodbye
 
 - story: interactive_story_15
   steps:
-  - intent: greet
-    entities:
-    - name: chulanjana jayasinghe
-  - slot_was_set:
-    - name: chulanjana jayasinghe
-  - action: utter_greet
   - intent: blame
   - action: utter_ask_for_put_complain
   - intent: affirm
@@ -569,7 +537,6 @@ stories:
     - requested_slot: null
   - action: utter_disturb_form
   - action: utter_dirct_to_an_agent
-  - action: action_utter_goodbye
 
 - story: interactive_story_16
   steps:
@@ -587,78 +554,5 @@ stories:
     - requested_slot: null
   - action: utter_disturb_form
   - action: utter_dirct_to_an_agent
-  - action: action_utter_goodbye
 
-- story: interactive_story_1
-  steps:
-  - intent: blame
-  - action: utter_ask_for_put_complain
-  - intent: affirm
-  - action: Report_full_Info_form
-  - active_loop: Report_full_Info_form
-  - slot_was_set:
-    - requested_slot: name
-  - intent: deny
-  - action: action_deactivate_loop
-  - active_loop: null
-  - slot_was_set:
-    - requested_slot: null
-  - action: utter_disturb_form
-  - action: utter_dirct_to_an_agent
-  - action: action_utter_goodbye
-  - intent: greet
-  - action: utter_greet
-  - intent: put_complain
-  - action: utter_ask_for_put_complain
-  - intent: affirm
-  - action: Report_full_Info_form
-  - active_loop: Report_full_Info_form
-  - slot_was_set:
-    - requested_slot: name
-  - intent: say_name
-    entities:
-    - name: supun dissanayaka
-  - slot_was_set:
-    - name: supun dissanayaka
-  - action: Report_full_Info_form
-  - slot_was_set:
-    - name: supun dissanayaka
-  - slot_was_set:
-    - requested_slot: phoneNumber
-  - intent: wait_for_respond
-  - action: utter_wait_for_respond
-  - intent: say_phoneNumber
-    entities:
-    - phoneNumber: '20220465'
-  - slot_was_set:
-    - phoneNumber: '20220465'
-  - action: Report_full_Info_form
-  - slot_was_set:
-    - phoneNumber: null
-  - slot_was_set:
-    - requested_slot: phoneNumber
-  - intent: unexpected
-  - action: action_default_fallback
-  - intent: say_phoneNumber
-    entities:
-    - phoneNumber: '0382250162'
-  - slot_was_set:
-    - phoneNumber: '0382250162'
-  - action: Report_full_Info_form
-  - slot_was_set:
-    - phoneNumber: '0382250162'
-  - slot_was_set:
-    - requested_slot: issue
-  - intent: describe_issues
-  - slot_was_set:
-    - issue: my router is not working properly there is red light blinking on los bulb
-  - action: Report_full_Info_form
-  - slot_was_set:
-    - issue: my router is not working properly there is red light blinking on los bulb
-  - slot_was_set:
-    - requested_slot: null
-  - active_loop: null
-  - action: action_save_Report_full
-  - action: utter_ask_for_further_queries
-  - intent: deny
-  - action: action_utter_goodbye
+

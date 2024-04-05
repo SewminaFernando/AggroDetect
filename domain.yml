@@ -9,8 +9,6 @@ intents:
 - describe_issues
 - describe_other_issues
 - goodbye
-- greet
-- mood_great
 - put_complain
 - say_name
 - say_phoneNumber
@@ -31,7 +29,6 @@ actions:
 - utter_ask_for_further_queries
 - utter_ask_for_put_complain
 - utter_wait_for_respond
-- utter_greet
 - utter_ask_to_direct_agent
 - utter_wrong_complain
 - utter_unexpected
@@ -65,14 +62,12 @@ slots:
     mappings:
     - type: from_text
       intent: describe_issues
-      not_intent: greet, blame
+      not_intent: blame, unexpected
 responses:
   utter_user_details:
   - custom:
       text: Thank you Have a nice day.
       triggered: 'False'
-  utter_greet:
-  - text: Hello there! how can I guide you today?
   utter_iamabot:
   - text: I am a bot, powered by Rasa, It's all about helping you!.
   utter_ask_name:

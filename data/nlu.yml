@@ -1,31 +1,5 @@
 version: "3.1"
 nlu:
-- intent: greet
-  examples: |
-    - hey
-    - hello
-    - hello, im [chualanjana](name)
-    - good morning
-    - good evening
-    - good afternoon
-    - hi, good morning.
-    - hello, my name is [justin martin](name)
-    - hello, I'm calling from Bambalapitiya.
-    - hello, I'm [justin martin](name) and I'm calling from panadura
-    - good morning, my name is [justin martin](name)
-    - good morning, I am [Manjula](name) calling from Makale
-    - hi, good morning. I'm calling from [Beyond the Ocean Travels](name)
-    - Yeah, my name is [Zumi](name). This is regarding my phone number [2875 436](phoneNumber).
-    - good afternoon, my name is [justin martin](name)
-    - good afternoon, I am [Manjula](name) calling from Makale
-    - good evening, my name is [justin martin](name)
-    - hello my name is [chulanjana](name)
-    - hello im [passan perera](name)
-    - hi im [kamal premachandra](name)
-    - hi my name is [pasan maheema](name)
-    - hello im [chanuka goonathilaka](name)
-    - hi
-    - hi my name is [chulanjana jayasinghe](name)
 - intent: say_phoneNumber
   examples: |
     - Oh, yeah, [2875 436](phoneNumber)
@@ -49,7 +23,7 @@ nlu:
     - yeah its [zukzi sali](name)
     - I am [Manjula disanayeke](name), my contact number is [077713424](phoneNumber)
     - it registerd on my name, [kasun kalhara](name)
-    - my name [gihan bandara](name)
+    - My name [gihan bandara](name)
     - [sumathipala de soiza](name)
     - my name is [supun dissanayaka soiza](name)
 - intent: put_complain
@@ -123,21 +97,23 @@ nlu:
     - i want to know about my last bill
 - intent: goodbye
   examples: |
-    - good by
+    - Good bye!
     - cee you later
     - good night
-    - bye
+    - bye!
+    - Bye!
+    - BYE
     - goodbye
     - have a nice day
     - see you around
-    - bye bye
+    - bye bye!
     - see you later
 - intent: affirm
   examples: |
     - yes
     - ok
-    - y
     - indeed
+    - sure.
     - of course
     - correct
     - yes thank you
@@ -164,11 +140,9 @@ nlu:
     - i want to talk to an agent
     - i want to talk to your agent because i have a problem with my internet connection
     - i want to talk to customere care service officer can you direct me to one
-    - i want to talk to your agent
 - intent: deny
   examples: |
     - no
-    - n
     - never
     - I don't think so
     - don't like that
@@ -188,8 +162,10 @@ nlu:
     - what?
     - aaahhhh
     - noooooooo
-    - jhsbcauweb23423234234324y23
     - 234423244ferfer34535
+    - are you maried?
+    - 
+
 - intent: blame
   examples: |
     - I hate your fucking service
