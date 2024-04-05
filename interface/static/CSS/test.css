@@ -1,37 +1,23 @@
+@import url("http://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
     }
-
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      background:#ff6f31ef ;
-    }
-
-    .background{
-      position: absolute;
-      top: 0;
-      width: 100%;
-      height: 20%;
-
-    }
     .main-container {
-      position: relative;
-      width: 1000px;
+      position: fixed;
+      width: 1230px;
       max-width: 100%;
-      height: calc(100vh - 40px);
+      height: 100%;
       display: flex;
-      box-shadow: 0px 1px 1px  0 rgba(0,0,0,0.5), 0px 2px 5px 0 rgba(0,0,0,0.6);
+      margin-left: 300px;
+      overflow: hidden;
     }
     .vertical-line {
-      width: 2px;
+      width: 30%;
       height: 100%;
-      background:#ff6f31ef ;
+      background:#164267 ;
       position: absolute;
       top: 0;
       left:99%;
@@ -41,8 +27,7 @@
       width: 30%;
       height:100%;
       flex: 30%;
-
-      background: #ffe4c4;
+      background: #c3cbe1;
     }
 
     .main-container .right-container {
@@ -50,10 +35,9 @@
       width: 70%;
       height: 100%;
       flex: 70%;
-      background: #ffe4c4;
+      background: #c3cbe1;
     }
     main-container .right-container::before {
-      content: '';
       position: absolute;
       top: 0;
       left: 0;
@@ -66,35 +50,40 @@
       position: relative;
       display: flex;
       align-items: center;
-      width: 100%;
+      justify-content: center;
+      width: 100%; 
       height: 60px;
-      background:black;
+      background: #97b4d7;
       padding: 0 15px;
+      overflow-x: inherit;
     }
-    .user-img {
-      position:relative;
-      width: 40px;
-      height: 40px;
-      overflow: hidden;
-      border-radius: 50%;
+    .header h4 {
+      margin-left: 300px;
+      font-size: 24px;
+      color: #164267;
+      font-weight: bold; /* Make the text bold */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add a shadow effect */
     }
-    .dp {
-      position:absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      cursor: pointer;
-    }
-    .chat-list .chat-box {
+    
+    .chat-list{
       display: flex; /* Make chat box items into a flexbox */
       flex-direction: column; /* Stack items vertically within the flexbox */
+      overflow-y: auto; /* Enable vertical scrolling */
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      height: 500px; /* Set a fixed height for the chat list */
+    }
+    
+    .chat-list .chat-box {
       justify-content: space-between; /* Align items at the top and bottom */
       align-items: flex-start; /* Align items to the left */
-      padding: 15px; /* Adjust padding as needed */
-      border-bottom: 2px solid #ff6f31ef; /* Maintains bottom border */
+      padding: 10px; /* Adjust padding as needed */
+      border-bottom: 2px solid #164267; /* Maintains bottom border */
     }
+    .chat-box.active {
+      background: #ebebeb;
+    }
+    
     .chat-list .chat-box .chat-details {
       width: 100%;
       margin-left: 10px;
@@ -125,49 +114,8 @@
       justify-content: space-between;
       align-items: center;
     }
-    .chat-container .message-box p {
-      white-space: pre-wrap;
-    }
-    .chat-list .chat-box .chat-details .text-message p {
-      color: #aaa;
-      font-size: 0.9em;
-      overlay: hidden;
-    }
-    .chat-list .active {
-      background: #ebebeb;
-    }
-
     .chat-list .chat-box:hover {
-      background: #f5f5f5;
-    }
-    .right-container .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .left-container .header h4 {
-        font-size: 1.2em;
-        margin-top: 5px;
-        margin-left:50px;
-        color:white;
-
-    }
-
-    .right-container .header .img-text {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-    }
-
-    .right-container .header .img-text h4 {
-      font-weight: 500;
-      line-height: 1.2em;
-      margin-left: 15px;
-      color:white;
-      font-weight: bold;
-
+      background: #e2f9ff;
     }
     .chat-container {
       position:relative;
@@ -176,12 +124,14 @@
       padding: 50px;
       overflow-y: auto;
     }
+    .chat-container::-webkit-scrollbar {
+      display: none;
+    }
     .message-box {
       position: relative;
       width: 100%;
       margin: 5px 0;
     }
-
     .message-box p {
       position: relative;
       max-width: 68%;
@@ -193,13 +143,13 @@
     /* Additional styles for my-message and friend-message */
     .my-message p {
       text-align: right;
-      background: #ff6f31ef;
+      background: #f1f0f0;
       margin-left: auto; /* Push messages to the right */
     }
 
     .friend-message p {
       text-align: left;
-      background: #fff;
+      background: #e2f9ff;
       margin-right:left;
 
     }
@@ -215,12 +165,12 @@
 
     .my-message p::before {
       right: -13px;
-      background: linear-gradient(135deg, #ff6f31ef 0%, #ff6f31ef 50%, transparent 50%, transparent);
+      background: linear-gradient(135deg, #f1f0f0 0%, #f1f0f0 50%, transparent 50%, transparent);
     }
 
     .friend-message p::before {
       left: -12px;
-      background: linear-gradient(225deg, #fff 0%, #fff 50%, transparent 50%, transparent);
+      background: linear-gradient(225deg, #e2f9ff 0%, #e2f9ff 50%, transparent 50%, transparent);
     }
 
     .my-message p span,
@@ -229,4 +179,111 @@
       margin-top: 5px;
       font-size: 0.8em;
       opacity: 0.5;
+    }
+    /* =============== Navigation ================ */
+    .container {
+      position: relative;
+      width: 100%;
+  }
+    .navigation {
+      position: fixed;
+      width: 300px;
+      height: 100%;
+      background: #164267;
+      border-left: 10px solid #164267;
+      transition: 0.5s;
+      overflow: hidden;
+      z-index: 10;
+    }
+    .navigation.active {
+      width: 80px;
+    }
+    .navigation ul {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+    .navigation ul li {
+      position: relative;
+      width: 100%;
+      list-style: none;
+      border-top-left-radius: 50px;
+      border-bottom-left-radius: 50px;
+    }
+    .navigation ul li:hover,
+    .navigation ul li.hovered {
+      background-color: #ffff;
+    }
+    .navigation ul li:nth-child(1) {
+      margin-bottom: 40px;
+      pointer-events: none;
+    }
+    .navigation ul li a {
+      position: relative;
+      display: block;
+      width: 100%;
+      display: flex;
+      text-decoration: none;
+      color: #ffff;
+    }
+    .navigation ul li:hover a,
+    .navigation ul li.hovered a {
+      color: #164267;
+    }
+    .navigation ul li a .icon {
+      position: relative;
+      display: block;
+      min-width: 60px;
+      height: 60px;
+      line-height: 75px;
+      text-align: center;
+    }
+    .navigation ul li a .icon ion-icon {
+      font-size: 1.75rem;
+    }
+
+    .navigation ul li a .title {
+      position: relative;
+      display: block;
+      padding: 0 10px;
+      height: 60px;
+      line-height: 60px;
+      text-align: start;
+      white-space: nowrap;
+    }
+    .navigation ul li.active {
+      background-color: white;
+    }
+    .navigation ul li.active .icon {
+      color: #164267;
+    }
+    .navigation ul li.active .title {
+      color: #164267;
+    }
+    .navigation ul li.active {
+      background-color: #97B4D7;
+    }
+    .navigation ul li.active .icon {
+      color: #164267;
+    }
+    .navigation ul li.active .title {
+      color: #164267;
+    }
+    .navigation ul li.active:hover,
+    .navigation ul li.active.hovered {
+      background-color: #97B4D7;
+    }
+    
+    .navigation ul li.active:hover a,
+    .navigation ul li.active.hovered a {
+      color: #164267;
+    }
+    
+    /* Remove hover effect for the active item */
+    .navigation ul li.active:hover a::before,
+    .navigation ul li.active.hovered a::before,
+    .navigation ul li.active:hover a::after,
+    .navigation ul li.active.hovered a::after {
+      content: none;
     }
