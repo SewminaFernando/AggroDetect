@@ -112,6 +112,7 @@ function sendAudioToFlask(blob) {
       if (data.status === "route") {
         document.getElementById('aggro').textContent = data.overall_sentiment;
         document.getElementById('agent').textContent = data.agent_name;
+        document.getElementById('position').textContent = data.position;
       }
     }
   })
@@ -126,6 +127,7 @@ startConvButton.addEventListener('click', () => {
   document.getElementById('aggro').textContent = "";
   document.getElementById('agent').textContent = "";
   document.getElementById('department').textContent = "";
+  document.getElementById('position').textContent = "";
   const chatBox = document.getElementById('chat-box');
   chatBox.innerHTML = '<div class="message sender">Thank you for calling us, How can I help you?</div>';
   
