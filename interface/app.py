@@ -24,7 +24,7 @@ def sign_out():
 
 @app.route('/analytics')
 def analytics():
-    return render_template('analytics.html')
+    return render_template('analytics.html',active_page='analytics')
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -47,7 +47,7 @@ def login():
 
 @app.route('/dashboard')
 def dashboard():
-    return render_template('dashboard.html')
+    return render_template('dashboard.html', active_page='dashboard')
 
 # Create a list to store the conversation
 old_conv = []
@@ -182,7 +182,7 @@ def index():
     # Convert data to conversation format
     conversation_dict = convert_to_conversation_dict(users_data)
     # Pass conversation_dict to the HTML template
-    return render_template('interface.html', conversation_dict = (conversation_dict))
+    return render_template('interface.html', conversation_dict = (conversation_dict),active_page='chat_history')
 
 if __name__ == '__main__':
     app.run(debug=True)
