@@ -7,7 +7,6 @@ stories:
   - intent: dataPackagers
   - action: utter_dataPackagers
   - intent: thanks
-  - action: utter_thanks
   - action: utter_ask_for_further_queries
 
 - story: unexpected-affirm
@@ -41,18 +40,20 @@ stories:
   - action: action_utter_goodbye
 
 
-# - story: User dirct to an agent
-#   steps:
-#   - intent: greet
-#   - action: utter_greet
-#   - or:
-#     - intent: Report_complaints_again
-#     - intent: describe_other_issues
-#     - intent: technical_support
-#   - action: utter_dirct_to_an_agent
-#   - action: action_utter_goodbye
+- story: User dirct to an agent
+  steps:
+  - intent: Report_complaints_again
+  - action: utter_dirct_to_an_agent
 
+- story: User dirct to an agent
+  steps:
+  - intent: describe_other_issues
+  - action: utter_dirct_to_an_agent
 
+- story: User dirct to an agent
+  steps:
+  - intent: technical_support
+  - action: utter_dirct_to_an_agent
 
 - story: dirct to an agent- deny
   steps:
@@ -77,6 +78,9 @@ stories:
   steps:
   - intent: ask_bill_details
   - action: utter_provide_billing_details
+  - or:
+    - intent: affirm
+    - intent: thanks
   - action: utter_ask_for_further_queries
   - or:
     - intent: deny
@@ -117,6 +121,9 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: action_save_Report_full
+  - or:
+    - intent: affirm
+    - intent: thanks
   - action: utter_ask_for_further_queries
   - or:
     - intent: deny
@@ -165,6 +172,9 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: action_save_Report_full
+  - or:
+    - intent: affirm
+    - intent: thanks
   - action: utter_ask_for_further_queries
   - intent: deny
   - action: action_utter_goodbye
@@ -213,6 +223,9 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: action_save_Report_full
+  - or:
+    - intent: affirm
+    - intent: thanks
   - action: utter_ask_for_further_queries
   - intent: affirm
   - action: utter_dirct_to_an_agent
@@ -260,6 +273,9 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: action_save_Report_full
+  - or:
+    - intent: affirm
+    - intent: thanks
   - action: utter_ask_for_further_queries
   - intent: affirm
   - action: utter_dirct_to_an_agent
@@ -309,6 +325,9 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: action_save_Report_full
+  - or:
+    - intent: affirm
+    - intent: thanks
   - action: utter_ask_for_further_queries
   - intent: affirm
   - action: utter_dirct_to_an_agent
@@ -375,6 +394,9 @@ stories:
   - slot_was_set:
     - requested_slot: null
   - action: utter_disturb_form
+  - or:
+    - intent: affirm
+    - intent: unexpected
   - action: utter_dirct_to_an_agent
 
 
@@ -482,7 +504,6 @@ stories:
   - slot_was_set:
     - requested_slot: null
   - action: utter_wrong_complain
-  - action: utter_disturb_form
 
 
 - story: interactive_story_14
@@ -514,8 +535,7 @@ stories:
   - slot_was_set:
     - requested_slot: null
   - action: utter_wrong_complain
-  - action: utter_disturb_form
-  - action: utter_dirct_to_an_agent
+
 
 - story: interactive_story_15
   steps:
@@ -535,7 +555,6 @@ stories:
   - active_loop: null
   - slot_was_set:
     - requested_slot: null
-  - action: utter_disturb_form
   - action: utter_dirct_to_an_agent
 
 - story: interactive_story_16
@@ -553,6 +572,7 @@ stories:
   - slot_was_set:
     - requested_slot: null
   - action: utter_disturb_form
+  - intent: affirm
   - action: utter_dirct_to_an_agent
 
 

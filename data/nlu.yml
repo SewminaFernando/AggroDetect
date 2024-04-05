@@ -3,25 +3,25 @@ nlu:
 - intent: say_phoneNumber
   examples: |
     - Oh, yeah, [2875 436](phoneNumber)
-    - This is regarding my phone number [2875 436](phoneNumber)
-    - my contact number is [077713424](phoneNumber)
-    - I do is [0112540233](phoneNumber)
+    - This is regarding my phone number [281 753 436](phoneNumber)
+    - my contact number is [077-713-424](phoneNumber)
+    - I do is [011-254-0233](phoneNumber)
     - Phone number is [033 2222 157](phoneNumber)
-    - okay, it's [0782540233](phoneNumber)
-    - my phone number is [0382250162](phoneNumber)
-    - ok its [29343232323](phoneNumber)
-    - okey, [20012342345](phoneNumber)
-    - [234223231](phoneNumber)
-    - [38299482920388](phoneNumber)   
-    - my phone number is [20220465](phoneNumber)
-    - sorry its [0382250162](phoneNumber)
+    - okay, it's [078 254 0233](phoneNumber)
+    - my phone number is [038 225 0162](phoneNumber)
+    - ok its [293 432 32323](phoneNumber)
+    - okey, [200-234-2345](phoneNumber)
+    - [234-223-5231](phoneNumber)
+    - [382 994 829 20388](phoneNumber)   
+    - my phone number is [202-204-6765](phoneNumber)
+    - sorry its [038 225 0162](phoneNumber)
 - intent: say_name
   examples: |
     - okay, i'll tell you my name. its [chulanjana pabasara](name)
     - Oh, yeah, [Lynn](name)
     - [PYDD silver](name).
     - yeah its [zukzi sali](name)
-    - I am [Manjula disanayeke](name), my contact number is [077713424](phoneNumber)
+    - I am [Manjula disanayeke](name), my contact number is [077 712 3424](phoneNumber)
     - it registerd on my name, [kasun kalhara](name)
     - My name [gihan bandara](name)
     - [sumathipala de soiza](name)
@@ -62,7 +62,7 @@ nlu:
     - there's nothing, but the only thing is that the four or five lights are lighting, but about two lights are not lighting
     - my router is working properly
     - My phone is not working properly.
-    - This is regarding my phone number [2875 436](phoneNumber), it's not working.
+    - This is regarding my phone number [24 8754 3678](phoneNumber), it's not working.
     - our landline is not working now, it's empty.
     - One is that this phone is very noisy
     - Only the voice line that's getting noisy

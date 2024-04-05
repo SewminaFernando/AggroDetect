@@ -34,5 +34,4 @@ rules:
     - slot_was_set:
         - requested_slot: null
     - action: action_save_Report_full
-    - action: utter_ask_for_further_queries
 
