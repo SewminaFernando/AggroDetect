@@ -55,20 +55,14 @@ department = ""
 
 def overall_sentiment():
     global old_conv
-    text_agg_count = 0
-    voice_agg_count = 0
-    for conv in old_conv:
-        if conv['agg_text'] == 'Aggressive':
-            text_agg_count += 1
-        elif conv['agg_text'] == 'Aggressive':
-            voice_agg_count += 1
-
-    if text_agg_count > voice_agg_count:
-        return 'Aggressive'
-    elif voice_agg_count > text_agg_count:
-        return 'Aggressive'
+    # Get the last response from the conversation
+    agg_voice, agg_text = old_conv[-1]["agg_voice"], old_conv[-1]["agg_text"]
+    if agg_voice == "Aggressive" or agg_text == "Aggressive":
+        return "Aggressive"
+    elif agg_voice == "Non-Aggressive" and agg_text == "Non-Aggressive":
+        return "Non-Aggressive"
     else:
-        return 'Neutral'
+        return "Neutral"
     
 def agent_name():
     # Get the agent name from the database
@@ -92,13 +86,14 @@ def end_conversation():
     # clear all files in the uploads folder
     for file in os.listdir('uploads'):
         os.remove(os.path.join('uploads', file))
-    agent_name = "Agent 1"
-    overall_sentiment = "Neutral"
+    # Overall sentiment of the conversation
+    overall_sent = overall_sentiment()
     # Save the conversation to the database
+    firebase_datastore('', set_firebase_dictionary(), department=department)
     # Clear the conversation list
     old_conv.clear()
-    return jsonify({'agent_name': agent_name, 'overall_sentiment': overall_sentiment})
-    
+    return jsonify({'overall_sentiment': overall_sent})
+
 @app.route('/uploads/<path:filename>')
 def download_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename, as_attachment=False)
