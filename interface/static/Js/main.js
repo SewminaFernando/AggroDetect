@@ -1,4 +1,7 @@
 const recordBtn = document.getElementById('record-btn');
+const startConvButton = document.getElementById('startConvButton');
+const endConvButton = document.getElementById('endConvButton');
+const chatContainer = document.getElementById('chatContainer');
 
 let mediaRecorder;
 let audioChunks = [];
@@ -7,18 +10,17 @@ recordBtn.addEventListener('mousedown', startRecording);
 recordBtn.addEventListener('mouseup', stopRecording);
 
 function startRecording() {
-
-navigator.mediaDevices.getUserMedia({ audio: true })
-    .then(stream => {
-    mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm' });
-    mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
-    mediaRecorder.start();
-    })
-    .catch(err => console.error(err));
+  navigator.mediaDevices.getUserMedia({ audio: true })
+      .then(stream => {
+      mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm' });
+      mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
+      mediaRecorder.start();
+      })
+      .catch(err => console.error(err));
 }
 
 function stopRecording() {
-if (mediaRecorder) {
+  if (mediaRecorder) {
     mediaRecorder.stop();
 
     mediaRecorder.onstop = () => {
@@ -29,13 +31,13 @@ if (mediaRecorder) {
   }
 }
 
-  function sendAudioToFlask(blob) {
-    const formData = new FormData();
-    formData.append('audio', blob, 'audio.webm');
+function sendAudioToFlask(blob) {
+  const formData = new FormData();
+  formData.append('audio', blob, 'audio.webm');
 
-    fetch('/record', {
-        method: 'POST',
-        body: formData
+  fetch('/record', {
+      method: 'POST',
+      body: formData
   })
   .then(response => {
       if (response.ok) {
@@ -45,64 +47,76 @@ if (mediaRecorder) {
       }
   })
   .then(data => {
-
-  // Parse transcript as an array of objects
-  const output = data.transcript.map(item => {
+    // Parse transcript as an array of objects
+    const output = data.transcript.map(item => {
       return {
           user_messagee: item.user_messagee,
           agg_voice: item.agg_voice,
           agg_text: item.agg_text,
           resp: item.resp
       };
-  });
+    });
 
-  const chatBox = document.getElementById('chat-box');
-  chatBox.innerHTML = '<div class="message sender">Thank you for calling us, How can I help you?</div>';
+    const chatBox = document.getElementById('chat-box');
+    chatBox.innerHTML = '<div class="message sender">Thank you for calling us, How can I help you?</div>';
 
-  // Update transcript content
-  output.forEach((item, index) => {
-      const messageElement = document.createElement('div');
-      messageElement.classList.add('message', 'receiver');
+    // Update transcript content
+    output.forEach((item, index) => {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message', 'receiver');
 
-      const userMessageElement = document.createElement('div');
-      userMessageElement.classList.add('user-message');
-      userMessageElement.textContent = item.user_messagee;
-      messageElement.appendChild(userMessageElement);
+        const userMessageElement = document.createElement('div');
+        userMessageElement.classList.add('user-message');
+        userMessageElement.textContent = item.user_messagee;
+        messageElement.appendChild(userMessageElement);
 
-      const aggTextElement = document.createElement('div');
-      aggTextElement.classList.add('agg-text');
-      aggTextElement.textContent = `Agg Text: ${item.agg_text}`;
+        const aggTextElement = document.createElement('div');
+        aggTextElement.classList.add('agg-text');
+        aggTextElement.textContent = `Agg Text: ${item.agg_text}`;
 
-      const aggVoiceElement = document.createElement('div');
-      aggVoiceElement.classList.add('agg-voice');
-      aggVoiceElement.textContent = `Agg Voice: ${item.agg_voice}`;
+        const aggVoiceElement = document.createElement('div');
+        aggVoiceElement.classList.add('agg-voice');
+        aggVoiceElement.textContent = `Agg Voice: ${item.agg_voice}`;
 
-      chatBox.appendChild(messageElement);
-      chatBox.appendChild(aggTextElement);
-      chatBox.appendChild(aggVoiceElement);
+        chatBox.appendChild(messageElement);
+        chatBox.appendChild(aggTextElement);
+        chatBox.appendChild(aggVoiceElement);
 
-      const botMessageElement = document.createElement('div');
-      botMessageElement.classList.add('message', 'sender');
-      botMessageElement.textContent = item.resp;
-      chatBox.appendChild(botMessageElement);
-  });
+        const botMessageElement = document.createElement('div');
+        botMessageElement.classList.add('message', 'sender');
+        botMessageElement.textContent = item.resp;
+        chatBox.appendChild(botMessageElement);
+    });
 
-  // Scroll to the bottom of the chat box
-  chatBox.scrollTop = chatBox.scrollHeight;
+    // Scroll to the bottom of the chat box
+    chatBox.scrollTop = chatBox.scrollHeight;
 
-  // Update department content
-  document.getElementById('department').textContent = data.dep;
+    // Update department content
+    document.getElementById('department').textContent = data.dep;
 
-  // Set source path for audio
-  const audioPlayer = document.getElementById('audioPlayer');
-  audioPlayer.src = `${data.audio_path}`;
-})
-.catch(err => console.error('Error sending audio:', err));
+    // Set source path for audio
+    const audioPlayer = document.getElementById('audioPlayer');
+    audioPlayer.src = `${data.audio_path}`;
+
+    // if data have status
+    if (data.status) {
+      // if data.status is 'end', end the conversation
+      if (data.status === "end") {
+        startConvButton.style.display = 'flex';
+        endConvButton.style.display = 'none';
+        chatContainer.style.display = 'none';
+        document.getElementById('aggro').textContent = data.overall_sentiment;
+      }
+
+      // if data.status is 'route'
+      if (data.status === "route") {
+        document.getElementById('aggro').textContent = data.overall_sentiment;
+        document.getElementById('agent').textContent = data.agent_name;
+      }
+    }
+  })
+  .catch(err => console.error('Error sending audio:', err));
 }
-
-const startConvButton = document.getElementById('startConvButton');
-const endConvButton = document.getElementById('endConvButton');
-const chatContainer = document.getElementById('chatContainer');
 
 startConvButton.addEventListener('click', () => {
   
@@ -137,9 +151,8 @@ endConvButton.addEventListener('click', () => {
     }
   })
   .then(data => {
-    if (data) {
+    if (data.overall_sentiment) {
       document.getElementById('aggro').textContent = data.overall_sentiment;
-      document.getElementById('agent').textContent = data.agent_name;
     }
   })
   .catch(err => console.error('Error ending conversation:', err));
