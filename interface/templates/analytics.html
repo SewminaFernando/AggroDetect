@@ -89,42 +89,24 @@
         </div>
     </div>
    <script>
-        // Will be replacing with actual data
-        var data = {
-            labels: ["January", "February", "March", "April", "May","June","July","August","September","October","November","December"],
-            datasets: [
-                {
-                    label: "Aggressive Customers",
-                    fill: false,
-                    borderColor: "red",
-                    data: [20, 44, 50, 24]
-                },
-                {
-                    label: "Non-aggressive Customers",
-                    fill: false,
-                    borderColor: "green",
-                    data: [23, 56, 25, 59]
-                }
-            ]
-        };
+        var chartData = {{ chart_data | tojson }};
 
-        var options = {
-    scales: {
-        y: {
-            beginAtZero: true,
-            suggestedMax: 100, 
-            ticks: {
-                stepSize: 20, 
+        var ctx = document.getElementById("callCenterChart").getContext("2d");
+        var myLineChart = new Chart(ctx, {
+            type: "line",
+            data: chartData,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        suggestedMax: 100,
+                        ticks: {
+                            stepSize: 20
+                        }
+                    }
+                }
             }
-        }
-    }
-};
-	var ctx = document.getElementById("callCenterChart").getContext("2d");
-var myLineChart = new Chart(ctx, {
-    type: "line",
-    data: data,
-    options: options
-});			
+        });
 		var aggCustomers = 50;
 		var nonCustomers = 30;
 

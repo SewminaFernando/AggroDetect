@@ -4,6 +4,8 @@ from save_report import firebase_datastore, read_users_data_from_firebase, conve
 from model_pipeline import agg_by_voice, agg_by_text, department_by_text, text_to_speech, transcribe_audio, chat
 import sqlite3
 import os
+import datetime
+from calendar import month_name
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads'
@@ -24,7 +26,42 @@ def sign_out():
 
 @app.route('/analytics')
 def analytics():
-    return render_template('analytics.html',active_page='analytics')
+    conn = sqlite3.connect('Database/AggroDetect.db')
+    cursor = conn.cursor()
+
+    # Retrieve unique sorted months from the database
+    cursor.execute("SELECT DISTINCT month AS month FROM Analytics ORDER BY month")
+    months_data = cursor.fetchall()
+
+    # Extract and sort unique months
+    month_map = {month_name[i]: i for i in range(1, 13)}
+    labels = sorted([row[0] for row in months_data], key=lambda x: month_map[x])
+
+    # Prepare data for the chart
+    datasets = [
+        {"label": "Aggressive Customers", "fill": False, "borderColor": "red", "data": [0] * len(labels)},
+        {"label": "Non-aggressive Customers", "fill": False, "borderColor": "green", "data": [0] * len(labels)},
+        {"label": "Neutral Customers", "fill": False, "borderColor": "blue", "data": [0] * len(labels)}
+    ]
+
+    # Retrieve sentiment counts for each month
+    cursor.execute("SELECT month AS month, SUM(CASE WHEN sentiment = 'Aggressive' THEN 1 ELSE 0 END) AS aggressive, SUM(CASE WHEN sentiment = 'Neutral' THEN 1 ELSE 0 END) AS neutral, SUM(CASE WHEN sentiment = 'Non-Aggressive' THEN 1 ELSE 0 END) AS non_aggressive FROM Analytics GROUP BY month ORDER BY month")
+    data = cursor.fetchall()
+
+    for row in data:
+        month_str = row[0]
+        if month_str is not None and month_str in month_map:
+            month_index = month_map[month_str]
+            datasets[0]["data"][labels.index(month_str)] = row[1]  # Aggressive count
+            datasets[1]["data"][labels.index(month_str)] = row[3]  # Non-aggressive count
+            datasets[2]["data"][labels.index(month_str)] = row[2]  # Neutral count
+
+    chart_data = {"labels": labels, "datasets": datasets}
+
+    conn.close()
+
+    return render_template('analytics.html', active_page='analytics', chart_data=chart_data)
+
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -57,7 +94,7 @@ def overall_sentiment():
     global old_conv
     # Get the last response from the conversation
     agg_voice, agg_text = old_conv[-1]["agg_voice"], old_conv[-1]["agg_text"]
-    if agg_voice == "Aggressive" or agg_text == "Aggressive":
+    if agg_voice == "Aggressive" and agg_text == "Aggressive":
         return "Aggressive"
     elif agg_voice == "Non-Aggressive" and agg_text == "Non-Aggressive":
         return "Non-Aggressive"
@@ -84,6 +121,18 @@ def agent_name(sentiment,department):
     else:
         return None, None
 
+def save_analytics(sentiment):
+    # Get date and time together
+    now = datetime.datetime.now()
+    # Get month only
+    month = now.strftime("%B")
+    # Get year only
+    year = now.strftime("%Y")
+    conn = sqlite3.connect('Database/AggroDetect.db')
+    c = conn.cursor()
+    c.execute('INSERT INTO Analytics (id, month, year, sentiment) VALUES (?,?,?,?)', (now, month, year, sentiment))
+    conn.commit()
+    conn.close()
 
 def set_firebase_dictionary():
     global old_conv
@@ -105,6 +154,8 @@ def end_conversation():
         os.remove(os.path.join('uploads', file))
     # Overall sentiment of the conversation
     overall_sent = overall_sentiment()
+    # Pass overall sentiment to the database
+    save_analytics(overall_sent)
     # Save the conversation to the database
     firebase_datastore('', set_firebase_dictionary(), department=department)
     # Clear the conversation list
@@ -164,6 +215,8 @@ def receive_audio():
         firebase_datastore('', set_firebase_dictionary(), department=department)
         # Overall sentiment of the conversation
         overall_sent = overall_sentiment()
+        # Pass overall sentiment to the database
+        save_analytics(overall_sent)
         # Save temporary conversation list
         temp_conv = old_conv
         # Clear the conversation list
@@ -175,14 +228,12 @@ def receive_audio():
         first_time = True
         # Overall sentiment of the conversation
         overall_sent = overall_sentiment()
+        # Pass overall sentiment to the database
+        save_analytics(overall_sent)
         # Agent name
         agentName, position = agent_name(overall_sent,department)
-        # Save temporary conversation list
-        temp_conv = old_conv
-        # Clear the conversation list
-        old_conv.clear()
 
-        return jsonify({'transcript': temp_conv, 'audio_path': audio_path, 'dep':department, 'overall_sentiment': overall_sent, 'agent_name':agentName, 'position':position, 'status': "route"})
+        return jsonify({'transcript': old_conv, 'audio_path': audio_path, 'dep':department, 'overall_sentiment': overall_sent, 'agent_name':agentName, 'position':position, 'status': "route"})
 
     return jsonify({'transcript': old_conv, 'audio_path': audio_path, "dep":department})
 
