@@ -64,9 +64,26 @@ def overall_sentiment():
     else:
         return "Neutral"
     
-def agent_name():
-    # Get the agent name from the database
-    pass
+def agent_name(sentiment,department):
+    if sentiment == "Aggressive":
+        skillLevel = 1
+    elif sentiment == "Non-Aggressive":
+        skillLevel = 3
+    else:
+        skillLevel = 2
+    conn = sqlite3.connect('Database/AggroDetect.db')
+    c = conn.cursor()
+    c.execute('SELECT firstName,lastName,position FROM AgentDetails WHERE department = ? AND skillLevel = ?', (department, skillLevel))
+    result = c.fetchone()
+    conn.close()
+    if result:
+        firstName, lastName, position = result
+        name = f"{firstName} {lastName}"
+        print(name,position)
+        return name, position
+    else:
+        return None, None
+
 
 def set_firebase_dictionary():
     global old_conv
@@ -159,13 +176,13 @@ def receive_audio():
         # Overall sentiment of the conversation
         overall_sent = overall_sentiment()
         # Agent name
-        agent_name = "agent_name()"
+        agentName, position = agent_name(overall_sent,department)
         # Save temporary conversation list
         temp_conv = old_conv
         # Clear the conversation list
         old_conv.clear()
 
-        return jsonify({'transcript': temp_conv, 'audio_path': audio_path, 'dep':department, 'overall_sentiment': overall_sent, 'agent_name':agent_name, 'status': "route"})
+        return jsonify({'transcript': temp_conv, 'audio_path': audio_path, 'dep':department, 'overall_sentiment': overall_sent, 'agent_name':agentName, 'position':position, 'status': "route"})
 
     return jsonify({'transcript': old_conv, 'audio_path': audio_path, "dep":department})
 
