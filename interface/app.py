@@ -131,7 +131,7 @@ def receive_audio():
         dep_text = department_by_text(transcript)
         department = dep_text
         first_time = False
-    response, end_conv = chat(transcript)
+    response, conversation = chat(transcript)
 
     audio_path="../"+text_to_speech(response)
 
@@ -146,10 +146,34 @@ def receive_audio():
     # append the dictionary to the list
     old_conv.append(dictionary)
 
-    if end_conv:
+    if conversation == "end":
+        first_time = True
+        # Save the conversation to the database
         firebase_datastore('', set_firebase_dictionary(), department=department)
+        # Overall sentiment of the conversation
+        overall_sent = overall_sentiment()
+        # Save temporary conversation list
+        temp_conv = old_conv
+        # Clear the conversation list
+        old_conv.clear()
+
+        return jsonify({'transcript': temp_conv, 'audio_path': audio_path, 'dep':department, 'overall_sentiment': overall_sent, 'status': "end"})
+    
+    if conversation == "route":
+        first_time = True
+        # Overall sentiment of the conversation
+        overall_sent = overall_sentiment()
+        # Agent name
+        agent_name = "agent_name()"
+        # Save temporary conversation list
+        temp_conv = old_conv
+        # Clear the conversation list
+        old_conv.clear()
+
+        return jsonify({'transcript': temp_conv, 'audio_path': audio_path, 'dep':department, 'overall_sentiment': overall_sent, 'agent_name':agent_name, 'status': "route"})
 
     return jsonify({'transcript': old_conv, 'audio_path': audio_path, "dep":department})
+
 
 @app.route('/chat_history')
 def index():

@@ -95,9 +95,9 @@ def apply_noise_reduction(input_path, output_path):
 def convert_webm_to_wav(input_file):
 
     audio = AudioSegment.from_file(input_file, format="webm")
-    audio.export("uploads\\audio.wav", format="wav")
+    audio.export(r"uploads\audio.wav", format="wav")
     # Noice reduction
-    apply_noise_reduction("uploads\\audio.wav", "uploads\\n_audio.wav")
+    apply_noise_reduction(r"uploads\audio.wav", r"uploads\n_audio.wav")
 
 
 def transcribe_audio(audio_file):
@@ -114,7 +114,7 @@ def transcribe_audio(audio_file):
                     organization=os.environ.get("WHISPER_ORG")
                 )
 
-        audio = open("uploads\\recorded_audio.webm", "rb")
+        audio = open(r"uploads\recorded_audio.webm", "rb")
 
         transcript = client.audio.transcriptions.create(
             model="whisper-1", 
@@ -124,7 +124,7 @@ def transcribe_audio(audio_file):
         
     except Exception as e:
         # Load audio file
-        with sr.AudioFile("uploads\\n_audio.wav") as source:
+        with sr.AudioFile(r"uploads\n_audio.wav") as source:
             audio = recog.record(source)
         # Use default speech recognition if API key is not working
         transcript = recog.recognize_whisper(audio)
@@ -137,13 +137,13 @@ def text_to_speech(text):
     # speed
     engine.setProperty('rate', 150)
     # set directory
-    directory = 'uploads\\output'+str(count)+'.mp3'
+    directory = r'uploads\output'+str(count)+'.mp3'
     # save to file
     engine.save_to_file(text, directory)
     engine.runAndWait()
 
     if count >= 1:
-        os.remove('uploads\\output'+str(count-1)+'.mp3')
+        os.remove(r'uploads\output'+str(count-1)+'.mp3')
 
     count += 1
 
@@ -152,23 +152,26 @@ def text_to_speech(text):
 def chat(user_message):
     rasa_response = send_message_to_rasa(user_message)
     # Check if the response from Rasa is not empty and contains 'text'
+
     if rasa_response and isinstance(rasa_response, list):
-        if 'False' in rasa_response[0]['custom']['triggered']:
-            bot_response = rasa_response[0]['custom']['text']
-            return bot_response, True
-        if 'True' in rasa_response[0]['custom']['triggered']:
-            bot_response = rasa_response[0]['custom']['text']
-            print("HI")  # put here agent routing code or call the method
-            return bot_response, True
+        if 'custom' in rasa_response[0]:
+            if 'False' in rasa_response[0]['custom']['triggered']:
+                bot_response = rasa_response[0]['custom']['text']
+                return bot_response, 'end'
+            if 'True' in rasa_response[0]['custom']['triggered']:
+                bot_response = rasa_response[0]['custom']['text']
+                print("HI")  # put here agent routing code or call the method
+                return bot_response, 'route'
         else:
+        
             bot_response = rasa_response[0]['text']
 
-            return bot_response, False
+            return bot_response, 'not_end'
 
     else:
         bot_response = "sorry, I didn't get that. Can you please repeat?"
 
-        return bot_response, False
+        return bot_response, 'not_end'
 
 
 def send_message_to_rasa(message):
