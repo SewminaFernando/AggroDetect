@@ -63,19 +63,25 @@
 
     <div class="dashboard-container">
         <div class="chart">
-            <h4>Call Center Statistics</h4>
+            <h3>Call Center Statistics</h3>
             <canvas id="callCenterChart" style="width: 100%; height: 100%;"></canvas>
         </div>
 
         <div class="Agg">
-		   
-		    
-            <h2>Total Aggressive Customers</h2><br><br><br>
+            <h2>Aggressive Customers</h2>
+            <span class="month">{{ chart_data.current_month }} Month</span><br><br>
             <p>Placeholder for aggregated data...</p>
         </div>
 
         <div class="Non">
-            <h2>Total Non-Aggressive Customers</h2><br><br><br>
+            <h2>Non-Aggressive Customers</h2>
+            <span class="month">{{ chart_data.current_month }} Month</span><br><br>
+            <p>Placeholder for non-aggregated data...</p>
+        </div>
+
+        <div class="Neu">
+            <h2>Neutral Customers</h2>
+            <span class="month">{{ chart_data.current_month }} Month</span><br><br>
             <p>Placeholder for non-aggregated data...</p>
         </div>
     </div>
@@ -95,15 +101,34 @@
                             stepSize: 20
                         }
                     }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            // Change legend colors here
+                            usePointStyle: true,
+                            pointStyle: 'rectRounded',
+                            generateLabels: function(chart) {
+                                var labels = Chart.defaults.plugins.legend.labels.generateLabels(chart);
+                                labels.forEach(function(label) {
+                                    label.fillStyle = label.strokeStyle;
+                                    label.strokeStyle = 'rgba(0, 0, 0, 0)';
+                                });
+                                return labels;
+                            }
+                        }
+                    }
                 }
             }
         });
-		var aggCustomers = 50;
-		var nonCustomers = 30;
 
-		
-		document.querySelector('.Agg p').innerHTML = '' + aggCustomers;
-		document.querySelector('.Non p').innerHTML = '' + nonCustomers;
+		var aggCustomers = chartData.aggCustomers;
+        var nonCustomers = chartData.nonCustomers;
+        var neuCustomers = chartData.neuCustomers;
+
+        document.querySelector('.Agg p').innerHTML = '' + aggCustomers;
+        document.querySelector('.Non p').innerHTML = '' + nonCustomers;
+        document.querySelector('.Neu p').innerHTML = '' + neuCustomers;
 
     </script>
 </body>

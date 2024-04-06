@@ -324,5 +324,185 @@ body{
 .record-button:active {
   background-color: #000000;
 }
+/* Media Queries */
+@media only screen and (max-width: 1025px) {
+  .navigation {
+    width: 200px;
+  }
+  .navigation.active {
+    width: 40px;
+  }
+  .navigation ul li {
+    margin-bottom: 30px;
+  }
+  .navigation ul li a .icon ion-icon {
+    font-size: 1.5rem;
+  }
+  .navigation ul li a .logo {
+    margin-left: 28px;
+    font-size: large;
+  }
+  .cardBox {
+    margin-left: 250px ;
+    width: 700px;
+  }
+  
+  .cardBox .card .numbers {
+    font-size: 2rem;
+  }
+  
+  .cardBox .card .cardName {
+    font-size: 1.5rem;
+    margin-top: 3px;
+  }
+  
+  .cardBox .card .iconBx {
+    font-size: 3.5rem;
+  }
+  .chat-container {
+    width: 700px;
+    max-width: 700px;
+    right: 65px;
+    bottom: 30px;
+    margin-top: 680px;
+  }
+  
+  .chat-header {
+    width: 700px;
+  }
+  
+  .chat-header h2 {
+    margin: 0;
+  }
+  
+  .chat-box {
+    width: 700px;
+  }
+}
+@media only screen and (max-width: 769px) {
+  .navigation {
+    width: 180px;
+  }
+  .navigation.active {
+    width: 35px;
+  }
+  .navigation ul li {
+    margin-bottom: 30px;
+  }
+  .navigation ul li a .icon ion-icon {
+    font-size: 1.3rem;
+  }
+  .navigation ul li a .logo {
+    margin-left: 15px;
+    font-size: large;
+  }
+  .navigation ul li a .title{
+    font-size: 15px;
+  }
+  .cardBox {
+    margin-left: 200px ;
+    margin-right: 40px;
+    width: 550px;
+  }
+  .cardBox .card{
+    margin-top: 20px;
+  }
+  .cardBox .card .numbers {
+    font-size: 1.7rem;
+  }
+  
+  .cardBox .card .cardName {
+    font-size: 1rem;
+    margin-top: 3px;
+  }
+  
+  .cardBox .card .iconBx {
+    font-size: 2.5rem;
+  }
+  .chat-container {
+    width: 550px;
+    max-width: 550px;
+    height: 500px;
+    right: 25px;
+    bottom: 30px;
+    margin-top: 400px;
+  }
+  
+  .chat-header {
+    width: 550px;
+  }
+  
+  .chat-header h2 {
+    margin: 0;
+  }
+  
+  .chat-box {
+    height: 400px;
+    width: 550px;
+  }
+}
+@media only screen and (max-width: 731px) {
+  .navigation {
+    width: 150px;
+  }
+  .navigation.active {
+    width: 40px;
+  }
+  .navigation ul li {
+    margin-bottom: 40px;
+  }
+  .navigation ul li a .icon ion-icon {
+    font-size: 1.1rem;
+  }
+  .navigation ul li a .logo {
+    margin-left: 10px;
+    font-size: medium;
+  }
+  .navigation ul li a .title{
+    font-size: 12px;
+    padding-left: 0px;
+  }
+  .cardBox {
+    margin-left: 160px ;
+    margin-right: 20px;
+    width: 350px;
+  }
+  .cardBox .card{
+    margin-top: 20px;
+  }
+  .cardBox .card .numbers {
+    font-size: 1.5rem;
+  }
+  
+  .cardBox .card .cardName {
+    font-size: 0.8rem;
+    margin-top: 3px;
+  }
+  
+  .cardBox .card .iconBx {
+    font-size: 2.2rem;
+  }
+  .chat-container {
+    width: 340px;
+    max-width: 340px;
+    height: 550px;
+    right: 10px;
+    bottom: 30px;
+    margin-top: 400px;
+  }
+  
+  .chat-header {
+    width: 340px;
+  }
+  
+  .chat-header h2 {
+    margin: 0;
+  }
+  
+  .chat-box {
+    height: 450px;
+    width: 340px;
+  }
+}
   
   

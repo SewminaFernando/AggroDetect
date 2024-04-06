@@ -4,7 +4,7 @@ from save_report import firebase_datastore, read_users_data_from_firebase, conve
 from model_pipeline import agg_by_voice, agg_by_text, department_by_text, text_to_speech, transcribe_audio, chat
 import sqlite3
 import os
-import datetime
+from datetime import datetime
 from calendar import month_name
 
 app = Flask(__name__)
@@ -23,6 +23,15 @@ def login_page():
 @app.route('/sign-out')
 def sign_out():
     return redirect(url_for('home'))
+# Route for About section
+@app.route('/about')
+def about():
+    return render_template('home.html', section='about')
+
+# Route for Service section
+@app.route('/service')
+def service():
+    return render_template('home.html', section='service')
 
 @app.route('/analytics')
 def analytics():
@@ -39,9 +48,9 @@ def analytics():
 
     # Prepare data for the chart
     datasets = [
-        {"label": "Aggressive Customers", "fill": False, "borderColor": "red", "data": [0] * len(labels)},
-        {"label": "Non-aggressive Customers", "fill": False, "borderColor": "green", "data": [0] * len(labels)},
-        {"label": "Neutral Customers", "fill": False, "borderColor": "blue", "data": [0] * len(labels)}
+        {"label": "Aggressive Customers", "fill": False, "borderColor": "#ff6700", "data": [0] * len(labels)},
+        {"label": "Non-aggressive Customers", "fill": False, "borderColor": "#97B4D7", "data": [0] * len(labels)},
+        {"label": "Neutral Customers", "fill": False, "borderColor": "#164267", "data": [0] * len(labels)}
     ]
 
     # Retrieve sentiment counts for each month
@@ -56,7 +65,13 @@ def analytics():
             datasets[1]["data"][labels.index(month_str)] = row[3]  # Non-aggressive count
             datasets[2]["data"][labels.index(month_str)] = row[2]  # Neutral count
 
-    chart_data = {"labels": labels, "datasets": datasets}
+     # Get the current month's data
+    current_month_data = data[0] if data else None
+    aggCustomers = current_month_data[1] if current_month_data else 0
+    nonCustomers = current_month_data[3] if current_month_data else 0
+    neuCustomers = current_month_data[2] if current_month_data else 0
+
+    chart_data = {"labels": labels, "datasets": datasets, "aggCustomers": aggCustomers, "nonCustomers": nonCustomers, "neuCustomers": neuCustomers, "current_month": datetime.now().strftime('%B')}
 
     conn.close()
 
@@ -134,6 +149,32 @@ def save_analytics(sentiment):
     c.execute('INSERT INTO Analytics (id, month, year, sentiment) VALUES (?,?,?,?)', (now, month, year, sentiment))
     conn.commit()
     conn.close()
+
+@app.route('/complaints')
+def complaints():
+    conn = sqlite3.connect('Database/AggroDetect.db')
+    c = conn.cursor()
+    c.execute('SELECT * FROM CustomerComplaints')
+    data = c.fetchall()
+    conn.close()
+    return render_template('complaints.html', data=data)
+
+@app.route('/update', methods=['POST'])
+def update_status():
+    data = request.json
+    id = data.get('id')
+    status = data.get('status')
+    
+    conn = sqlite3.connect('Database/AggroDetect.db')
+    c = conn.cursor()
+    c.execute('UPDATE CustomerComplaints SET Status = ? WHERE Id = ?', (status, id))
+    conn.commit()
+    conn.close()
+    
+    return jsonify({'message': 'Status updated successfully'}), 200
+
+
+
 
 def set_firebase_dictionary():
     global old_conv

@@ -8,18 +8,19 @@
         <title>Home</title>
         <!-- CSS -->
         <link rel="stylesheet" href="{{ url_for('static', filename='CSS/home.css') }}">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
 
     <body>
         <header class="header">
             <!-- Logo -->
-            <a href="#" class="logo">AggroDetect</a>
+            <a href="{{ url_for('home') }}" class="logo">AggroDetect</a>
 
             <!-- Navigation Bar -->
             <nav class="navbar">
-                <a href="#bg-section" >Home</a>
-                <a href="#about">About</a>
-                <a href="#service">Services</a>
+                <a href="{{ url_for('home') }}" >Home</a>
+                <a href="{{ url_for('about') }}">About</a>
+                <a href="{{ url_for('service') }}">Services</a>
                 <a href="{{ url_for('login_page') }}" class="login">LogIn</a>
             </nav>
         </header>
@@ -91,6 +92,17 @@
                 </div>
             </div>
         </section>
+        <script>
+            $(document).ready(function() {
+            var section = '{{ section }}';
+            if (section) {
+                $('html, body').animate({
+                    scrollTop: $('#' + section).offset().top
+                }, 0);
+            }
+        });
+
+        </script>
 
     </body>
 </html>
