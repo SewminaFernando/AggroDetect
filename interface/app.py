@@ -4,7 +4,7 @@ from save_report import firebase_datastore, read_users_data_from_firebase, conve
 from model_pipeline import agg_by_voice, agg_by_text, department_by_text, text_to_speech, transcribe_audio, chat
 import sqlite3
 import os
-import datetime
+from datetime import datetime
 from calendar import month_name
 
 app = Flask(__name__)
@@ -39,9 +39,9 @@ def analytics():
 
     # Prepare data for the chart
     datasets = [
-        {"label": "Aggressive Customers", "fill": False, "borderColor": "red", "data": [0] * len(labels)},
-        {"label": "Non-aggressive Customers", "fill": False, "borderColor": "green", "data": [0] * len(labels)},
-        {"label": "Neutral Customers", "fill": False, "borderColor": "blue", "data": [0] * len(labels)}
+        {"label": "Aggressive Customers", "fill": False, "borderColor": "#ff6700", "data": [0] * len(labels)},
+        {"label": "Non-aggressive Customers", "fill": False, "borderColor": "#97B4D7", "data": [0] * len(labels)},
+        {"label": "Neutral Customers", "fill": False, "borderColor": "#164267", "data": [0] * len(labels)}
     ]
 
     # Retrieve sentiment counts for each month
@@ -56,7 +56,13 @@ def analytics():
             datasets[1]["data"][labels.index(month_str)] = row[3]  # Non-aggressive count
             datasets[2]["data"][labels.index(month_str)] = row[2]  # Neutral count
 
-    chart_data = {"labels": labels, "datasets": datasets}
+     # Get the current month's data
+    current_month_data = data[0] if data else None
+    aggCustomers = current_month_data[1] if current_month_data else 0
+    nonCustomers = current_month_data[3] if current_month_data else 0
+    neuCustomers = current_month_data[2] if current_month_data else 0
+
+    chart_data = {"labels": labels, "datasets": datasets, "aggCustomers": aggCustomers, "nonCustomers": nonCustomers, "neuCustomers": neuCustomers, "current_month": datetime.now().strftime('%B')}
 
     conn.close()
 
