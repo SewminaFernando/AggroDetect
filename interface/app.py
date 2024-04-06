@@ -150,6 +150,32 @@ def save_analytics(sentiment):
     conn.commit()
     conn.close()
 
+@app.route('/complaints')
+def complaints():
+    conn = sqlite3.connect('Database/AggroDetect.db')
+    c = conn.cursor()
+    c.execute('SELECT * FROM CustomerComplaints')
+    data = c.fetchall()
+    conn.close()
+    return render_template('complaints.html', data=data)
+
+@app.route('/update', methods=['POST'])
+def update_status():
+    data = request.json
+    id = data.get('id')
+    status = data.get('status')
+    
+    conn = sqlite3.connect('Database/AggroDetect.db')
+    c = conn.cursor()
+    c.execute('UPDATE CustomerComplaints SET Status = ? WHERE Id = ?', (status, id))
+    conn.commit()
+    conn.close()
+    
+    return jsonify({'message': 'Status updated successfully'}), 200
+
+
+
+
 def set_firebase_dictionary():
     global old_conv
 
