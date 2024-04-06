@@ -7,6 +7,7 @@ from rasa.shared.core.trackers import DialogueStateTracker
 from rasa_sdk import Action, Tracker, FormValidationAction
 from rasa_sdk.executor import CollectingDispatcher
 from interface.save_report import datastore
+from rasa_sdk.events import SlotSet
 
 
 class ActionSaveReportFull(Action):
@@ -20,7 +21,7 @@ class ActionSaveReportFull(Action):
         datastore(tracker.get_slot("name"), tracker.get_slot("phoneNumber"), tracker.get_slot("issue"))
         dispatcher.utter_message(text="Your complaint recorded successfully!.")
 
-        return []
+        return [SlotSet("name", None), SlotSet("phoneNumber", None), SlotSet("issue", None)]
 
 
 class ValidateReportFullInfoForm(FormValidationAction):
