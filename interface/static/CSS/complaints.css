@@ -1,0 +1,124 @@
+@import url("http://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins" , sans-serif;
+}
+body{
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+.complaints-container, .search-container,.head-section h1{
+    margin-left: 310px;
+}
+.head-section h1{
+    padding-top: 10px;
+    text-align: center;
+    color: #164267;
+}
+.search-container{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    margin-right: 15px;
+}
+input.search-input {
+    border: 3px solid #c3cbe1;
+    width: 300px;
+    padding: 10px 20px;
+    background: transparent;
+    font-size: 14px;
+    border-radius:20px;
+    margin-right: 8px;
+}
+.search-btn{
+    background-color: #c3cbe1;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border-color: #c3cbe1;
+    border-style: none;
+}
+.search-container ::placeholder{
+    color: #7291e6;
+}
+ion-icon{
+    font-size: medium;
+    text-align: center;
+    padding-top: 2px;
+
+}
+table {
+    border-spacing: 1; 
+    border-collapse: collapse; 
+    background:white;
+    border-radius:6px;
+    overflow:hidden;
+    width:100%;
+    max-width: 1200px;
+    margin:0 auto;
+    position:relative;
+    
+}
+
+th, td {
+    border: 1px solid #9d9c9c;
+    padding: 8px;
+    text-align: left;
+}
+td{
+    font-size: 12px;
+}
+th {
+    background-color: #164267;
+    text-align: center;
+    color: white;
+}
+/* Style the select element */
+select {
+    appearance: none; 
+    padding: 8px 16px;
+    font-size: 12px;
+    border: 1px solid #c3cbe1;
+    border-radius: 20px; 
+    background-color: #c3cbe1; 
+    color: black; 
+    cursor: pointer; 
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  /* Style the dropdown arrow */
+  select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none; 
+  }
+  
+  /* Style the options */
+  option {
+    padding: 8px 16px; 
+    font-size: 12px; 
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  /* Style the selected option */
+  option:checked {
+    background-color: #c3cbe1; 
+  }
+  
+
+.update-btn {
+    padding: 5px 10px;
+    background-color: #3774a6;
+    color: white;
+    border: none;
+    cursor: pointer;
+}

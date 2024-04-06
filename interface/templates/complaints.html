@@ -1,40 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Customer Complaints</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        select {
-            width: 100%;
-            padding: 5px;
-        }
-
-        .update-btn {
-            padding: 5px 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-    </style>
+    <title>Log of Complaints</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/complaints.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS/dashboard.css') }}">
-     <!-- icons -->
-     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <!-- icons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -93,43 +65,47 @@
             </ul>
         </div>
     </div>
-    <h1>Customer Complaints</h1>
-    <div class="search-container">
-        <input type="text" id="search-input" class="search-input" placeholder="Search">
-        <button onclick="search()">Search</button>
+    <div class="head-section">
+        <h1>Log of Complaints</h1>
+        <div class="search-container">
+            <input type="text" id="search-input" class="search-input" placeholder="Search">
+            <button class="search-btn" onclick="search()"><ion-icon name="search-outline"></ion-icon></button>
+        </div>
     </div>
-    <table>
-        <thead>
-            <tr>
-                <th id="id">Id</th>
-                <th>Date</th>
-                <th>Customer</th>
-                <th>Phone Number</th>
-                <th>Complaint</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for row in data %}
-            <tr>
-                <td>{{ row[0] }}</td>
-                <td>{{ row[1] }}</td>
-                <td>{{ row[2] }}</td>
-                <td>{{ row[3] }}</td>
-                <td>{{ row[4] }}</td>
-                <td>
-                    <select name="status" id="status-{{ row[0] }}">
-                        <option value="Under Review" {% if row[5] == 'Under Review' %} selected {% endif %}>Under Review</option>
-                        <option value="In Progress" {% if row[5] == 'In Progress' %} selected {% endif %}>In Progress</option>
-                        <option value="Done" {% if row[5] == 'Done' %} selected {% endif %}>Done</option>
-                    </select>
-                </td>
-                <td><button class="update-btn" onclick="updateStatus({{ row[0] }})">Update</button></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="complaints-container">
+        <table>
+            <thead>
+                <tr>
+                    <th id="id">Id</th>
+                    <th>Date</th>
+                    <th>Customer</th>
+                    <th>Phone Number</th>
+                    <th>Complaint</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                    <td>{{ row[4] }}</td>
+                    <td>
+                        <select name="status" id="status-{{ row[0] }}">
+                            <option value="Under Review" {% if row[5] == 'Under Review' %} selected {% endif %}>Under Review</option>
+                            <option value="In Progress" {% if row[5] == 'In Progress' %} selected {% endif %}>In Progress</option>
+                            <option value="Done" {% if row[5] == 'Done' %} selected {% endif %}>Done</option>
+                        </select>
+                    </td>
+                    <td><button class="update-btn" onclick="updateStatus({{ row[0] }})">Update</button></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
     <!-- =========== Scripts =========  -->
     <script src="{{ url_for('static', filename='Js/complaints.js') }}"></script>
 </body>
