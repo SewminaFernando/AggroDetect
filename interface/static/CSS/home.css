@@ -199,3 +199,239 @@ header{
     margin-bottom: 8px;
     color: black;
 }
+/* Media Queries */
+@media only screen and (max-width: 1025px) {
+    .about-text p {
+        color: #537FA8;
+        text-align: justify;
+        font-size: 18px;
+    }
+    .service-text {
+        font-size: 32px;
+        text-align: center;
+        width: 100%;
+    }
+    .service-boxes{
+        margin-right: 100px;
+        display: grid;
+        grid-template-columns: auto;
+        z-index: 1; 
+        justify-content: center;  
+    }
+
+    .service-box {
+        width: 400px;
+        height: 405px;
+    }
+
+    .service-img{
+        width: 15px;
+        height: 15px;
+    }
+
+    .service-title {
+        font-size: 20px;
+        margin-top: 5px;
+        text-align: center;
+    }
+    .details{
+        padding: 5px 5px 5px 5px;
+        font-size: 18px;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .logo {
+        font-size: 20px;
+    }
+
+    .navbar a {
+        font-size: 14px;
+        margin-left: 15px;
+    }
+    .bg-section{
+        padding-top: 0px;
+        margin-top: 0px;
+        margin-bottom:40px;
+    }
+    .bg-image { 
+        margin-top: 100px;
+        background-position: center; 
+        height: 400px;
+        z-index: 1; 
+        margin-left: 20px;
+    }
+    
+    .bg-text {
+        font-size: 35px;
+    }
+
+    .bg-text p {
+        padding-bottom: 280px;
+        font-size: 25px;
+    }
+
+    .about {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 25px 50px 15px; 
+        
+    }
+    
+    .about-video {
+        width: 80%; 
+        height: auto; 
+        margin-top: 50px;
+        margin-bottom: 40px;
+        order: 3;
+    }
+    
+    .about-text {
+        width: 100%; 
+        order: 2; 
+        text-align: center; 
+        color: #164267;
+        font-size: 32px;
+        margin-top: 50px;
+        margin-bottom: 10px;
+    }
+    
+    .about-text p {
+        color: #537FA8;
+        text-align: justify;
+        font-size: 20px;
+    }
+
+    .service-text {
+        font-size: 32px;
+        text-align: center;
+        width: 100%;
+    }
+    .service-boxes{
+        margin-right: 100px;
+        display: grid;
+        grid-template-columns: auto;
+        z-index: 1; 
+        justify-content: center;  
+    }
+
+    .service-box {
+        width: 400px;
+        height: 405px;
+    }
+
+    .service-img{
+        width: 15px;
+        height: 15px;
+    }
+
+    .service-title {
+        font-size: 20px;
+        margin-top: 5px;
+        text-align: center;
+    }
+    .details{
+        padding: 5px 5px 5px 5px;
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 431px) {
+    body{
+        min-height: 80vh;
+        background-position: center;
+    }
+    header{
+        padding: 5px 30px;
+    }
+    .logo {
+        font-size: 15px;
+    }
+
+    .navbar a {
+        font-size: 12px;
+        margin-left: 15px;
+    }
+    .login{
+        padding: 2px 9px 2px 9px;
+        font-size: 12px;
+    }
+    .bg-section{
+        padding-top: 0px;
+        margin-top: 0px;
+        margin-bottom:40px;
+    }
+    .bg-image { 
+        background-position: center; 
+        height: 400px;
+        z-index: 1; 
+        margin-left: 20px;
+    }
+    .bg-text {
+        font-size: 28px;
+    }
+    .bg-text p{
+        font-size: 20px;
+        padding-bottom: 130px
+    }
+    .about {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 25px 50px 15px; 
+    }
+    
+    .about-video {
+        width: 100%; 
+        height: auto; 
+        order: 3;
+    }
+    
+    .about-text {
+        width: 100%; 
+        order: 2; 
+        text-align: center; 
+        color: #164267;
+        font-size: 25px;
+        margin-top: 30px;
+    }
+    
+    .about-text p {
+        color: #537FA8;
+        text-align: justify;
+        font-size: 16px;
+    }
+
+    .service-text {
+        font-size: 25px;
+        text-align: center;
+        width: 100%;
+    }
+    .service-boxes{
+        margin-right: 100px;
+        display: grid;
+        grid-template-columns: auto;
+        z-index: 1; 
+        justify-content: center;  
+    }
+
+    .service-box {
+        width: 200px;
+        height: 205px;
+    }
+
+    .service-img{
+        width: 10px;
+        height: 10px;
+    }
+
+    .service-title {
+        font-size: 10px;
+        margin-top: 5px;
+        text-align: center;
+    }
+    .details{
+        padding: 5px 5px 5px 5px;
+        font-size: 10px;
+    }
+}
