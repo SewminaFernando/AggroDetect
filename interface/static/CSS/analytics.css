@@ -100,12 +100,6 @@ header {
 transform: scale(1.03); 
 cursor: pointer; 
 }
-img {
-    width: 140px; 
-    height: auto; 
-
-    
-}
 .Agg p,.Neu p, .Non p {
     font-size: 60px;
     color: black;
@@ -115,11 +109,124 @@ img {
 }
 
 
-@media (max-width: 768px) {
-    .Agg, .Neu, .Non {
-        width: 100%;
+@media only screen and (max-width: 1025px) {
+    body{
+        overflow: hidden;
+    }
+    .dashboard-container {
+        padding-left: 200px;
     }
     
+    .chart {
+        width: 800px; 
+        height: 500px; 
+        margin-bottom: 30px;
+    }
     
+    .Agg, .Neu, .Non {
+        width: 790px ;
+        height: 230px; 
+    }
+    .Agg{
+        margin-left: 60px;
+        background-color: #ffb17e;
+    }
+    .Neu{
+        margin-right: 10px;
+        background-color: #5896c9;
+    }
+    .Non{
+        margin-left: 60px;
+        background-color: #b1cdef;
+    }
+    .month{
+        display: block; 
+        text-align: center; 
+        font-weight: bold; 
     
+    }
+    #callCenterChart {
+        width: 100%;
+        height: 90%;
+        margin-top: -20px; 
+        padding-top: 15px;
+    }
+}
+@media only screen and (max-width: 769px) {
+    body{
+        overflow: hidden;
+    }
+    .dashboard-container {
+        padding-left: 200px;
+    }
+    
+    .chart {
+        width: 720px; 
+        height: 400px; 
+        margin-bottom: 30px;
+        margin-left: 180px;
+    }
+    
+    .Agg, .Neu, .Non {
+        width: 715px ;
+        height: 230px; 
+    }
+    .Agg{
+        margin-left: 240px;
+        background-color: #ffb17e;
+    }
+    .Neu{
+        margin-left: 175px;
+        background-color: #5896c9;
+    }
+    .Non{
+        margin-left: 240px;
+        background-color: #b1cdef;
+    }
+    .month{
+        display: block; 
+        text-align: center; 
+        font-weight: bold; 
+    
+    }
+    #callCenterChart {
+        width: 100%;
+        height: 90%;
+        margin-top: -20px; 
+        padding-top: 15px;
+    }
+}
+@media only screen and (max-width: 431px) {
+    body{
+        overflow: hidden;
+    }
+    .dashboard-container {
+        padding-left: 150px;
+    }
+    
+    .chart {
+        margin-top: 50px;
+        width: 600px; 
+        height: 500px; 
+        margin-bottom: 40px;
+        margin-left: 420px;
+    }
+    
+    .Agg, .Neu, .Non {
+        width: 600px ;
+        height: 200px; 
+        margin-bottom: 50px;
+    }
+    .Agg{
+        margin-left: 470px;
+        background-color: #ffb17e;
+    }
+    .Neu{
+        margin-left: 415px;
+        background-color: #5896c9;
+    }
+    .Non{
+        margin-left: 470px;
+        background-color: #b1cdef;
+    }
 }
