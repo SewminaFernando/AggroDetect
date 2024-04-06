@@ -4,7 +4,7 @@
     padding: 0;
 }
 h2{
-   font-size:3p0x;
+   font-size:18px;
    text-align:Center;
    margin-top:20px;
    }
@@ -12,8 +12,9 @@ h1{
    color:black;
   
    }
-h4{ color:#3944BC;
+h3{ color:#164267;
     font-size:25px;
+    text-align: center;
     }		
 
 body {
@@ -43,7 +44,7 @@ header {
     justify-content: center;
     gap: 10px;
     margin-top: 20px;
-    padding-left: 250px;
+    padding-left: 300px;
 }
 
 .chart {
@@ -60,28 +61,42 @@ header {
     
 }
 
-.Agg, .Non {
-    width: 40%; 
+.Agg, .Neu, .Non {
+    width: 25%; 
     height: 240px; 
-    background-color: #97B4D7;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 20px;
+    padding: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
     transition: transform 0.3s;
 }
 .Agg{
-    margin-right: 60px;
+    margin-right: 75px;
+    background-color: #ffb17e;
+}
+.Neu{
+    background-color: #5896c9;
+}
+.Non{
+    margin-right: 75px;
+    background-color: #b1cdef;
+}
+.month{
+    display: block; 
+    text-align: center; 
+    font-weight: bold; 
+
 }
 #callCenterChart {
     width: 100%;
-    height: 100%;
+    height: 90%;
     margin-top: -20px; 
+    padding-top: 15px;
 }
 
 
-.Agg:hover,.Non:hover {
+.Agg:hover,.Neu:hover, .Non:hover {
 transform: scale(1.03); 
 cursor: pointer; 
 }
@@ -91,8 +106,8 @@ img {
 
     
 }
-.Agg p, .Non p {
-    font-size: 70px;
+.Agg p,.Neu p, .Non p {
+    font-size: 60px;
     color: black;
     text-align:Center;
     margin-top:-35px;
@@ -101,7 +116,7 @@ img {
 
 
 @media (max-width: 768px) {
-    .Agg, .Non {
+    .Agg, .Neu, .Non {
         width: 100%;
     }
     
