@@ -152,12 +152,13 @@ def save_analytics(sentiment):
 
 @app.route('/complaints')
 def complaints():
+    active_page='complaints'
     conn = sqlite3.connect('Database/AggroDetect.db')
     c = conn.cursor()
     c.execute('SELECT * FROM CustomerComplaints')
     data = c.fetchall()
     conn.close()
-    return render_template('complaints.html', data=data,active_page='complaints')
+    return render_template('complaints.html', active_page=active_page ,data=data)
 
 @app.route('/update', methods=['POST'])
 def update_status():
