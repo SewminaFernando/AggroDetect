@@ -34,7 +34,6 @@ class ValidateReportFullInfoForm(FormValidationAction):
             dispatcher.utter_message(text="Please provide your name.")
             print(slot_value)
             return {"name": None}
-        print(slot_value)
         return {"name": slot_value}
 
     def validate_phoneNumber(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker,
@@ -43,7 +42,6 @@ class ValidateReportFullInfoForm(FormValidationAction):
             dispatcher.utter_message(text="Please provide your phone_number.")
             return {"phoneNumber": None}
         if (len(slot_value) == 10 or len(slot_value) == 12):
-            print(slot_value, "=", len(slot_value))
             return {"phoneNumber": slot_value}
         dispatcher.utter_message(text="Please provide your valid phone number.")
         return {"phoneNumber": None}
