@@ -102,10 +102,13 @@ function sendAudioToFlask(blob) {
     if (data.status) {
       // if data.status is 'end', end the conversation
       if (data.status === "end") {
-        startConvButton.style.display = 'flex';
-        endConvButton.style.display = 'none';
-        chatContainer.style.display = 'none';
         document.getElementById('aggro').textContent = data.overall_sentiment;
+        // Wait for 6 seconds
+        setTimeout(() => {
+          startConvButton.style.display = 'flex';
+          endConvButton.style.display = 'none';
+          chatContainer.style.display = 'none';
+        }, 6000);
       }
 
       // if data.status is 'route'
