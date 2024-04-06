@@ -26,7 +26,7 @@ function search() {
         table = document.querySelector("table");
         tr = table.getElementsByTagName("tr");
         for (i = 1; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[0]; // Change 4 to the column index you want to search
+            td = tr[i].getElementsByTagName("td")[2]; // Change 2 to the column index to search
             if (td) {
                 txtValue = td.textContent || td.innerText;
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
