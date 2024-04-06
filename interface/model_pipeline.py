@@ -143,7 +143,8 @@ def text_to_speech(text):
     engine.runAndWait()
 
     if count >= 1:
-        os.remove(r'uploads\output'+str(count-1)+'.mp3')
+        if os.path.exists(r'uploads\output'+str(count-1)+'.mp3'):
+            os.remove(r'uploads\output'+str(count-1)+'.mp3')
 
     count += 1
 
