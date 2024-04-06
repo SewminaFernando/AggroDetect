@@ -3,32 +3,25 @@ import os
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
+import sqlite3
 import re
 import datetime
 
 
 def datastore(name, phoneNumber, issue):
     date = datetime.datetime.now()
-    status = "Under Reviwe"
+    status = "Under Review"
 
-    data = {
-        "ID": 0,
-        "Date & time":[date],
-        "name": [name],
-        "phoneNumber": [phoneNumber],
-        "issue": [issue],
-        "status": [status]
+    conn = sqlite3.connect("interface\Database\AggroDetect.db")
+    cursor = conn.cursor()
+    # Get the highest id number in the database
+    cursor.execute("SELECT MAX(Id) FROM CustomerComplaints")
+    id = cursor.fetchone()[0] + 1
+    # Save to database
+    cursor.execute('INSERT INTO CustomerComplaints (Id, Date, Customer, PhoneNumber, Complaint, Status) VALUES (?,?,?,?,?,?)', (id, date.strftime("%c"), name, phoneNumber, issue, status,))
+    conn.commit()
+    conn.close()
 
-    }
-
-    if os.path.isfile("user_data.xlsx"):
-        df = pd.read_excel("user_data.xlsx")
-        data["ID"] = df["ID"].max() + 1
-        df = pd.concat([df, pd.DataFrame(data)])
-    else:
-        df = pd.DataFrame(data)
-
-    df.to_excel("user_data.xlsx", index=False)
 
 def extract_number(string):
     number_string = ''.join(filter(str.isdigit, string))
@@ -60,16 +53,18 @@ firebase_admin.initialize_app(cred, {
 
 
 def firebase_datastore(username, convesation, department):
-
     db_reference = db.reference('users/')
     db_get = db_reference.get()
 
     convesation["Department"] = department
 
     if username == "":
-        usernames = list(db_get.keys())
-        max_number = max(extract_number(un) for un in usernames if extract_number(un) > 0)
-        username = "Customer_"+str(max_number+1)
+        if db_get is None:
+            username = "Customer_" + str(10)
+        else:
+            usernames = list(db_get.keys())
+            max_number = max(extract_number(un) for un in usernames if extract_number(un) > 0)
+            username = "Customer_" + str(max_number + 1)
 
         db_reference.child(username).set(convesation)
         print(f"'{username}' your conversation has been uploaded to database as a new user...")
