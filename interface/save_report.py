@@ -3,20 +3,27 @@ import os
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
-from pyarrow import null
 import re
+import datetime
 
 
 def datastore(name, phoneNumber, issue):
+    date = datetime.datetime.now()
+    status = "Under Reviwe"
+
     data = {
+        "ID": 0,
+        "Date & time":[date],
         "name": [name],
         "phoneNumber": [phoneNumber],
         "issue": [issue],
+        "status": [status]
 
     }
 
     if os.path.isfile("user_data.xlsx"):
         df = pd.read_excel("user_data.xlsx")
+        data["ID"] = df["ID"].max() + 1
         df = pd.concat([df, pd.DataFrame(data)])
     else:
         df = pd.DataFrame(data)
