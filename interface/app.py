@@ -23,6 +23,15 @@ def login_page():
 @app.route('/sign-out')
 def sign_out():
     return redirect(url_for('home'))
+# Route for About section
+@app.route('/about')
+def about():
+    return render_template('home.html', section='about')
+
+# Route for Service section
+@app.route('/service')
+def service():
+    return render_template('home.html', section='service')
 
 @app.route('/analytics')
 def analytics():
