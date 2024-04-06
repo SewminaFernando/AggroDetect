@@ -94,9 +94,10 @@ def overall_sentiment():
     global old_conv
     # Get the last response from the conversation
     agg_voice, agg_text = old_conv[-1]["agg_voice"], old_conv[-1]["agg_text"]
+    print(agg_voice, agg_text)
     if agg_voice == "Aggressive" and agg_text == "Aggressive":
         return "Aggressive"
-    elif agg_voice == "Non-Aggressive" and agg_text == "Non-Aggressive":
+    elif agg_voice == "Non-Aggressive" and agg_text == "Non-aggressive":
         return "Non-Aggressive"
     else:
         return "Neutral"
@@ -152,15 +153,18 @@ def end_conversation():
     # clear all files in the uploads folder
     for file in os.listdir('uploads'):
         os.remove(os.path.join('uploads', file))
-    # Overall sentiment of the conversation
-    overall_sent = overall_sentiment()
-    # Pass overall sentiment to the database
-    save_analytics(overall_sent)
-    # Save the conversation to the database
-    firebase_datastore('', set_firebase_dictionary(), department=department)
-    # Clear the conversation list
-    old_conv.clear()
-    return jsonify({'overall_sentiment': overall_sent})
+    # if old_conv is not empty return the overall sentiment, save analytics and save the conversation to the database
+    if old_conv:
+        # Overall sentiment of the conversation
+        overall_sent = overall_sentiment()
+        # Pass overall sentiment to the database
+        save_analytics(overall_sent)
+        # Save the conversation to the database
+        firebase_datastore('', set_firebase_dictionary(), department=department)
+        # Clear the conversation list
+        old_conv.clear()
+        return jsonify({'overall_sentiment': overall_sent})
+    return jsonify({'overall_sentiment': ""})
 
 @app.route('/uploads/<path:filename>')
 def download_file(filename):
@@ -218,7 +222,7 @@ def receive_audio():
         # Pass overall sentiment to the database
         save_analytics(overall_sent)
         # Save temporary conversation list
-        temp_conv = old_conv
+        temp_conv = old_conv.copy()
         # Clear the conversation list
         old_conv.clear()
 
@@ -228,8 +232,6 @@ def receive_audio():
         first_time = True
         # Overall sentiment of the conversation
         overall_sent = overall_sentiment()
-        # Pass overall sentiment to the database
-        save_analytics(overall_sent)
         # Agent name
         agentName, position = agent_name(overall_sent,department)
 
