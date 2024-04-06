@@ -73,6 +73,8 @@ img{
 /* Login Box */
 .wrapper{
     width: 420px;
+    height: 420px;
+    max-height: 420px;
     color: white;
     border-radius: 10px;
     padding: 30px 40px;
@@ -152,7 +154,173 @@ img{
     border: 2px solid white;
 }
 .error-message{
-    color: rgb(243, 243, 243);
+    color: rgb(255, 94, 94);
     margin-top: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+    text-align: center;
+    font-weight: bold;
 }
+/* Media Queries */
+@media only screen and (max-width: 1025px) {
+    header{
+        margin-top: 10px;
+    }
+    .logo{
+        font-size: 32px;
+        color: #164267;
+        text-decoration: none;
+        font-weight: 700;
+    }
+    .navbar a {
+        position: relative;
+        font-size: 25px;
+        color: #164267;
+        font-weight: 500;
+        text-decoration: none;
+        margin-left: 40px;
+        
+    }
+    .wrapper{
+        width: 600px;
+        height: 600px;
+        max-height: 600px;
+    }
+    .wrapper  h1{
+        font-size: 48px;
+    }
+    .wrapper .input-box{
+        height: 70px;
+        margin: 50px 0;
+    }
+    .input-box input{
+        border: 3px solid white;
+        font-size: 20px;
+        padding: 8px;
+    
+    }
+    .input-box i{
+        font-size: 25px;
+    }
+    .wrapper .remember-forget{
+        font-size: 18px;
+        margin: -18px 0px 20px;
+    }
+    .wrapper .btn{
+        height: 60px;
+        font-size: 18px;
+        font-weight: 700;
+        margin-top: 40px;
+    }
+    .error-message{
+        font-size: 22px;
+    }
+}
+@media only screen and (max-width: 768px) {
+    header{
+        margin-top: 8px;
+    }
+    .logo{
+        font-size: 28px;
+        color: #164267;
+        text-decoration: none;
+        font-weight: 700;
+    }
+    .navbar a {
+        position: relative;
+        font-size: 22px;
+        color: #164267;
+        font-weight: 500;
+        text-decoration: none;
+        margin-left: 40px;
+        
+    }
+    .wrapper{
+        width: 600px;
+        height: 600px;
+        max-height: 600px;
+    }
+    .wrapper  h1{
+        font-size: 48px;
+    }
+    .wrapper .input-box{
+        height: 70px;
+        margin: 50px 0;
+    }
+    .input-box input{
+        border: 3px solid white;
+        font-size: 20px;
+        padding: 8px;
+    
+    }
+    .input-box i{
+        font-size: 25px;
+    }
+    .wrapper .remember-forget{
+        font-size: 18px;
+        margin: -18px 0px 20px;
+    }
+    .wrapper .btn{
+        height: 60px;
+        font-size: 18px;
+        font-weight: 700;
+        margin-top: 40px;
+    }
+    .error-message{
+        font-size: 22px;
+    }
+}
+@media only screen and (max-width: 431px) {
+    header{
+        padding: 12px 15px;
+    }
+    .logo{
+        font-size: 18px;
+        color: #164267;
+        text-decoration: none;
+        font-weight: 700;
+    }
+    .navbar a {
+        position: relative;
+        font-size: 14px;
+        color: #164267;
+        font-weight: 500;
+        text-decoration: none;
+        margin-left: 40px;
+        
+    }
+    .wrapper{
+        width: 350px;
+        height: 350px;
+        max-height: 350px;
+    }
+    .wrapper  h1{
+        font-size: 30px;
+    }
+    .wrapper .input-box{
+        height: 40px;
+        margin: 25px 0;
+    }
+    .input-box input{
+        border: 2px solid white;
+        font-size: 14px;
+        padding: 4px;
+    
+    }
+    .input-box i{
+        font-size: 20px;
+    }
+    .wrapper .remember-forget{
+        font-size: 14px;
+        margin: -15px 0px 15px;
+    }
+    .wrapper .btn{
+        height: 45px;
+        font-size: 16px;
+        font-weight: 600;
+        margin-top: 5px;
+    }
+    .error-message{
+        font-size: 18px;
+    }
+}
+
