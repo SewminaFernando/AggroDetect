@@ -28,6 +28,14 @@
                       <span class="title">Dashboard</span>
                   </a>
               </li>
+              <li class="{{ 'active' if active_page == 'complaints' else '' }}">
+                  <a href="{{ url_for('complaints') }}">
+                      <span class="icon">
+                          <ion-icon name="chatbubble-outline"></ion-icon>
+                      </span>
+                      <span class="title">Complaints</span>
+                  </a>
+              </li>
 
               <li class="{{ 'active' if active_page == 'chat_history' else '' }}">
                   <a href="{{ url_for('index') }}">

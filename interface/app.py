@@ -157,7 +157,7 @@ def complaints():
     c.execute('SELECT * FROM CustomerComplaints')
     data = c.fetchall()
     conn.close()
-    return render_template('complaints.html', data=data)
+    return render_template('complaints.html', data=data,active_page='complaints')
 
 @app.route('/update', methods=['POST'])
 def update_status():
