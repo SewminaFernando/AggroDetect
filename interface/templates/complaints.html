@@ -31,8 +31,68 @@
             cursor: pointer;
         }
     </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/dashboard.css') }}">
+     <!-- icons -->
+     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
+    <!-- Navigation -->
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="logo">AggroDetect</span>
+                    </a>
+                </li>
+
+                <li class="{{ 'active' if active_page == 'dashboard' else '' }}">
+                    <a href="{{ url_for('dashboard') }}">
+                        <span class="icon">
+                            <ion-icon name="home-outline"></ion-icon>
+                        </span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+                <li class="{{ 'active' if active_page == 'complaints' else '' }}">
+                    <a href="{{ url_for('complaints') }}">
+                        <span class="icon">
+                            <ion-icon name="folder-open-outline"></ion-icon>
+                        </span>
+                        <span class="title">Complaints</span>
+                    </a>
+                </li>
+
+                <li class="{{ 'active' if active_page == 'chat_history' else '' }}">
+                    <a href="{{ url_for('index') }}">
+                        <span class="icon">
+                            <ion-icon name="chatbubble-outline"></ion-icon>
+                        </span>
+                        <span class="title">Chat History</span>
+                    </a>
+                </li>
+
+                <li class="{{ 'active' if active_page == 'analytics' else '' }}">
+                    <a href="{{ url_for('analytics') }}">
+                        <span class="icon">
+                            <ion-icon name="analytics"></ion-icon>
+                        </span>
+                        <span class="title">Analytics</span>
+                    </a>
+                </li>
+
+                <li class="{{ 'active' if active_page == 'sign_out' else '' }}">
+                    <a href="{{ url_for('sign_out') }}">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                        <span class="title">Sign Out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
     <h1>Customer Complaints</h1>
     <div class="search-container">
         <input type="text" id="search-input" class="search-input" placeholder="Search">

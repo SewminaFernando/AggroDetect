@@ -23,6 +23,7 @@ def login_page():
 @app.route('/sign-out')
 def sign_out():
     return redirect(url_for('home'))
+
 # Route for About section
 @app.route('/about')
 def about():
@@ -60,7 +61,6 @@ def analytics():
     for row in data:
         month_str = row[0]
         if month_str is not None and month_str in month_map:
-            month_index = month_map[month_str]
             datasets[0]["data"][labels.index(month_str)] = row[1]  # Aggressive count
             datasets[1]["data"][labels.index(month_str)] = row[3]  # Non-aggressive count
             datasets[2]["data"][labels.index(month_str)] = row[2]  # Neutral count
@@ -139,7 +139,7 @@ def agent_name(sentiment,department):
 
 def save_analytics(sentiment):
     # Get date and time together
-    now = datetime.datetime.now()
+    now = datetime.now()
     # Get month only
     month = now.strftime("%B")
     # Get year only
@@ -152,12 +152,13 @@ def save_analytics(sentiment):
 
 @app.route('/complaints')
 def complaints():
+    active_page='complaints'
     conn = sqlite3.connect('Database/AggroDetect.db')
     c = conn.cursor()
     c.execute('SELECT * FROM CustomerComplaints')
     data = c.fetchall()
     conn.close()
-    return render_template('complaints.html', data=data)
+    return render_template('complaints.html', active_page=active_page ,data=data)
 
 @app.route('/update', methods=['POST'])
 def update_status():
@@ -172,9 +173,6 @@ def update_status():
     conn.close()
     
     return jsonify({'message': 'Status updated successfully'}), 200
-
-
-
 
 def set_firebase_dictionary():
     global old_conv
@@ -288,7 +286,7 @@ def index():
     # Convert data to conversation format
     conversation_dict = convert_to_conversation_dict(users_data)
     # Pass conversation_dict to the HTML template
-    return render_template('interface.html', conversation_dict = (conversation_dict),active_page='chat_history')
+    return render_template('chatHistory.html', conversation_dict = (conversation_dict),active_page='chat_history')
 
 if __name__ == '__main__':
     app.run(debug=True)
