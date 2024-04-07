@@ -22,7 +22,7 @@ https://github.com/SewminaFernando/AggroDetect_DSGP/assets/125371767/7df03968-4a
 
 # How to use
 
-> **Note:**
+> [!NOTE]
 > This steps are only for Windows users.
 
 ### 1. Clone this Repository
@@ -63,7 +63,7 @@ pip install -r requirements.txt
 
 You should run these commands in two separate command prompts after activating the virtual environment.
 
-> **Note:**
+> [!NOTE]
 > If your command prompt is not activated with the virtual environment, repeat step 3.
 
 1. Activate rasa action server
